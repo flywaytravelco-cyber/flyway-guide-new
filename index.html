@@ -8,7 +8,7 @@
     <!-- Favicon & WhatsApp Preview Meta Tags -->
     <link rel="icon" type="image/svg+xml" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/svgs/solid/compass.svg">
     <meta property="og:title" content="دليل السفر الشامل للمسافر العراقي">
-    <meta property="og:description" content="بوابتك الذكية لمعرفة التأشيرات لأكثر من 150 دولة وحجز أرقى الفنادق العالمية.">
+    <meta property="og:description" content="بوابتك الذكية لمعرفة التأشيرات لأكثر من 150 دولة وحجز أرقى الفنادق والخدمات السياحية.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80">
 
     <!-- Tailwind CSS CDN -->
@@ -54,7 +54,7 @@
                     <i class="fa-solid fa-passport ml-2"></i>دليل التأشيرات الرسمي
                 </button>
                 <button onclick="switchTab('guide')" id="nav-guide" class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 text-slate-400 hover:text-white">
-                    <i class="fa-solid fa-map-location-dot ml-2"></i>الدليل الشامل للفنادق
+                    <i class="fa-solid fa-map-location-dot ml-2"></i>الدليل الشامل للوجهات
                 </button>
             </nav>
 
@@ -110,18 +110,19 @@
         <!-- TAB 2: Comprehensive Travel Guide -->
         <section id="section-guide" class="hidden space-y-6">
             <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-800 mb-8 h-64 sm:h-80 flex items-center justify-center">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" alt="دليل الفنادق" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" alt="دليل الوجهات" class="absolute inset-0 w-full h-full object-cover opacity-40">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/60 to-transparent"></div>
                 <div class="relative z-10 text-center max-w-2xl mx-auto px-4">
-                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full mb-3 inline-block">دليل الفنادق والوجهات</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">الدليل الشامل للفنادق العالمية</h2>
-                    <p class="text-slate-300 text-sm">تصفح أرقى الفنادق مع تصنيف النجوم والفلترة السريعة لأفضل المنتجعات.</p>
+                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full mb-3 inline-block">دليل الوجهات والخدمات</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">الدليل الشامل للوجهات العالمية</h2>
+                    <p class="text-slate-300 text-sm">تصفح الفنادق، المطاعم، الأماكن الترفيهية والمستشفيات مع فلتر النجوم والبحث السريع.</p>
                 </div>
             </div>
 
-            <!-- Search & Filter Bar -->
-            <div class="bg-[#1e293b] rounded-3xl shadow-2xl border border-slate-800 p-6 max-w-4xl mx-auto mb-8">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Search & Filter Bar (Restored All Original Selectors) -->
+            <div class="bg-[#1e293b] rounded-3xl shadow-2xl border border-slate-800 p-6 max-w-5xl mx-auto mb-8">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- 1. Destination Search -->
                     <div>
                         <label class="block text-sm font-bold text-slate-300 mb-2">اسم الوجهة (الدولة أو المدينة)</label>
                         <div class="relative">
@@ -131,17 +132,33 @@
                             <input type="text" id="guide-search" oninput="loadGuideData()" placeholder="ابحث عن دولة (تركيا، دبي، مصر...)" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl pr-11 pl-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
                         </div>
                     </div>
+                    <!-- 2. Category Selector (Hotels, Restaurants, Entertainment, Hospitals) -->
                     <div>
-                        <label class="block text-sm font-bold text-slate-300 mb-2">فلتر حسب تصنيف النجوم</label>
+                        <label class="block text-sm font-bold text-slate-300 mb-2">التصنيف الرئيسي</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-amber-400">
+                                <i class="fa-solid fa-filter"></i>
+                            </span>
+                            <select id="guide-category" onchange="loadGuideData()" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl pr-11 pl-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                                <option value="hotels">فنادق ومنتجعات</option>
+                                <option value="restaurants">مطاعم وكافيهات</option>
+                                <option value="entertainment">أماكن سياحية وترفيهية</option>
+                                <option value="hospitals">مستشفيات ومراكز صحية (طوارئ)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 3. Star Rating Filter (For Hotels) -->
+                    <div>
+                        <label class="block text-sm font-bold text-slate-300 mb-2">فلتر تصنيف النجوم (للفنادق)</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-amber-400">
                                 <i class="fa-solid fa-star"></i>
                             </span>
                             <select id="star-filter" onchange="loadGuideData()" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl pr-11 pl-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
-                                <option value="all">كل الفنادق (من 1 إلى 5 نجوم)</option>
-                                <option value="5">⭐⭐⭐⭐⭐ (5 نجوم فقط)</option>
-                                <option value="4">⭐⭐⭐⭐ (4 نجوم فقط)</option>
-                                <option value="3">⭐⭐⭐ (3 نجوم فقط)</option>
+                                <option value="all">كل النجوم (1 إلى 5)</option>
+                                <option value="5">⭐⭐⭐⭐⭐ (5 نجوم)</option>
+                                <option value="4">⭐⭐⭐⭐ (4 نجوم)</option>
+                                <option value="3">⭐⭐⭐ (3 نجوم)</option>
                                 <option value="1,2">⭐ و ⭐⭐ (نجمتان وأقل)</option>
                             </select>
                         </div>
@@ -242,13 +259,11 @@
             }
         }
 
-        // --- DIVERSE HIGH-RES HOTELS WITH REAL UNIQUE IMAGES ---
-        function generate10Hotels(countryName) {
+        // --- DIVERSE HIGH-RES GUIDE DATA (Hotels, Restaurants, Entertainment, Hospitals) ---
+        function generateData(countryName) {
             const starsList = [5, 4, 5, 3, 4, 2, 5, 3, 4, 1];
             const hotelTypes = ["فندق ومنتجع الفخامة", "فندق النجمة الذهبية", "فندق القصر الملكي", "فندق الواحة السياحي", "فندق الإمبراطور", "فندق الراحة والاطمئنان", "فندق الأفق الجديد", "فندق الدلتا السياحي", "فندق اللؤلؤة البيضاء", "فندق النسيم العليل"];
-            
-            // 10 distinct high-res Unsplash hotel images
-            const images = [
+            const hotelImages = [
                 "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85",
                 "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85",
                 "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=85",
@@ -267,26 +282,42 @@
                 let starString = "⭐".repeat(stars);
                 hotels.push({
                     title: `${hotelTypes[i]} في ${countryName}`,
-                    desc: `تصنيف الفندق: ${stars} نجوم (${starString}). يوفر أروع الخدمات، غرف مكيفة، وخدمة عملاء على مدار الساعة في قلب ${countryName}.`,
-                    img: images[i],
+                    desc: `تصنيف الفندق: ${stars} نجوم (${starString}). يوفر أروع الخدمات، غرف مكيفة، وخدمة عملاء على مدار الساعة.`,
+                    img: hotelImages[i],
                     stars: stars,
                     map: "https://maps.google.com"
                 });
             }
-            return hotels;
+
+            const restaurants = [
+                { title: `مطعم السلطان في ${countryName}`, desc: "أشهى الأطباق الشرقية والعالمية مع جلسات عائلية فاخرة.", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" },
+                { title: `مقهى وحديقة البوسفور في ${countryName}`, desc: "أجواء هادئة ومشروبات مميزة مع إطلالة رائعة.", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" }
+            ];
+
+            const entertainment = [
+                { title: `المدينة الترفيهية الكبرى في ${countryName}`, desc: "ألعاب حديثة وفعاليات ممتعة لكافة أفراد العائلة.", img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" },
+                { title: `المعرض التاريخي والثقافي في ${countryName}`, desc: "جولة استكشافية لأهم معالم التراث والآثار.", img: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" }
+            ];
+
+            const hospitals = [
+                { title: `مستشفى الطوارئ الدولي في ${countryName}`, desc: "خدمات إسعاف وطوارئ طبية متكاملة على مدار الساعة مع مترجمين.", img: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" },
+                { title: `مركز الرعاية الصحية الشاملة في ${countryName}`, desc: "استشارات طبية وأقسام متخصصة لمختلف الحالات.", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" }
+            ];
+
+            return { hotels, restaurants, entertainment, hospitals };
         }
 
         const guideDatabase = {
-            "تركيا": generate10Hotels("تركيا"),
-            "الإمارات": generate10Hotels("الإمارات"),
-            "مصر": generate10Hotels("مصر"),
-            "جورجيا": generate10Hotels("جورجيا"),
-            "السعودية": generate10Hotels("السعودية"),
-            "بريطانيا": generate10Hotels("بريطانيا"),
-            "ماليزيا": generate10Hotels("ماليزيا"),
-            "إيران": generate10Hotels("إيران"),
-            "لبنان": generate10Hotels("لبنان"),
-            "المالديف": generate10Hotels("المالديف")
+            "تركيا": generateData("تركيا"),
+            "الإمارات": generateData("الإمارات"),
+            "مصر": generateData("مصر"),
+            "جورجيا": generateData("جورجيا"),
+            "السعودية": generateData("السعودية"),
+            "بريطانيا": generateData("بريطانيا"),
+            "ماليزيا": generateData("ماليزيا"),
+            "إيران": generateData("إيران"),
+            "لبنان": generateData("لبنان"),
+            "المالديف": generateData("المالديف")
         };
 
         function switchTab(tab) {
@@ -317,39 +348,40 @@
 
         function loadGuideData() {
             const searchText = document.getElementById('guide-search').value.trim();
+            const category = document.getElementById('guide-category').value;
             const starFilter = document.getElementById('star-filter').value;
             const grid = document.getElementById('guide-results-grid');
-            let allHotels = [];
+            let results = [];
 
             if (searchText === "") {
                 Object.keys(guideDatabase).forEach(country => {
-                    allHotels = allHotels.concat(guideDatabase[country]);
+                    results = results.concat(guideDatabase[country][category]);
                 });
             } else {
                 let foundKey = Object.keys(guideDatabase).find(key => searchText.includes(key));
                 if (foundKey) {
-                    allHotels = guideDatabase[foundKey];
+                    results = guideDatabase[foundKey][category];
                 } else {
-                    allHotels = generate10Hotels(searchText);
+                    results = generateData(searchText)[category];
                 }
             }
 
-            // Apply Star Rating Filter
-            if (starFilter !== 'all') {
+            // Apply star filter only if category is hotels
+            if (category === 'hotels' && starFilter !== 'all') {
                 if (starFilter.includes(',')) {
                     const filters = starFilter.split(',').map(Number);
-                    allHotels = allHotels.filter(h => filters.includes(h.stars));
+                    results = results.filter(h => filters.includes(h.stars));
                 } else {
                     const targetStar = Number(starFilter);
-                    allHotels = allHotels.filter(h => h.stars === targetStar);
+                    results = results.filter(h => h.stars === targetStar);
                 }
             }
 
             let html = "";
-            if (allHotels.length === 0) {
-                html = `<div class="col-span-full text-center py-10 text-slate-400 font-bold">لا توجد فنادق مطابقة لتصنيف النجوم هذا في الوجهة المحددة.</div>`;
+            if (results.length === 0) {
+                html = `<div class="col-span-full text-center py-10 text-slate-400 font-bold">لا توجد نتائج مطابقة لبحثك في هذا القسم.</div>`;
             } else {
-                allHotels.forEach(item => {
+                results.forEach(item => {
                     html += `
                         <div class="bg-[#1e293b] rounded-3xl shadow-xl border border-slate-800 overflow-hidden hover:border-amber-500/50 transition-all flex flex-col justify-between">
                             <div>
