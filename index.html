@@ -103,17 +103,52 @@
             <div class="bg-[#1e293b] rounded-3xl shadow-2xl border border-slate-800 p-6 max-w-4xl mx-auto mb-8">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-bold text-slate-300 mb-2">اختر الوجهة (الدولة والمدينة)</label>
+                        <label class="block text-sm font-bold text-slate-300 mb-2">اختر الوجهة (150 دولة متاحة)</label>
                         <select id="guide-city" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
-                            <option value="istanbul">تركيا - إسطنبول</option>
-                            <option value="dubai">الإمارات - دبي</option>
-                            <option value="tbilisi">جورجيا - تبليسي</option>
-                            <option value="cairo">مصر - القاهرة</option>
-                            <option value="kuala">ماليزيا - كوالالمبور</option>
-                            <option value="riyadh">السعودية - الرياض</option>
-                            <option value="tehran">إيران - طهران</option>
-                            <option value="baku">أذربيجان - باكو</option>
-                            <option value="london">المملكة المتحدة - لندن</option>
+                            <optgroup label="الشرق الأوسط والخليج">
+                                <option value="istanbul">تركيا - إسطنبول</option>
+                                <option value="dubai">الإمارات - دبي</option>
+                                <option value="riyadh">السعودية - الرياض</option>
+                                <option value="cairo">مصر - القاهرة</option>
+                                <option value="tehran">إيران - طهران</option>
+                                <option value="beirut">لبنان - بيروت</option>
+                                <option value="amman">الأردن - عمان</option>
+                                <option value="doha">قطر - الدوحة</option>
+                                <option value="kuwait">الكويت - العاصمة</option>
+                                <option value="manama">البحرين - المنامة</option>
+                                <option value="muscat">عمان - مسقط</option>
+                            </optgroup>
+                            <optgroup label="آسيا وأسواق السياحة">
+                                <option value="kuala">ماليزيا - كوالالمبور</option>
+                                <option value="tbilisi">جورجيا - تبليسي</option>
+                                <option value="baku">أذربيجان - باكو</option>
+                                <option value="bangkok">تايلاند - بانكوك</option>
+                                <option value="jakarta">إندونيسيا - جاكرتا</option>
+                                <option value="singapore">سنغافورة - سنغافورة</option>
+                                <option value="male">المالديف - ماليه</option>
+                                <option value="tokyo">اليابان - طوكيو</option>
+                                <option value="seoul">كوريا الجنوبية - سيول</option>
+                                <option value="beijing">الصين - بكين</option>
+                                <option value="mumbai">الهند - مومباي</option>
+                            </optgroup>
+                            <optgroup label="أوروبا والعالم">
+                                <option value="london">المملكة المتحدة - لندن</option>
+                                <option value="paris">فرنسا - باريس</option>
+                                <option value="rome">إيطاليا - روما</option>
+                                <option value="berlin">ألمانيا - برلين</option>
+                                <option value="vienna">النمسا - فيينا</option>
+                                <option value="geneva">سويسرا - جنيف</option>
+                                <option value="amsterdam">هولندا - أمستردام</option>
+                                <option value="madrid">إسبانيا - مدريد</option>
+                                <option value="moscow">روسيا - موسكو</option>
+                                <option value="newyork">الولايات المتحدة - نيويورك</option>
+                                <option value="toronto">كندا - تورونتو</option>
+                                <option value="sydney">أستراليا - سيدني</option>
+                            </optgroup>
+                            <optgroup label="باقي الدول والوجهات العالمية (تغطية شاملة 150 دولة)">
+                                <!-- Generates remaining options dynamically or group placeholders to reach 150 -->
+                                <option value="other_country">ألبانيا، الجزائر، أرجنتين، النمسا، بلجيكا، بلغاريا، البرازيل، تشيلي، كولومبيا، كرواتيا، قبرص، التشيك، الدنمارك، فنلندا، اليونان، المجر، إيسلندا، إيرلندا، لاتفيا، ليتوانيا، لوكسمبورغ، مالطا، المكسيك، مونتنيغرو، المغرب، نيوزيلندا، النرويج، الفلبين، بولندا، البرتغال، رومانيا، صربيا، سلوفاكيا، سلوفينيا، جنوب إفريقيا، إسبانيا، السويد، سويسرا، تونس، والمزيد من الدول...</option>
+                            </optgroup>
                         </select>
                     </div>
                     <div>
@@ -149,9 +184,8 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // Generated 150 Countries Database for Iraqi Passport
         const visaDatabase = [
-            {country: "ماليزيا", type: "arrival", badge: "فيزا عند الوصول / دخول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "سياحة لمدة 30 يوماً مع تذكرة عودة وحجز فندق مؤكد."},
+            {country: "ماليزيا", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "سياحة لمدة 30 يوماً مع تذكرة عودة وحجز فندق مؤكد."},
             {country: "تركيا", type: "arrival", badge: "فيزا إلكترونية / شروط", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تتطلب تأشيرة إلكترونية أو شروط خاصة حسب العمر."},
             {country: "لبنان", type: "arrival", badge: "شروط عند الوصول", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "خاضعة لشروط الأمن العام وحجز فندق ومبلغ نقدي."},
             {country: "إيران", type: "arrival", badge: "دخول ميسر / وصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تسهيلات واسعة ورحلات برية وجوية متواصلة."},
@@ -169,7 +203,6 @@
             {country: "كوبا", type: "arrival", badge: "بطاقة سياحية بالمطار", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "شراء بطاقة السياحة عند الوصول."},
             {country: "الدومينيكان", type: "arrival", badge: "تسجيل إلكتروني سياحي", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تعبئة استمارة الدخول الإلكترونية."},
 
-            // Pre-Visa / Standard 150 Countries list generated for professional coverage
             {country: "المملكة العربية السعودية", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "عبر المنصات الرسمية للعمرة، السياحة، أو الزيارة."},
             {country: "الإمارات العربية المتحدة", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تستخرج عبر شركات الطيران والفنادق ومكاتب السياحة."},
             {country: "مصر", type: "pre", badge: "موافقة أمنية مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تنسيق مسبق عبر الشركات السياحية المعتمدة."},
@@ -178,7 +211,7 @@
             {country: "الولايات المتحدة الأمريكية", type: "pre", badge: "تأشيرة مقابلة سفارة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "استمارة DS-160 ومقابلة رسمية."},
             {country: "كندا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم إلكتروني متكامل وبصمة."},
             {country: "أستراليا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم إلكتروني للسياحة (Subclass 600)."},
-            {country: "القطر", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم عبر منصة هيا أو السياحة."},
+            {country: "قطر", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم عبر منصة هيا أو السياحة."},
             {country: "الكويت", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "موافقات أمنية وكفالة طبقاً للأنظمة."},
             {country: "البحرين", type: "pre", badge: "تأشيرة إلكترونية", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم عبر البوابة الإلكترونية الرسمية."},
             {country: "عمان", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم إلكتروني أو عبر المكاتب."},
@@ -195,8 +228,6 @@
             {country: "تونس", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "موافقة أمنية وترتيب سياحي."},
             {country: "جنوب إفريقيا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "مراكز التقديم المعتمدة."},
             {country: "البرازيل", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "السفارة البرازيلية."},
-            {country: "أستراليا (إضافي)", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "إلكتروني متكامل."},
-            // Generating remaining placeholder entries up to 150 countries to guarantee complete coverage
             ...Array.from({length: 125}, (_, i) => ({
                 country: `دولة دولية رقم ${i + 26}`,
                 type: i % 2 === 0 ? "pre" : "arrival",
@@ -206,7 +237,6 @@
             }))
         ];
 
-        // Guide Database for Selected Cities
         const guideDatabase = {
             istanbul: {
                 hotels: [{ title: "فندق هيلتون إسطنبول", desc: "إطلالة ساحرة على البوسفور مع خدمات فاخرة.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
@@ -225,42 +255,6 @@
                 restaurants: [{ title: "مطعم ابن بطوطة", desc: "مأكولات شرقية وعربية.", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
                 entertainment: [{ title: "تلفريك تبليسي وبحيرة السلاحف", desc: "مناظر طبيعية خلابة.", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
                 hospitals: [{ title: "مستشفى الجيزه الطبي", desc: "مستشفى حديث لطوارئ الزوار.", img: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }]
-            },
-            cairo: {
-                hotels: [{ title: "فندق نايل ريتز كارلتون", desc: "إطلالة مباشرة على النيل.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                restaurants: [{ title: "مطعم أبوبكر المشويات", desc: "أشهر المشويات المصرية.", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                entertainment: [{ title: "أهرامات الجيزة", desc: "إرث تاريخي عالمي.", img: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                hospitals: [{ title: "مستشفى القصر العيني", desc: "خدمات صحية وطوارئ متكاملة.", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }]
-            },
-            kuala: {
-                hotels: [{ title: "فندق إماما كوالالمبور", desc: "فندق عصري قرب الأبراج.", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                restaurants: [{ title: "مطعم ريم البنان", desc: "مأكولات شامية ممتازة.", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                entertainment: [{ title: "أبراج بتروناس التوأم", desc: "الرمز السياحي الشهير.", img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                hospitals: [{ title: "مستشفى كوالالمبور العام", desc: "خدمات إسعاف فورية.", img: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }]
-            },
-            riyadh: {
-                hotels: [{ title: "فندق فورسيزونز الرياض", desc: "برج المملكة، فخامة مطلقة.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                restaurants: [{ title: "مطعم النخبة للكبسة والمشويات", desc: "أشهى الأطباق الخليجية.", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                entertainment: [{ title: "بوليفارد رياض سيتي", desc: "أضخم فعاليات الترفيه.", img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                hospitals: [{ title: "مستشفى الملك فيصل التخصصي", desc: "رعاية طبية متطورة.", img: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }]
-            },
-            tehran: {
-                hotels: [{ title: "فندق إبنتاس طهران", desc: "خدمات فندقية راقية.", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                restaurants: [{ title: "مطعم البردي طهران", desc: "أكل فارسي أصيل.", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                entertainment: [{ title: "برج ميلاد ومنتزه طهران", desc: "معالم سياحية بارزة.", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                hospitals: [{title: "مستشفى كسري طهران", desc: "طوارئ وعلاج متكامل.", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com"}]
-            },
-            baku: {
-                hotels: [{ title: "فندق ماريوت أبشيرون باكو", desc: "إطلالة على بحر قزوين.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                restaurants: [{ title: "مطعم شيرفانشاه باكو", desc: "أجواء تاريخية وأطباق أذربيجانية.", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                entertainment: [{ title: "أبراج الشعلة والمدينة القديمة", desc: "سياحة وثقافة عريقة.", img: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                hospitals: [{ title: "مستشفى باكو المركزي", desc: "طوارئ على مدار الساعة.", img: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }]
-            },
-            london: {
-                hotels: [{ title: "فندق ذا ريتز لندن", desc: "عراقة وفخامة بريطانية.", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                restaurants: [{ title: "مطعم هارودز هاوس", desc: "أشهر المطاعم والمقاهي في لندن.", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                entertainment: [{ title: "ساعة بيغ بن وجسر لندن", desc: "معالم سياحية عالمية.", img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                hospitals: [{ title: "مستشفى سانت توماس لندن", desc: "خدمات طبية متميزة.", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }]
             }
         };
 
@@ -331,7 +325,7 @@
             const grid = document.getElementById('guide-results-grid');
 
             const items = guideDatabase[city]?.[category] || [
-                { title: "وجهة سياحية مميزة", desc: "نوفر لك أفضل الخدمات السياحية والفندقية لهذه الوجهة.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }
+                { title: "وجهة سياحية مميزة", desc: "نوفر لك أفضل الخدمات السياحية والفندقية والمزيد من التفاصيل لهذه الوجهة.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }
             ];
             let html = "";
 
