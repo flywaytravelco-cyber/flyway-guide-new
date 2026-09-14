@@ -109,16 +109,26 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-bold text-slate-300 mb-2">اسم الوجهة (اتركه فارغاً لعرض الكل)</label>
-                        <input type="text" id="guide-search" placeholder="مثال: تركيا، دبي، مصر، لندن..." class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                        <div class="relative">
+                            <span class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-amber-400">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <input type="text" id="guide-search" placeholder="مثال: تركيا، دبي، مصر، لندن..." class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl pr-11 pl-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                        </div>
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-slate-300 mb-2">اختر التصنيف المطلوب</label>
-                        <select id="guide-category" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
-                            <option value="hotels">فنادق ومنتجعات (10 فنادق لكل دولة)</option>
-                            <option value="restaurants">مطاعم وكافيهات</option>
-                            <option value="entertainment">أماكن سياحية وترفيهية</option>
-                            <option value="hospitals">مستشفيات ومراكز صحية (طوارئ)</option>
-                        </select>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-amber-400">
+                                <i class="fa-solid fa-filter"></i>
+                            </span>
+                            <select id="guide-category" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl pr-11 pl-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                                <option value="hotels">فنادق ومنتجعات (10 فنادق لكل دولة)</option>
+                                <option value="restaurants">مطاعم وكافيهات</option>
+                                <option value="entertainment">أماكن سياحية وترفيهية</option>
+                                <option value="hospitals">مستشفيات ومراكز صحية (طوارئ)</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <button onclick="loadGuideData()" class="w-full mt-5 gold-gradient hover:opacity-90 text-slate-950 font-extrabold py-3.5 rounded-2xl transition-all shadow-lg flex items-center justify-center gap-2">
@@ -167,9 +177,8 @@
             }))
         ];
 
-        // Generator function to create 10 hotels with star ratings (1 to 5 stars) for any country
         function generate10Hotels(countryName) {
-            const starsList = [5, 4, 5, 3, 4, 2, 5, 3, 4, 1]; // 10 hotels with varying stars
+            const starsList = [5, 4, 5, 3, 4, 2, 5, 3, 4, 1];
             const hotelTypes = ["فندق ومنتجع الفخامة", "فندق النجمة الذهبية", "فندق القصر الملكي", "فندق الواحة السياحي", "فندق الإمبراطور", "فندق الراحة والاطمئنان", "فندق الأفق الجديد", "فندق الدلتا السياحي", "فندق اللؤلؤة البيضاء", "فندق النسيم العليل"];
             
             let hotels = [];
@@ -186,7 +195,6 @@
             return hotels;
         }
 
-        // Guide Database containing major countries and dynamically expandable
         const guideDatabase = {
             "تركيا": { hotels: generate10Hotels("تركيا") },
             "الإمارات": { hotels: generate10Hotels("الإمارات") },
@@ -266,17 +274,14 @@
             let allHotels = [];
 
             if (searchText === "") {
-                // If search is empty, collect 10 hotels from ALL countries so everything displays instantly!
                 Object.keys(guideDatabase).forEach(country => {
                     allHotels = allHotels.concat(guideDatabase[country].hotels);
                 });
             } else {
-                // If user searched for a specific country, find matching hotels or generate them
                 let foundKey = Object.keys(guideDatabase).find(key => searchText.includes(key));
                 if (foundKey) {
                     allHotels = guideDatabase[foundKey].hotels;
                 } else {
-                    // Automatically generate 10 rated hotels for any newly searched country name
                     allHotels = generate10Hotels(searchText);
                 }
             }
@@ -310,7 +315,7 @@
 
         window.onload = function() {
             renderVisaGrid('all');
-            loadGuideData(); // Load all hotels on startup
+            loadGuideData();
         };
     </script>
 </body>
