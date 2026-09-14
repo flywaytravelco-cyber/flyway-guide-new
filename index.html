@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أجنحة العالم للسفر والسياحة - Flyway Guide</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 text-white p-2.5 rounded-xl shadow-md">
+                    <i class="fa-solid fa-plane-departure text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-slate-900 tracking-tight">أجنحة العالم</h1>
+                    <p class="text-xs text-blue-600 font-semibold">Flyway Travel & Tourism</p>
+                </div>
+            </div>
+            
+            <!-- Navigation Tabs -->
+            <nav class="hidden md:flex items-center gap-2 bg-slate-100 p-1.5 rounded-xl">
+                <button onclick="switchTab('calculator')" id="nav-calculator" class="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 bg-blue-600 text-white shadow-sm">
+                    <i class="fa-solid fa-calculator ml-2"></i>حاسبة التأشيرات
+                </button>
+                <button onclick="switchTab('guide')" id="nav-guide" class="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 text-slate-600 hover:text-slate-900">
+                    <i class="fa-solid fa-map-location-dot ml-2"></i>دليل السياحة والمدن
+                </button>
+            </nav>
+
+            <!-- Contact Button -->
+            <a href="https://wa.me/9647800000000" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm flex items-center gap-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span class="hidden sm:inline">تواصل معنا</span>
+            </a>
+        </div>
+        
+        <!-- Mobile Navigation Bar -->
+        <div class="flex md:hidden bg-slate-100 p-2 gap-2 border-t border-slate-200">
+            <button onclick="switchTab('calculator')" id="mob-nav-calculator" class="flex-1 py-2 rounded-lg text-xs font-bold bg-blue-600 text-white text-center shadow-sm">
+                <i class="fa-solid fa-calculator ml-1"></i>حاسبة التأشيرات
+            </button>
+            <button onclick="switchTab('guide')" id="mob-nav-guide" class="flex-1 py-2 rounded-lg text-xs font-bold text-slate-600 text-center">
+                <i class="fa-solid fa-map-location-dot ml-1"></i>دليل السياحة
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+        <!-- TAB 1: Visa Calculator -->
+        <section id="section-calculator" class="space-y-6">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <h2 class="text-3xl font-extrabold text-slate-900 mb-3">حاسبة ومتطلبات التأشيرات</h2>
+                <p class="text-slate-600 text-sm">اختر جنسيتك والوجهة المطلوبة لمعرفة شروط التأشيرة، الرسوم، والوثائق اللازمة فوراً.</p>
+            </div>
+
+            <!-- Calculator Card -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 sm:p-8 max-w-3xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">جنسية المسافر</label>
+                        <select id="nationality" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <option value="iq">العراق (Iraqi)</option>
+                            <option value="other">أخرى</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">الدولة المراد السفر إليها</label>
+                        <select id="destination" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <option value="turkey">تركيا (Turkey)</option>
+                            <option value="uae">الإمارات (UAE)</option>
+                            <option value="georgia">جورجيا (Georgia)</option>
+                            <option value="egypt">مصر (Egypt)</option>
+                            <option value="schengen">منطقة شغنغن (Schengen)</option>
+                        </select>
+                    </div>
+                </div>
+                <button onclick="calculateVisa()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>فحص المتطلبات والتكاليف</span>
+                </button>
+            </div>
+
+            <!-- Results Box (Hidden by default) -->
+            <div id="visa-result" class="hidden bg-white rounded-2xl shadow-lg border border-blue-100 p-6 sm:p-8 max-w-3xl mx-auto mt-6 transition-all">
+                <div class="flex items-center gap-3 mb-4 border-b border-slate-100 pb-4">
+                    <div class="bg-emerald-100 text-emerald-600 p-2 rounded-lg">
+                        <i class="fa-solid fa-circle-check text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-lg" id="res-title">تفاصيل التأشيرة</h3>
+                        <p class="text-xs text-slate-500">محدثة وفقاً لأحدث المتطلبات الرسمية</p>
+                    </div>
+                </div>
+                <div class="space-y-4 text-sm text-slate-700" id="res-content">
+                    <!-- Dynamic Content inserted via JS -->
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+                    <a id="whatsapp-inquire-btn" href="#" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>قدم الطلب عبر الواتساب</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: Travel Guide -->
+        <section id="section-guide" class="hidden space-y-6">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <h2 class="text-3xl font-extrabold text-slate-900 mb-3">دليل المدن والمعالم السياحية</h2>
+                <p class="text-slate-600 text-sm">استكشف أفضل الفنادق، المطاعم، والأماكن السياحية في وجهتك المفضلة.</p>
+            </div>
+
+            <!-- Filter Categories -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button onclick="filterGuide('all')" class="guide-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-sm transition-all">الكل</button>
+                <button onclick="filterGuide('turkey')" class="guide-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-all">تركيا (إسطنبول)</button>
+                <button onclick="filterGuide('uae')" class="guide-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-all">الإمارات (دبي)</button>
+                <button onclick="filterGuide('georgia')" class="guide-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-all">جورجيا (تبليسي)</button>
+            </div>
+
+            <!-- Guide Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="guide-grid">
+                <!-- Card 1 -->
+                <div class="guide-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-all" data-category="turkey">
+                    <div class="bg-slate-200 h-48 flex items-center justify-center text-slate-400 font-bold text-sm">
+                        <i class="fa-solid fa-mountain-city text-3xl ml-2"></i> إسطنبول الساحرة
+                    </div>
+                    <div class="p-5">
+                        <span class="bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1 rounded-full">تركيا</span>
+                        <h3 class="font-bold text-slate-900 text-lg mt-2 mb-1">أبرز المعالم والأسواق التاريخية</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">استمتع بزيارة آيا صوفيا، السوق المفقود، وجولات البوسفور البحرية الساحرة.</p>
+                        <a href="https://wa.me/9647800000000?text=أرغب بالاستفسار عن رحلات تركيا وإسطنبول" target="_blank" class="w-full border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white py-2 rounded-xl text-xs font-bold transition-all block text-center">احجز رحلتك الآن</a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="guide-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-all" data-category="uae">
+                    <div class="bg-slate-200 h-48 flex items-center justify-center text-slate-400 font-bold text-sm">
+                        <i class="fa-solid fa-city text-3xl ml-2"></i> دبي المتألقة
+                    </div>
+                    <div class="p-5">
+                        <span class="bg-emerald-50 text-emerald-600 text-xs font-bold px-3 py-1 rounded-full">الإمارات</span>
+                        <h3 class="font-bold text-slate-900 text-lg mt-2 mb-1">برج خليفة وأجمل الوجهات الترفيهية</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">اكتشف روعة الفخامة، المولات الضخمة، ورحلات السفاري في الصحراء الذهبية.</p>
+                        <a href="https://wa.me/9647800000000?text=أرغب بالاستفسار عن عروض دبي والإمارات" target="_blank" class="w-full border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white py-2 rounded-xl text-xs font-bold transition-all block text-center">احجز رحلتك الآن</a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="guide-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-all" data-category="georgia">
+                    <div class="bg-slate-200 h-48 flex items-center justify-center text-slate-400 font-bold text-sm">
+                        <i class="fa-solid fa-tree text-3xl ml-2"></i> جبال القوقاز - تبليسي
+                    </div>
+                    <div class="p-5">
+                        <span class="bg-amber-50 text-amber-600 text-xs font-bold px-3 py-1 rounded-full">جورجيا</span>
+                        <h3 class="font-bold text-slate-900 text-lg mt-2 mb-1">الطبيعة الساحرة والمرتفعات الخلابة</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">وجهة ممتازة للعائلات والأزواج مع أجواء لطيفة وطبيعة غناء طوال العام.</p>
+                        <a href="https://wa.me/9647800000000?text=أرغب بالاستفسار عن رحلات جورجيا" target="_blank" class="w-full border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white py-2 rounded-xl text-xs font-bold transition-all block text-center">احجز رحلتك الآن</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 text-xs">
+            جميع الحقوق محفوظة © 2026 شركة أجنحة العالم للسفر والسياحة - Flyway Travel
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        function switchTab(tab) {
+            const calcSec = document.getElementById('section-calculator');
+            const guideSec = document.getElementById('section-guide');
+            const navCalc = document.getElementById('nav-calculator');
+            const navGuide = document.getElementById('nav-guide');
+            const mobNavCalc = document.getElementById('mob-nav-calculator');
+            const mobNavGuide = document.getElementById('mob-nav-guide');
+
+            if (tab === 'calculator') {
+                calcSec.classList.remove('hidden');
+                guideSec.classList.add('hidden');
+                
+                navCalc.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 bg-blue-600 text-white shadow-sm";
+                navGuide.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 text-slate-600 hover:text-slate-900";
+                
+                mobNavCalc.className = "flex-1 py-2 rounded-lg text-xs font-bold bg-blue-600 text-white text-center shadow-sm";
+                mobNavGuide.className = "flex-1 py-2 rounded-lg text-xs font-bold text-slate-600 text-center";
+            } else {
+                calcSec.classList.add('hidden');
+                guideSec.classList.remove('hidden');
+                
+                navGuide.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 bg-blue-600 text-white shadow-sm";
+                navCalc.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 text-slate-600 hover:text-slate-900";
+                
+                mobNavGuide.className = "flex-1 py-2 rounded-lg text-xs font-bold bg-blue-600 text-white text-center shadow-sm";
+                mobNavCalc.className = "flex-1 py-2 rounded-lg text-xs font-bold text-slate-600 text-center";
+            }
+        }
+
+        function calculateVisa() {
+            const dest = document.getElementById('destination').value;
+            const resBox = document.getElementById('visa-result');
+            const resTitle = document.getElementById('res-title');
+            const resContent = document.getElementById('res-content');
+            const waBtn = document.getElementById('whatsapp-inquire-btn');
+
+            resBox.classList.remove('hidden');
+
+            let details = "";
+            let titleText = "";
+            let waText = "";
+
+            if (dest === 'turkey') {
+                titleText = "متطلبات تأشيرة تركيا للمواطنين العراقيين";
+                details = `<ul class="list-disc list-inside space-y-2">
+                    <li><b>نوع التأشيرة:</b> إلكترونية أو عبر الموعد (تعتمد على الفئة العمرية والشروط).</li>
+                    <li><b>المستندات المطلوبة:</b> جواز سفر صالح لمدة لا تقل عن 6 أشهر، صورة شخصية حديثة بخلفية بيضاء، حجز فندق وتذكرة طيران ذهاب وعودة مؤكدة.</li>
+                    <li><b>مدة المعالجة:</b> تتراوح بين 3 إلى 7 أيام عمل.</li>
+                </ul>`;
+                waText = "مرحباً، أرغب بالاستفسار وتقديم طلب للحصول على تأشيرة تركيا";
+            } else if (dest === 'uae') {
+                titleText = "متطلبات تأشيرة الإمارات (دبي)";
+                details = `<ul class="list-disc list-inside space-y-2">
+                    <li><b>نوع التأشيرة:</b> سياحية (30 يوماً أو 60 يوماً).</li>
+                    <li><b>المستندات المطلوبة:</b> جواز سفر ملون واضح، صورة شخصية بخلفية بيضاء.</li>
+                    <li><b>مدة المعالجة:</b> سريعة جداً (خلال 24 إلى 48 ساعة).</li>
+                </ul>`;
+                waText = "مرحباً، أرغب بالاستفسار وتقديم طلب للحصول على تأشيرة الإمارات";
+            } else if (dest === 'georgia') {
+                titleText = "متطلبات السفر إلى جورجيا";
+                details = `<ul class="list-disc list-inside space-y-2">
+                    <li><b>متطلبات الدخول:</b> الجواز العراقي الصالح مع تأمين صحي، حجز فندق، وتذكرة عودة.</li>
+                    <li><b>ملاحظة:</b> الدعم الكامل وترتيب الحجوزات متوفر عبر شركتنا.</li>
+                </ul>`;
+                waText = "مرحباً، أرغب بالاستفسار عن ترتيبات السفر إلى جورجيا";
+            } else {
+                titleText = "متطلبات التأشيرة العامة";
+                details = `<p>يرجى التواصل معنا مباشرة عبر الواتساب لتزويدك بالشروط الكاملة والمستندات الخاصة بهذه الوجهة.</p>`;
+                waText = "مرحباً، أرغب بالاستفسار عن تأشيرة السفر";
+            }
+
+            resTitle.innerText = titleText;
+            resContent.innerHTML = details;
+            waBtn.href = `https://wa.me/9647800000000?text=${encodeURIComponent(waText)}`;
+        }
+
+        function filterGuide(category) {
+            const cards = document.querySelectorAll('.guide-card');
+            const buttons = document.querySelectorAll('.guide-filter-btn');
+
+            buttons.forEach(btn => {
+                btn.className = "guide-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-all";
+            });
+            event.target.className = "guide-filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-sm transition-all";
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
