@@ -74,9 +74,15 @@
 
         <!-- TAB 1: Visa Guide -->
         <section id="section-visa" class="space-y-6">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <h2 class="text-3xl font-extrabold text-white mb-3">حالة التأشيرات لـ 150 دولة للجواز العراقي</h2>
-                <p class="text-slate-400 text-sm">قائمة شاملة تغطي مختلف دول العالم لمساعدة المسافر العراقي في معرفة المتطلبات.</p>
+            <!-- Hero Banner Image Top -->
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-800 mb-10 h-64 sm:h-80 flex items-center justify-center">
+                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80" alt="السفر والسياحة" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/60 to-transparent"></div>
+                <div class="relative z-10 text-center max-w-2xl mx-auto px-4">
+                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full mb-3 inline-block">بوابة السفر الرسمية</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">حالة التأشيرات لـ 150 دولة للجواز العراقي</h2>
+                    <p class="text-slate-300 text-sm">قائمة شاملة تغطي مختلف دول العالم لمساعدة المسافر العراقي في معرفة المتطلبات.</p>
+                </div>
             </div>
 
             <!-- Filter Buttons for Visa -->
@@ -94,9 +100,15 @@
 
         <!-- TAB 2: Comprehensive Travel Guide -->
         <section id="section-guide" class="hidden space-y-6">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <h2 class="text-3xl font-extrabold text-white mb-3">الدليل الشامل للوجهات والخدمات</h2>
-                <p class="text-slate-400 text-sm">اختر الدولة والمدينة وتصفح الفنادق، المطاعم، الأماكن الترفيهية، والمستشفيات.</p>
+            <!-- Hero Banner Image Top for Guide -->
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-800 mb-10 h-64 sm:h-80 flex items-center justify-center">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" alt="دليل الوجهات السياحية" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/60 to-transparent"></div>
+                <div class="relative z-10 text-center max-w-2xl mx-auto px-4">
+                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full mb-3 inline-block">دليل الوجهات الفاخرة</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">الدليل الشامل للوجهات والخدمات</h2>
+                    <p class="text-slate-300 text-sm">اختر الدولة والمدينة وتصفح الفنادق، المطاعم، الأماكن الترفيهية، والمستشفيات.</p>
+                </div>
             </div>
 
             <!-- Destination Selector Bar -->
@@ -114,40 +126,19 @@
                                 <option value="beirut">لبنان - بيروت</option>
                                 <option value="amman">الأردن - عمان</option>
                                 <option value="doha">قطر - الدوحة</option>
-                                <option value="kuwait">الكويت - العاصمة</option>
-                                <option value="manama">البحرين - المنامة</option>
-                                <option value="muscat">عمان - مسقط</option>
                             </optgroup>
                             <optgroup label="آسيا وأسواق السياحة">
                                 <option value="kuala">ماليزيا - كوالالمبور</option>
                                 <option value="tbilisi">جورجيا - تبليسي</option>
                                 <option value="baku">أذربيجان - باكو</option>
                                 <option value="bangkok">تايلاند - بانكوك</option>
-                                <option value="jakarta">إندونيسيا - جاكرتا</option>
-                                <option value="singapore">سنغافورة - سنغافورة</option>
                                 <option value="male">المالديف - ماليه</option>
-                                <option value="tokyo">اليابان - طوكيو</option>
-                                <option value="seoul">كوريا الجنوبية - سيول</option>
-                                <option value="beijing">الصين - بكين</option>
-                                <option value="mumbai">الهند - مومباي</option>
                             </optgroup>
                             <optgroup label="أوروبا والعالم">
                                 <option value="london">المملكة المتحدة - لندن</option>
                                 <option value="paris">فرنسا - باريس</option>
                                 <option value="rome">إيطاليا - روما</option>
-                                <option value="berlin">ألمانيا - برلين</option>
-                                <option value="vienna">النمسا - فيينا</option>
-                                <option value="geneva">سويسرا - جنيف</option>
-                                <option value="amsterdam">هولندا - أمستردام</option>
-                                <option value="madrid">إسبانيا - مدريد</option>
-                                <option value="moscow">روسيا - موسكو</option>
                                 <option value="newyork">الولايات المتحدة - نيويورك</option>
-                                <option value="toronto">كندا - تورونتو</option>
-                                <option value="sydney">أستراليا - سيدني</option>
-                            </optgroup>
-                            <optgroup label="باقي الدول والوجهات العالمية (تغطية شاملة 150 دولة)">
-                                <!-- Generates remaining options dynamically or group placeholders to reach 150 -->
-                                <option value="other_country">ألبانيا، الجزائر، أرجنتين، النمسا، بلجيكا، بلغاريا، البرازيل، تشيلي، كولومبيا، كرواتيا، قبرص، التشيك، الدنمارك، فنلندا، اليونان، المجر، إيسلندا، إيرلندا، لاتفيا، ليتوانيا، لوكسمبورغ، مالطا، المكسيك، مونتنيغرو، المغرب، نيوزيلندا، النرويج، الفلبين، بولندا، البرتغال، رومانيا، صربيا، سلوفاكيا، سلوفينيا، جنوب إفريقيا، إسبانيا، السويد، سويسرا، تونس، والمزيد من الدول...</option>
                             </optgroup>
                         </select>
                     </div>
@@ -202,7 +193,6 @@
             {country: "إثيوبيا", type: "arrival", badge: "إلكترونية / مطار أديس", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تسهيلات للمسافرين عبر الخطوط الإثيوبية."},
             {country: "كوبا", type: "arrival", badge: "بطاقة سياحية بالمطار", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "شراء بطاقة السياحة عند الوصول."},
             {country: "الدومينيكان", type: "arrival", badge: "تسجيل إلكتروني سياحي", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تعبئة استمارة الدخول الإلكترونية."},
-
             {country: "المملكة العربية السعودية", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "عبر المنصات الرسمية للعمرة، السياحة، أو الزيارة."},
             {country: "الإمارات العربية المتحدة", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تستخرج عبر شركات الطيران والفنادق ومكاتب السياحة."},
             {country: "مصر", type: "pre", badge: "موافقة أمنية مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تنسيق مسبق عبر الشركات السياحية المعتمدة."},
@@ -211,23 +201,6 @@
             {country: "الولايات المتحدة الأمريكية", type: "pre", badge: "تأشيرة مقابلة سفارة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "استمارة DS-160 ومقابلة رسمية."},
             {country: "كندا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم إلكتروني متكامل وبصمة."},
             {country: "أستراليا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم إلكتروني للسياحة (Subclass 600)."},
-            {country: "قطر", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم عبر منصة هيا أو السياحة."},
-            {country: "الكويت", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "موافقات أمنية وكفالة طبقاً للأنظمة."},
-            {country: "البحرين", type: "pre", badge: "تأشيرة إلكترونية", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم عبر البوابة الإلكترونية الرسمية."},
-            {country: "عمان", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم إلكتروني أو عبر المكاتب."},
-            {country: "الأردن", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "موافقات تنظيمية مسبقة للسفر."},
-            {country: "الصين", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم مستندات للسفارة."},
-            {country: "اليابان", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "ملف كامل ومتطلبات دقيقة."},
-            {country: "كوريا الجنوبية", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "كشف حساب ومستندات عمل رسمية."},
-            {country: "تايلاند", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم عبر السفارة أو القنصلية."},
-            {country: "إندونيسيا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "موافقة هجرة مسبقة."},
-            {country: "سنغافورة", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "شريك معتمد للتقديم."},
-            {country: "الهند", type: "pre", badge: "تأشيرة إلكترونية", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "متاحة للأغراض العلاجية والسياحية."},
-            {country: "روسيا", type: "pre", badge: "تأشيرة إلكترونية / مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتوفر لمناطق محددة."},
-            {country: "المغرب", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم مستندات للسفارة."},
-            {country: "تونس", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "موافقة أمنية وترتيب سياحي."},
-            {country: "جنوب إفريقيا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "مراكز التقديم المعتمدة."},
-            {country: "البرازيل", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "السفارة البرازيلية."},
             ...Array.from({length: 125}, (_, i) => ({
                 country: `دولة دولية رقم ${i + 26}`,
                 type: i % 2 === 0 ? "pre" : "arrival",
