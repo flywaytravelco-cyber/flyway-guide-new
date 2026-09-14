@@ -119,7 +119,7 @@
                 </div>
             </div>
 
-            <!-- Search & Filter Bar (Restored All Original Selectors) -->
+            <!-- Search & Filter Bar -->
             <div class="bg-[#1e293b] rounded-3xl shadow-2xl border border-slate-800 p-6 max-w-5xl mx-auto mb-8">
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <!-- 1. Destination Search -->
@@ -132,7 +132,7 @@
                             <input type="text" id="guide-search" oninput="loadGuideData()" placeholder="ابحث عن دولة (تركيا، دبي، مصر...)" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl pr-11 pl-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
                         </div>
                     </div>
-                    <!-- 2. Category Selector (Hotels, Restaurants, Entertainment, Hospitals) -->
+                    <!-- 2. Category Selector -->
                     <div>
                         <label class="block text-sm font-bold text-slate-300 mb-2">التصنيف الرئيسي</label>
                         <div class="relative">
@@ -147,7 +147,7 @@
                             </select>
                         </div>
                     </div>
-                    <!-- 3. Star Rating Filter (For Hotels) -->
+                    <!-- 3. Clean Star Rating Filter -->
                     <div>
                         <label class="block text-sm font-bold text-slate-300 mb-2">فلتر تصنيف النجوم (للفنادق)</label>
                         <div class="relative">
@@ -155,11 +155,12 @@
                                 <i class="fa-solid fa-star"></i>
                             </span>
                             <select id="star-filter" onchange="loadGuideData()" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl pr-11 pl-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
-                                <option value="all">كل النجوم (1 إلى 5)</option>
+                                <option value="all">🌟 كل النجوم (من 1 إلى 5)</option>
                                 <option value="5">⭐⭐⭐⭐⭐ (5 نجوم)</option>
                                 <option value="4">⭐⭐⭐⭐ (4 نجوم)</option>
                                 <option value="3">⭐⭐⭐ (3 نجوم)</option>
-                                <option value="1,2">⭐ و ⭐⭐ (نجمتان وأقل)</option>
+                                <option value="2">⭐⭐ (نجمتان)</option>
+                                <option value="1">⭐ (نجمة واحدة)</option>
                             </select>
                         </div>
                     </div>
@@ -259,7 +260,6 @@
             }
         }
 
-        // --- DIVERSE HIGH-RES GUIDE DATA (Hotels, Restaurants, Entertainment, Hospitals) ---
         function generateData(countryName) {
             const starsList = [5, 4, 5, 3, 4, 2, 5, 3, 4, 1];
             const hotelTypes = ["فندق ومنتجع الفخامة", "فندق النجمة الذهبية", "فندق القصر الملكي", "فندق الواحة السياحي", "فندق الإمبراطور", "فندق الراحة والاطمئنان", "فندق الأفق الجديد", "فندق الدلتا السياحي", "فندق اللؤلؤة البيضاء", "فندق النسيم العليل"];
@@ -282,7 +282,7 @@
                 let starString = "⭐".repeat(stars);
                 hotels.push({
                     title: `${hotelTypes[i]} في ${countryName}`,
-                    desc: `تصنيف الفندق: ${stars} نجوم (${starString}). يوفر أروع الخدمات، غرف مكيفة، وخدمة عملاء على مدار الساعة.`,
+                    desc: `التصنيف: ${starString} (${stars} نجوم). يوفر أروع الخدمات، غرف مكيفة، وخدمة عملاء على مدار الساعة.`,
                     img: hotelImages[i],
                     stars: stars,
                     map: "https://maps.google.com"
@@ -366,15 +366,10 @@
                 }
             }
 
-            // Apply star filter only if category is hotels
+            // Apply Star Filter if category is hotels
             if (category === 'hotels' && starFilter !== 'all') {
-                if (starFilter.includes(',')) {
-                    const filters = starFilter.split(',').map(Number);
-                    results = results.filter(h => filters.includes(h.stars));
-                } else {
-                    const targetStar = Number(starFilter);
-                    results = results.filter(h => h.stars === targetStar);
-                }
+                const targetStar = Number(starFilter);
+                results = results.filter(h => h.stars === targetStar);
             }
 
             let html = "";
