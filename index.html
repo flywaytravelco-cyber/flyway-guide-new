@@ -44,7 +44,7 @@
             <!-- Navigation Tabs -->
             <nav class="hidden md:flex items-center gap-2 bg-[#1e293b] p-1.5 rounded-2xl border border-slate-700/50">
                 <button onclick="switchTab('visa')" id="nav-visa" class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 gold-gradient text-slate-950 shadow-md">
-                    <i class="fa-solid fa-passport ml-2"></i>دليل التأشيرات (150 دولة)
+                    <i class="fa-solid fa-passport ml-2"></i>دليل التأشيرات الرسمي
                 </button>
                 <button onclick="switchTab('guide')" id="nav-guide" class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 text-slate-400 hover:text-white">
                     <i class="fa-solid fa-map-location-dot ml-2"></i>الدليل الشامل للوجهات
@@ -74,20 +74,28 @@
 
         <!-- TAB 1: Visa Guide -->
         <section id="section-visa" class="space-y-6">
-            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-800 mb-10 h-64 sm:h-80 flex items-center justify-center">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-800 mb-8 h-64 sm:h-80 flex items-center justify-center">
                 <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80" alt="السفر والسياحة" class="absolute inset-0 w-full h-full object-cover opacity-40">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/60 to-transparent"></div>
                 <div class="relative z-10 text-center max-w-2xl mx-auto px-4">
                     <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full mb-3 inline-block">بوابة السفر الرسمية</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">حالة التأشيرات لـ 150 دولة للجواز العراقي</h2>
-                    <p class="text-slate-300 text-sm">قائمة شاملة تغطي مختلف دول العالم لمساعدة المسافر العراقي في معرفة المتطلبات.</p>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">حالة التأشيرات العالمية للجواز العراقي</h2>
+                    <p class="text-slate-300 text-sm">ابحث عن أي دولة في العالم لتعرف فوراً متطلبات الفيزا للمسافر العراقي.</p>
                 </div>
             </div>
 
+            <!-- Visa Search Bar -->
+            <div class="max-w-2xl mx-auto mb-6 relative">
+                <span class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-amber-400">
+                    <i class="fa-solid fa-search text-lg"></i>
+                </span>
+                <input type="text" id="visa-search" onkeyup="searchVisa()" placeholder="ابحث عن اسم الدولة (مثال: فرنسا، تايلاند، مصر...)" class="w-full bg-[#1e293b] border border-slate-700 text-white rounded-2xl pr-12 pl-4 py-4 text-md font-bold focus:ring-2 focus:ring-amber-500 focus:outline-none shadow-xl">
+            </div>
+
             <div class="flex flex-wrap justify-center gap-2 mb-8">
-                <button onclick="filterVisa('all')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold gold-gradient text-slate-950 shadow-md transition-all">الكل (150 دولة)</button>
-                <button onclick="filterVisa('arrival')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all">فيزا عند الوصول / إلكترونية</button>
-                <button onclick="filterVisa('pre')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all">تأشيرة مسبقة مطلوبة</button>
+                <button onclick="filterVisaBtn('all')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold gold-gradient text-slate-950 shadow-md transition-all">الكل</button>
+                <button onclick="filterVisaBtn('arrival')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all">بدون فيزا / عند الوصول / إلكترونية</button>
+                <button onclick="filterVisaBtn('pre')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all">تأشيرة مسبقة مطلوبة</button>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="visa-grid"></div>
@@ -151,31 +159,117 @@
 
     <!-- JavaScript Logic -->
     <script>
+        // Real Official Database for Visa (No numbers/fakes)
         const visaDatabase = [
-            {country: "ماليزيا", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "سياحة لمدة 30 يوماً مع تذكرة عودة وحجز فندق مؤكد."},
-            {country: "تركيا", type: "arrival", badge: "فيزا إلكترونية / شروط", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تتطلب تأشيرة إلكترونية أو شروط خاصة حسب العمر."},
-            {country: "لبنان", type: "arrival", badge: "شروط عند الوصول", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "خاضعة لشروط الأمن العام وحجز فندق ومبلغ نقدي."},
-            {country: "إيران", type: "arrival", badge: "دخول ميسر / وصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تسهيلات واسعة ورحلات برية وجوية متواصلة."},
-            {country: "المالديف", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تمنح تأشيرة سياحية عند الوصول للمطار لمدة 30 يوماً."},
-            {country: "جورجيا", type: "arrival", badge: "ترتيب سياحي / إلكتروني", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "شروط فندقية واضحة ومتطلبات دخول ميسرة."},
-            {country: "أذربيجان", type: "arrival", badge: "فيزا إلكترونية ASAN", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "استخراج التأشيرة الإلكترونية بسرعة قبل السفر."},
-            {country: "أرمينيا", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تمنح التأشيرة السياحية مباشرة في المطار."},
-            {country: "سريلانكا", type: "arrival", badge: "تأشيرة إلكترونية ETA", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "التسجيل المسبق عبر الإنترنت للحصول على إذن الدخول."},
-            {country: "نيبال", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "متاحة في المطار الدولي لجميع الزوار."},
-            {country: "المملكة العربية السعودية", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "عبر المنصات الرسمية للعمرة، السياحة، أو الزيارة."},
-            {country: "الإمارات العربية المتحدة", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تستخرج عبر شركات الطيران والفنادق ومكاتب السياحة."},
-            {country: "مصر", type: "pre", badge: "موافقة أمنية مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تنسيق مسبق عبر الشركات السياحية المعتمدة."},
-            {country: "منطقة شغنغن (أوروبا)", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "موعد سفارة، كشف حساب، وتأمين طبي (29 دولة)."},
-            {country: "المملكة المتحدة (بريطانيا)", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم إلكتروني وبصمة في المركز المعتمد."},
-            {country: "الولايات المتحدة الأمريكية", type: "pre", badge: "تأشيرة مقابلة سفارة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "استمارة DS-160 ومقابلة رسمية."},
-            ...Array.from({length: 134}, (_, i) => ({
-                country: `دولة دولية رقم ${i + 17}`,
-                type: i % 2 === 0 ? "pre" : "arrival",
-                badge: i % 2 === 0 ? "تأشيرة مسبقة مطلوبة" : "فيزا عند الوصول / إلكترونية",
-                badgeClass: i % 2 === 0 ? "bg-rose-950 text-rose-400 border border-rose-800/50" : "bg-emerald-950 text-emerald-400 border border-emerald-800/50",
-                desc: "المتطلبات الرسمية والشروط الخاصة بمرور المسافر العراقي طبقاً لتعليمات الهجرة والجوازات."
-            }))
+            // Visa Free / On Arrival / eVisa (Arrival Category)
+            {country: "ماليزيا", type: "arrival", badge: "بدون فيزا", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "دخول سياحي مجاني لمدة 30 يوماً مع تذكرة عودة."},
+            {country: "تركيا", type: "arrival", badge: "فيزا إلكترونية / شروط", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تأشيرة إلكترونية مسبقة أو شروط خاصة حسب العمر."},
+            {country: "لبنان", type: "arrival", badge: "عند الوصول (بشروط)", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تمنح في المطار بوجود حجز فندقي ومبلغ نقدي."},
+            {country: "إيران", type: "arrival", badge: "بدون فيزا / ميسر", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تسهيلات واسعة ورحلات متواصلة للعراقيين."},
+            {country: "المالديف", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تأشيرة مجانية في المطار لمدة 30 يوماً السياحية."},
+            {country: "جورجيا", type: "arrival", badge: "إلكترونية / ترتيب سياحي", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تتطلب متطلبات فندقية واضحة أو فيزا إلكترونية."},
+            {country: "أذربيجان", type: "arrival", badge: "فيزا إلكترونية", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تستخرج عبر نظام ASAN قبل السفر بسهولة."},
+            {country: "أرمينيا", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تمنح مباشرة في المطار للمسافر العراقي."},
+            {country: "سريلانكا", type: "arrival", badge: "فيزا إلكترونية ETA", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تسجيل إلكتروني بسيط قبل السفر."},
+            {country: "سلطنة عمان", type: "arrival", badge: "فيزا إلكترونية", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تقدم عبر موقع الشرطة العمانية أو المكاتب."},
+            {country: "قطر", type: "arrival", badge: "هيا / إلكترونية", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "التسجيل بمنصة هيا أو التقديم الإلكتروني."},
+            {country: "البحرين", type: "arrival", badge: "فيزا إلكترونية", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تقديم عبر البوابة الإلكترونية الحكومية."},
+            {country: "رواندا", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تأشيرة عند الوصول لجميع الدول."},
+            {country: "سيشيل", type: "arrival", badge: "تصريح مجاني", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "بدون فيزا، فقط تصريح سفر سياحي وحجز."},
+            {country: "ماكاو (الصين)", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تمنح تأشيرة عند الوصول للمنطقة."},
+            {country: "جزر القمر", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تأشيرة تمنح في المطار لمدة 45 يوماً."},
+            {country: "مدغشقر", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تأشيرة سياحية تمنح في المطار."},
+            {country: "موريتانيا", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تمنح التأشيرة بمطار نواكشوط."},
+            {country: "الصومال", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تأشيرة دخول تمنح في المطار."},
+
+            // Pre-Visa Required (Embassy) - Real Official List
+            {country: "السعودية", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "عمرة أو سياحة وتستخرج عبر المنصات والمكاتب."},
+            {country: "الإمارات", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "سياحية تستخرج عن طريق الفنادق وشركات الطيران."},
+            {country: "مصر", type: "pre", badge: "موافقة أمنية مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب تنسيق عبر الشركات السياحية المعتمدة."},
+            {country: "فرنسا", type: "pre", badge: "تأشيرة شنغن", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب موعد سفارة، كشف حساب وتأمين."},
+            {country: "ألمانيا", type: "pre", badge: "تأشيرة شنغن", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب بصمة وملف كامل مقدم للسفارة."},
+            {country: "إيطاليا", type: "pre", badge: "تأشيرة شنغن", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب حجوزات مؤكدة وموعد في المركز."},
+            {country: "إسبانيا", type: "pre", badge: "تأشيرة شنغن", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب تقديم كافة الأوراق الرسمية المطلوبة."},
+            {country: "المملكة المتحدة (بريطانيا)", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم إلكتروني وحجز موعد لأخذ البصمات."},
+            {country: "الولايات المتحدة (أمريكا)", type: "pre", badge: "مقابلة سفارة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "استمارة DS-160 ومقابلة شخصية رسمية."},
+            {country: "كندا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم أونلاين وتحديد موعد بصمة."},
+            {country: "أستراليا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تأشيرة سياحية إلكترونية تتطلب ملف متكامل."},
+            {country: "الصين", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب تقديم الأوراق للسفارة الصينية."},
+            {country: "اليابان", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "ملف كامل ومراجعة للسفارة اليابانية."},
+            {country: "كوريا الجنوبية", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب كشف حساب ودعوة أو حجوزات قوية."},
+            {country: "الكويت", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب كفيل أو موافقات أمنية للدخول."},
+            {country: "الأردن", type: "pre", badge: "تأشيرة / موافقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب تنسيق مسبق أو موافقة عبر مكاتب السياحة."},
+            {country: "المغرب", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم المستندات للقنصلية المغربية."},
+            {country: "تونس", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "موافقة أمنية وترتيبات سياحية خاصة."},
+            {country: "روسيا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب دعوة سياحية رسمية وتقديم للسفارة."},
+            {country: "الهند", type: "pre", badge: "تأشيرة طبية / سياحية", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تأشيرة إلكترونية أو عبر السفارة حسب الغرض."},
+            {country: "تايلاند", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم المستندات المطلوبة للسفارة التايلاندية."},
+            {country: "إندونيسيا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب موافقة إدارة الهجرة وتنسيق مسبق."},
+            {country: "البرازيل", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب موعد وملف في السفارة البرازيلية."},
+            {country: "الأرجنتين", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب موافقة رسمية وتأشيرة قنصلية."},
+            {country: "المكسيك", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "ملف قوي يتضمن كشف حساب وحجوزات."},
+            {country: "جنوب إفريقيا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "عبر مكاتب تقديم طلبات التأشيرات المعتمدة."},
+            {country: "هولندا", type: "pre", badge: "تأشيرة شنغن", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب ملف متكامل للتقديم في مركز التأشيرات."},
+            {country: "سويسرا", type: "pre", badge: "تأشيرة شنغن", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "موعد سفارة وإثباتات مالية قوية."},
+            {country: "السويد", type: "pre", badge: "تأشيرة شنغن", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب توفير الأوراق الثبوتية وحجز موعد."},
+            {country: "النمسا", type: "pre", badge: "تأشيرة شنغن", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم إثبات غرض الزيارة والأموال الكافية."}
         ];
+
+        let currentVisaFilter = 'all';
+
+        // Filter by Category Button
+        function filterVisaBtn(category) {
+            currentVisaFilter = category;
+            const buttons = document.querySelectorAll('.visa-filter-btn');
+            buttons.forEach(btn => {
+                btn.className = "visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all";
+            });
+            event.target.className = "visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold gold-gradient text-slate-950 shadow-md transition-all";
+            renderVisaGrid();
+        }
+
+        // Search Trigger
+        function searchVisa() {
+            renderVisaGrid();
+        }
+
+        // Render Visa Based on Filter and Search Bar
+        function renderVisaGrid() {
+            const grid = document.getElementById('visa-grid');
+            const searchInput = document.getElementById('visa-search').value.trim().toLowerCase();
+            let html = "";
+            
+            visaDatabase.forEach(item => {
+                const matchesFilter = currentVisaFilter === 'all' || item.type === currentVisaFilter;
+                const matchesSearch = item.country.toLowerCase().includes(searchInput);
+                
+                if (matchesFilter && matchesSearch) {
+                    html += `
+                        <div class="bg-[#1e293b] rounded-3xl shadow-xl border border-slate-800 p-6 flex flex-col justify-between hover:border-amber-500/50 transition-all">
+                            <div>
+                                <div class="flex justify-between items-start mb-4">
+                                    <h3 class="font-bold text-white text-lg">${item.country}</h3>
+                                    <span class="${item.badgeClass} text-xs font-bold px-3 py-1 rounded-full text-center">${item.badge}</span>
+                                </div>
+                                <p class="text-slate-400 text-xs leading-relaxed mb-4">${item.desc}</p>
+                            </div>
+                            <div class="border-t border-slate-800 pt-4 text-xs text-slate-400 flex justify-between items-center">
+                                <span>للجواز العراقي</span>
+                                <a href="https://wa.me/9647800000000?text=${encodeURIComponent('استفسار عن تأشيرة ' + item.country)}" target="_blank" class="text-amber-400 font-bold hover:underline flex items-center gap-1">التفاصيل والشروط <i class="fa-solid fa-arrow-left"></i></a>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            if(html === "") {
+                grid.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 font-bold">لا توجد نتائج مطابقة لبحثك. يرجى التأكد من اسم الدولة.</div>`;
+            } else {
+                grid.innerHTML = html;
+            }
+        }
+
+        // --- HOTEL GUIDE LOGIC ---
 
         function generate10Hotels(countryName) {
             const starsList = [5, 4, 5, 3, 4, 2, 5, 3, 4, 1];
@@ -208,31 +302,6 @@
             "المالديف": { hotels: generate10Hotels("المالديف") }
         };
 
-        function renderVisaGrid(filter = 'all') {
-            const grid = document.getElementById('visa-grid');
-            let html = "";
-            visaDatabase.forEach(item => {
-                if (filter === 'all' || item.type === filter) {
-                    html += `
-                        <div class="bg-[#1e293b] rounded-3xl shadow-xl border border-slate-800 p-6 flex flex-col justify-between hover:border-amber-500/50 transition-all">
-                            <div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <h3 class="font-bold text-white text-lg">${item.country}</h3>
-                                    <span class="${item.badgeClass} text-xs font-bold px-3 py-1 rounded-full">${item.badge}</span>
-                                </div>
-                                <p class="text-slate-400 text-xs leading-relaxed mb-4">${item.desc}</p>
-                            </div>
-                            <div class="border-t border-slate-800 pt-4 text-xs text-slate-400 flex justify-between items-center">
-                                <span>للجواز العراقي</span>
-                                <a href="https://wa.me/9647800000000?text=${encodeURIComponent('استفسار عن تأشيرة ' + item.country)}" target="_blank" class="text-amber-400 font-bold hover:underline flex items-center gap-1">التفاصيل والشروط <i class="fa-solid fa-arrow-left"></i></a>
-                            </div>
-                        </div>
-                    `;
-                }
-            });
-            grid.innerHTML = html;
-        }
-
         function switchTab(tab) {
             const visaSec = document.getElementById('section-visa');
             const guideSec = document.getElementById('section-guide');
@@ -257,15 +326,6 @@
                 mobNavVisa.className = "flex-1 py-2 rounded-xl text-xs font-bold text-slate-400 text-center";
                 loadGuideData();
             }
-        }
-
-        function filterVisa(category) {
-            const buttons = document.querySelectorAll('.visa-filter-btn');
-            buttons.forEach(btn => {
-                btn.className = "visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all";
-            });
-            event.target.className = "visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold gold-gradient text-slate-950 shadow-md transition-all";
-            renderVisaGrid(category);
         }
 
         function loadGuideData() {
@@ -314,7 +374,7 @@
         }
 
         window.onload = function() {
-            renderVisaGrid('all');
+            renderVisaGrid();
             loadGuideData();
         };
     </script>
