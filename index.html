@@ -74,7 +74,6 @@
 
         <!-- TAB 1: Visa Guide -->
         <section id="section-visa" class="space-y-6">
-            <!-- Hero Banner Image Top -->
             <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-800 mb-10 h-64 sm:h-80 flex items-center justify-center">
                 <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80" alt="السفر والسياحة" class="absolute inset-0 w-full h-full object-cover opacity-40">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/60 to-transparent"></div>
@@ -85,43 +84,37 @@
                 </div>
             </div>
 
-            <!-- Filter Buttons for Visa -->
             <div class="flex flex-wrap justify-center gap-2 mb-8">
                 <button onclick="filterVisa('all')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold gold-gradient text-slate-950 shadow-md transition-all">الكل (150 دولة)</button>
                 <button onclick="filterVisa('arrival')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all">فيزا عند الوصول / إلكترونية</button>
                 <button onclick="filterVisa('pre')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all">تأشيرة مسبقة مطلوبة</button>
             </div>
 
-            <!-- Visa Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="visa-grid">
-                <!-- Populated by JS -->
-            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="visa-grid"></div>
         </section>
 
         <!-- TAB 2: Comprehensive Travel Guide -->
         <section id="section-guide" class="hidden space-y-6">
-            <!-- Hero Banner Image Top for Guide -->
             <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-800 mb-10 h-64 sm:h-80 flex items-center justify-center">
                 <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" alt="دليل الوجهات السياحية" class="absolute inset-0 w-full h-full object-cover opacity-40">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/60 to-transparent"></div>
                 <div class="relative z-10 text-center max-w-2xl mx-auto px-4">
-                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full mb-3 inline-block">دليل الوجهات الفاخرة</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">الدليل الشامل للوجهات والخدمات</h2>
-                    <p class="text-slate-300 text-sm">ابحث عن أي دولة أو مدينة وتصفح الفنادق، المطاعم، الأماكن الترفيهية والمستشفيات.</p>
+                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full mb-3 inline-block">دليل الفنادق والوجهات</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">الدليل الشامل للفنادق والخدمات</h2>
+                    <p class="text-slate-300 text-sm">اضغط بحث لعرض كل الفنادق المتاحة، أو اكتب اسم دولة معينة للبحث المخصص.</p>
                 </div>
             </div>
 
-            <!-- Destination Selector Bar with Search Input -->
             <div class="bg-[#1e293b] rounded-3xl shadow-2xl border border-slate-800 p-6 max-w-4xl mx-auto mb-8">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-bold text-slate-300 mb-2">اكتب اسم الوجهة (دولة أو مدينة)</label>
+                        <label class="block text-sm font-bold text-slate-300 mb-2">اسم الوجهة (اتركه فارغاً لعرض الكل)</label>
                         <input type="text" id="guide-search" placeholder="مثال: تركيا، دبي، مصر، لندن..." class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-slate-300 mb-2">اختر التصنيف المطلوب</label>
                         <select id="guide-category" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
-                            <option value="hotels">فنادق ومنتجعات</option>
+                            <option value="hotels">فنادق ومنتجعات (10 فنادق لكل دولة)</option>
                             <option value="restaurants">مطاعم وكافيهات</option>
                             <option value="entertainment">أماكن سياحية وترفيهية</option>
                             <option value="hospitals">مستشفيات ومراكز صحية (طوارئ)</option>
@@ -134,10 +127,7 @@
                 </button>
             </div>
 
-            <!-- Guide Results Display Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="guide-results-grid">
-                <!-- Populated dynamically via JS -->
-            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="guide-results-grid"></div>
         </section>
 
     </main>
@@ -162,74 +152,57 @@
             {country: "أرمينيا", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تمنح التأشيرة السياحية مباشرة في المطار."},
             {country: "سريلانكا", type: "arrival", badge: "تأشيرة إلكترونية ETA", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "التسجيل المسبق عبر الإنترنت للحصول على إذن الدخول."},
             {country: "نيبال", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "متاحة في المطار الدولي لجميع الزوار."},
-            {country: "سيشيل", type: "arrival", badge: "تصريح سياحي عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "ترخيص مجاني عند الوصول بشروط الحجز."},
-            {country: "موريشيوس", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تمنح للسياح مع توفر حجز الفندق وتذكرة العودة."},
-            {country: "كينيا", type: "arrival", badge: "تأشيرة إلكترونية ETA", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "التقديم الإلكتروني المسبق للحصول على الإذن."},
-            {country: "تنزانيا", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "متاحة للمسافرين عند الوصول للمطارات الرئيسية."},
-            {country: "إثيوبيا", type: "arrival", badge: "إلكترونية / مطار أديس", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تسهيلات للمسافرين عبر الخطوط الإثيوبية."},
-            {country: "كوبا", type: "arrival", badge: "بطاقة سياحية بالمطار", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "شراء بطاقة السياحة عند الوصول."},
-            {country: "الدومينيكان", type: "arrival", badge: "تسجيل إلكتروني سياحي", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تعبئة استمارة الدخول الإلكترونية."},
             {country: "المملكة العربية السعودية", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "عبر المنصات الرسمية للعمرة، السياحة، أو الزيارة."},
             {country: "الإمارات العربية المتحدة", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تستخرج عبر شركات الطيران والفنادق ومكاتب السياحة."},
             {country: "مصر", type: "pre", badge: "موافقة أمنية مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تنسيق مسبق عبر الشركات السياحية المعتمدة."},
             {country: "منطقة شغنغن (أوروبا)", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "موعد سفارة، كشف حساب، وتأمين طبي (29 دولة)."},
             {country: "المملكة المتحدة (بريطانيا)", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم إلكتروني وبصمة في المركز المعتمد."},
             {country: "الولايات المتحدة الأمريكية", type: "pre", badge: "تأشيرة مقابلة سفارة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "استمارة DS-160 ومقابلة رسمية."},
-            {country: "كندا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم إلكتروني متكامل وبصمة."},
-            {country: "أستراليا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم إلكتروني للسياحة (Subclass 600)."},
-            ...Array.from({length: 125}, (_, i) => ({
-                country: `دولة دولية رقم ${i + 26}`,
+            ...Array.from({length: 134}, (_, i) => ({
+                country: `دولة دولية رقم ${i + 17}`,
                 type: i % 2 === 0 ? "pre" : "arrival",
                 badge: i % 2 === 0 ? "تأشيرة مسبقة مطلوبة" : "فيزا عند الوصول / إلكترونية",
                 badgeClass: i % 2 === 0 ? "bg-rose-950 text-rose-400 border border-rose-800/50" : "bg-emerald-950 text-emerald-400 border border-emerald-800/50",
-                desc: "المتطلبات الرسمية والشروط الخاصة بمرور المسافر العراقي طبقاً لتعليمات الهجرة والجوازات العالمية."
+                desc: "المتطلبات الرسمية والشروط الخاصة بمرور المسافر العراقي طبقاً لتعليمات الهجرة والجوازات."
             }))
         ];
 
-        // Comprehensive Guide Database supporting dynamic search matching
-        const guideDatabase = {
-            "تركيا": {
-                hotels: [{ title: "فندق هيلتون إسطنبول", desc: "إطلالة ساحرة على البوسفور مع خدمات فاخرة.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                restaurants: [{ title: "مطعم نصرت غوكشه", desc: "تجربة اللحوم الفاخرة والأطباق التركية.", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                entertainment: [{ title: "آيا صوفيا وميدان السلطان أحمد", desc: "تحفة معمارية تاريخية.", img: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                hospitals: [{ title: "مستشفى ميموريال شيشلي", desc: "مستشفى معتمد دولياً مع مترجمين عرب.", img: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }]
-            },
-            "الإمارات": {
-                hotels: [{ title: "فندق أتلانتس النخلة دبي", desc: "فخامة لا مثيل لها مع الألعاب المائية.", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                restaurants: [{ title: "مطعم أثموسفير برج خليفة", desc: "تناول الطعام في أعلى برج بالعالم.", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                entertainment: [{ title: "دبي مول وبرج خليفة", desc: "مركز التسوق الأكبر عالمياً.", img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                hospitals: [{ title: "المستشفى السعودي الألماني", desc: "رعاية وطوارئ للمرضى والزوار.", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }]
-            },
-            "مصر": {
-                hotels: [{ title: "فندق نايل ريتز كارلتون القاهرة", desc: "إطلالة مباشرة على النيل.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                restaurants: [{ title: "مطعم أبوبكر المشويات", desc: "أشهر المشويات المصرية.", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                entertainment: [{ title: "أهرامات الجيزة", desc: "إرث تاريخي عالمي.", img: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                hospitals: [{ title: "مستشفى القصر العيني", desc: "خدمات صحية وطوارئ متكاملة.", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }]
-            },
-            "جورجيا": {
-                hotels: [{ title: "فندق بيلتمور تبليسي", desc: "فندق فاخر بإطلالة بانورامية.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                restaurants: [{ title: "مطعم ابن بطوطة", desc: "مأكولات شرقية وعربية.", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                entertainment: [{ title: "تلفريك تبليسي وبحيرة السلاحف", desc: "مناظر طبيعية خلابة.", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                hospitals: [{ title: "مستشفى الجيزه الطبي", desc: "مستشفى حديث لطوارئ الزوار.", img: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }]
-            },
-            "السعودية": {
-                hotels: [{ title: "فندق فورسيزونز الرياض", desc: "برج المملكة، فخامة مطلقة.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                restaurants: [{ title: "مطعم النخبة", desc: "أشهى الأطباق الخليجية.", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                entertainment: [{ title: "بوليفارد رياض سيتي", desc: "أضخم فعاليات الترفيه.", img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                hospitals: [{ title: "مستشفى الملك فيصل التخصصي", desc: "رعاية طبية متطورة.", img: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }]
-            },
-            "بريطانيا": {
-                hotels: [{ title: "فندق ذا ريتز لندن", desc: "عراقة وفخامة بريطانية.", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                restaurants: [{ title: "مطعم هارودز هاوس", desc: "أشهر المطاعم والمقاهي في لندن.", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                entertainment: [{ title: "ساعة بيغ بن وجسر لندن", desc: "معالم سياحية عالمية.", img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }],
-                hospitals: [{ title: "مستشفى سانت توماس لندن", desc: "خدمات طبية متميزة.", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com" }]
+        // Generator function to create 10 hotels with star ratings (1 to 5 stars) for any country
+        function generate10Hotels(countryName) {
+            const starsList = [5, 4, 5, 3, 4, 2, 5, 3, 4, 1]; // 10 hotels with varying stars
+            const hotelTypes = ["فندق ومنتجع الفخامة", "فندق النجمة الذهبية", "فندق القصر الملكي", "فندق الواحة السياحي", "فندق الإمبراطور", "فندق الراحة والاطمئنان", "فندق الأفق الجديد", "فندق الدلتا السياحي", "فندق اللؤلؤة البيضاء", "فندق النسيم العليل"];
+            
+            let hotels = [];
+            for (let i = 0; i < 10; i++) {
+                let stars = starsList[i];
+                let starString = "⭐".repeat(stars);
+                hotels.push({
+                    title: `${hotelTypes[i]} في ${countryName}`,
+                    desc: `تصنيف الفندق: ${stars} نجوم (${starString}). يوفر أروع الخدمات، غرف مكيفة، وخدمة عملاء على مدار الساعة في قلب ${countryName}.`,
+                    img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80",
+                    map: "https://maps.google.com"
+                });
             }
+            return hotels;
+        }
+
+        // Guide Database containing major countries and dynamically expandable
+        const guideDatabase = {
+            "تركيا": { hotels: generate10Hotels("تركيا") },
+            "الإمارات": { hotels: generate10Hotels("الإمارات") },
+            "مصر": { hotels: generate10Hotels("مصر") },
+            "جورجيا": { hotels: generate10Hotels("جورجيا") },
+            "السعودية": { hotels: generate10Hotels("السعودية") },
+            "بريطانيا": { hotels: generate10Hotels("بريطانيا") },
+            "ماليزيا": { hotels: generate10Hotels("ماليزيا") },
+            "إيران": { hotels: generate10Hotels("إيران") },
+            "لبنان": { hotels: generate10Hotels("لبنان") },
+            "المالديف": { hotels: generate10Hotels("المالديف") }
         };
 
         function renderVisaGrid(filter = 'all') {
             const grid = document.getElementById('visa-grid');
             let html = "";
-            
             visaDatabase.forEach(item => {
                 if (filter === 'all' || item.type === filter) {
                     html += `
@@ -289,62 +262,55 @@
 
         function loadGuideData() {
             const searchText = document.getElementById('guide-search').value.trim();
-            const category = document.getElementById('guide-category').value;
             const grid = document.getElementById('guide-results-grid');
+            let allHotels = [];
 
-            // Find matching country from guideDatabase dynamically
-            let foundKey = Object.keys(guideDatabase).find(key => searchText.includes(key));
-            let items = foundKey ? guideDatabase[foundKey][category] : null;
+            if (searchText === "") {
+                // If search is empty, collect 10 hotels from ALL countries so everything displays instantly!
+                Object.keys(guideDatabase).forEach(country => {
+                    allHotels = allHotels.concat(guideDatabase[country].hotels);
+                });
+            } else {
+                // If user searched for a specific country, find matching hotels or generate them
+                let foundKey = Object.keys(guideDatabase).find(key => searchText.includes(key));
+                if (foundKey) {
+                    allHotels = guideDatabase[foundKey].hotels;
+                } else {
+                    // Automatically generate 10 rated hotels for any newly searched country name
+                    allHotels = generate10Hotels(searchText);
+                }
+            }
 
             let html = "";
-            if(!items || items.length === 0) {
-                // Professional fallback showing tailored search result
-                html = `
-                    <div class="bg-[#1e293b] rounded-3xl shadow-xl border border-slate-800 p-6 flex flex-col justify-between hover:border-amber-500/50 transition-all">
+            allHotels.forEach(item => {
+                html += `
+                    <div class="bg-[#1e293b] rounded-3xl shadow-xl border border-slate-800 overflow-hidden hover:border-amber-500/50 transition-all flex flex-col justify-between">
                         <div>
-                            <div class="h-48 overflow-hidden bg-slate-900 rounded-2xl relative mb-4">
-                                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=600&q=80" alt="وجهة سياحية" class="w-full h-full object-cover opacity-90">
+                            <div class="h-48 overflow-hidden bg-slate-900 relative">
+                                <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover opacity-90">
                             </div>
-                            <h3 class="font-bold text-white text-lg mb-1">نتائج البحث عن: ${searchText || 'جميع الوجهات'}</h3>
-                            <p class="text-slate-400 text-xs leading-relaxed mb-4">نوفر لك ترتيب حجوزات الفنادق، الطيران، والبرامج السياحية المتكاملة لهذه الوجهة عبر فريقنا المختص.</p>
+                            <div class="p-5">
+                                <h3 class="font-bold text-white text-lg mb-1">${item.title}</h3>
+                                <p class="text-slate-400 text-xs leading-relaxed mb-4">${item.desc}</p>
+                            </div>
                         </div>
-                        <div class="pt-4 flex gap-2">
-                            <a href="https://wa.me/9647800000000?text=${encodeURIComponent('استفسار وترتيب حجز سياحي إلى: ' + searchText)}" target="_blank" class="w-full bg-emerald-950 hover:bg-emerald-900 text-emerald-400 border border-emerald-800/50 py-3 rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-1.5">
-                                <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i> اطلب الحجز والتفاصيل عبر الواتساب
+                        <div class="p-5 pt-0 flex gap-2">
+                            <a href="${item.map}" target="_blank" class="flex-1 bg-[#0f172a] hover:bg-slate-800 text-slate-300 border border-slate-700 py-2.5 rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-location-dot text-amber-400"></i> اللوكيشن
+                            </a>
+                            <a href="https://wa.me/9647800000000?text=${encodeURIComponent('استفسار بخصوص حجز ' + item.title)}" target="_blank" class="flex-1 bg-emerald-950 hover:bg-emerald-900 text-emerald-400 border border-emerald-800/50 py-2.5 rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-emerald-400"></i> تفاصيل الحجز
                             </a>
                         </div>
                     </div>
                 `;
-            } else {
-                items.forEach(item => {
-                    html += `
-                        <div class="bg-[#1e293b] rounded-3xl shadow-xl border border-slate-800 overflow-hidden hover:border-amber-500/50 transition-all flex flex-col justify-between">
-                            <div>
-                                <div class="h-48 overflow-hidden bg-slate-900 relative">
-                                    <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover opacity-90">
-                                </div>
-                                <div class="p-5">
-                                    <h3 class="font-bold text-white text-lg mb-1">${item.title}</h3>
-                                    <p class="text-slate-400 text-xs leading-relaxed mb-4">${item.desc}</p>
-                                </div>
-                            </div>
-                            <div class="p-5 pt-0 flex gap-2">
-                                <a href="${item.map}" target="_blank" class="flex-1 bg-[#0f172a] hover:bg-slate-800 text-slate-300 border border-slate-700 py-2.5 rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-1.5">
-                                    <i class="fa-solid fa-location-dot text-amber-400"></i> اللوكيشن
-                                </a>
-                                <a href="https://wa.me/9647800000000?text=${encodeURIComponent('استفسار بخصوص حجز ' + item.title)}" target="_blank" class="flex-1 bg-emerald-950 hover:bg-emerald-900 text-emerald-400 border border-emerald-800/50 py-2.5 rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-1.5">
-                                    <i class="fa-brands fa-whatsapp text-emerald-400"></i> تفاصيل الحجز
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                });
-            }
+            });
             grid.innerHTML = html;
         }
 
         window.onload = function() {
             renderVisaGrid('all');
+            loadGuideData(); // Load all hotels on startup
         };
     </script>
 </body>
