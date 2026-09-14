@@ -13,47 +13,58 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
+            background-color: #0b1120;
+            color: #f8fafc;
+        }
+        /* Custom Gold Gradient Effects */
+        .gold-gradient {
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+        }
+        .gold-text {
+            background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-[#0b1120] text-slate-100 antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
 
     <!-- Header / Navbar -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
+    <header class="bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="bg-blue-600 text-white p-2.5 rounded-xl shadow-md">
+                <div class="gold-gradient text-slate-950 p-2.5 rounded-2xl shadow-lg shadow-amber-500/10">
                     <i class="fa-solid fa-compass text-xl"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-extrabold text-slate-950 tracking-tight">دليل المسافر العراقي</h1>
-                    <p class="text-xs text-blue-600 font-semibold">بوابتك الذكية للسفر الآمن</p>
+                    <h1 class="text-xl font-extrabold text-white tracking-tight">دليل المسافر العراقي</h1>
+                    <p class="text-xs font-semibold gold-text">بوابتك الذكية للسفر الآمن</p>
                 </div>
             </div>
             
             <!-- Navigation Tabs -->
-            <nav class="hidden md:flex items-center gap-2 bg-slate-100 p-1.5 rounded-xl">
-                <button onclick="switchTab('visa')" id="nav-visa" class="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 bg-blue-600 text-white shadow-sm">
+            <nav class="hidden md:flex items-center gap-2 bg-[#1e293b] p-1.5 rounded-2xl border border-slate-700/50">
+                <button onclick="switchTab('visa')" id="nav-visa" class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 gold-gradient text-slate-950 shadow-md">
                     <i class="fa-solid fa-passport ml-2"></i>دليل التأشيرات الشامل
                 </button>
-                <button onclick="switchTab('guide')" id="nav-guide" class="px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 text-slate-600 hover:text-slate-900">
+                <button onclick="switchTab('guide')" id="nav-guide" class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 text-slate-400 hover:text-white">
                     <i class="fa-solid fa-map-location-dot ml-2"></i>الدليل الشامل للوجهات
                 </button>
             </nav>
 
             <!-- Contact Button -->
-            <a href="https://wa.me/9647800000000" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm flex items-center gap-2">
+            <a href="https://wa.me/9647800000000" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-emerald-900/20 flex items-center gap-2">
                 <i class="fa-brands fa-whatsapp text-lg"></i>
                 <span class="hidden sm:inline">استفسار سداسي</span>
             </a>
         </div>
         
         <!-- Mobile Navigation Bar -->
-        <div class="flex md:hidden bg-slate-100 p-2 gap-2 border-t border-slate-200">
-            <button onclick="switchTab('visa')" id="mob-nav-visa" class="flex-1 py-2 rounded-lg text-xs font-bold bg-blue-600 text-white text-center shadow-sm">
+        <div class="flex md:hidden bg-[#1e293b] p-2 gap-2 border-t border-slate-800">
+            <button onclick="switchTab('visa')" id="mob-nav-visa" class="flex-1 py-2 rounded-xl text-xs font-bold gold-gradient text-slate-950 text-center shadow-md">
                 دليل التأشيرات
             </button>
-            <button onclick="switchTab('guide')" id="mob-nav-guide" class="flex-1 py-2 rounded-lg text-xs font-bold text-slate-600 text-center">
+            <button onclick="switchTab('guide')" id="mob-nav-guide" class="flex-1 py-2 rounded-xl text-xs font-bold text-slate-400 text-center">
                 دليل الوجهات
             </button>
         </div>
@@ -65,19 +76,19 @@
         <!-- TAB 1: Visa Guide -->
         <section id="section-visa" class="space-y-6">
             <div class="text-center max-w-2xl mx-auto mb-10">
-                <h2 class="text-3xl font-extrabold text-slate-900 mb-3">حالة التأشيرات الشاملة للجواز العراقي</h2>
-                <p class="text-slate-600 text-sm">قائمة كاملة ومحدثة للدول التي يتوجه إليها المسافرون العراقيون، مصنفة حسب نوع الدخول.</p>
+                <h2 class="text-3xl font-extrabold text-white mb-3">حالة التأشيرات الشاملة للجواز العراقي</h2>
+                <p class="text-slate-400 text-sm">قائمة كاملة ومحدثة للدول التي يتوجه إليها المسافرون العراقيون، مصنفة حسب نوع الدخول.</p>
             </div>
 
             <!-- Filter Buttons for Visa -->
             <div class="flex flex-wrap justify-center gap-2 mb-8">
-                <button onclick="filterVisa('all')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-sm transition-all">الكل</button>
-                <button onclick="filterVisa('no-visa')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-all">بدون فيزا (أو مشروطة مجانية)</button>
-                <button onclick="filterVisa('arrival')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-all">فيزا عند الوصول / إلكترونية</button>
-                <button onclick="filterVisa('pre')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-all">تأشيرة مسبقة مطلوبة</button>
+                <button onclick="filterVisa('all')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold gold-gradient text-slate-950 shadow-md transition-all">الكل</button>
+                <button onclick="filterVisa('no-visa')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all">بدون فيزا (أو مشروطة مجانية)</button>
+                <button onclick="filterVisa('arrival')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all">فيزا عند الوصول / إلكترونية</button>
+                <button onclick="filterVisa('pre')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all">تأشيرة مسبقة مطلوبة</button>
             </div>
 
-            <!-- Visa Grid (Dynamic/Populated via JS to cover all countries) -->
+            <!-- Visa Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="visa-grid">
                 <!-- Populated by JS -->
             </div>
@@ -86,16 +97,16 @@
         <!-- TAB 2: Comprehensive Travel Guide -->
         <section id="section-guide" class="hidden space-y-6">
             <div class="text-center max-w-2xl mx-auto mb-10">
-                <h2 class="text-3xl font-extrabold text-slate-900 mb-3">الدليل الشامل للوجهات والخدمات</h2>
-                <p class="text-slate-600 text-sm">اختر الدولة والمدينة وتصفح الفنادق، المطاعم، الأماكن الترفيهية، والمستشفيات مع المواقع والصور.</p>
+                <h2 class="text-3xl font-extrabold text-white mb-3">الدليل الشامل للوجهات والخدمات</h2>
+                <p class="text-slate-400 text-sm">اختر الدولة والمدينة وتصفح الفنادق، المطاعم، الأماكن الترفيهية، والمستشفيات مع المواقع والصور.</p>
             </div>
 
             <!-- Destination Selector Bar -->
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 max-w-4xl mx-auto mb-8">
+            <div class="bg-[#1e293b] rounded-3xl shadow-2xl border border-slate-800 p-6 max-w-4xl mx-auto mb-8">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">اختر الوجهة (الدولة والمدينة)</label>
-                        <select id="guide-city" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <label class="block text-sm font-bold text-slate-300 mb-2">اختر الوجهة (الدولة والمدينة)</label>
+                        <select id="guide-city" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
                             <option value="istanbul">تركيا - إسطنبول</option>
                             <option value="dubai">الإمارات - دبي</option>
                             <option value="tbilisi">جورجيا - تبليسي</option>
@@ -104,8 +115,8 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">اختر التصنيف المطلوب</label>
-                        <select id="guide-category" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <label class="block text-sm font-bold text-slate-300 mb-2">اختر التصنيف المطلوب</label>
+                        <select id="guide-category" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
                             <option value="hotels">فنادق ومنتجعات</option>
                             <option value="restaurants">مطاعم وكافيهات</option>
                             <option value="entertainment">أماكن سياحية وترفيهية</option>
@@ -113,7 +124,7 @@
                         </select>
                     </div>
                 </div>
-                <button onclick="loadGuideData()" class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                <button onclick="loadGuideData()" class="w-full mt-5 gold-gradient hover:opacity-90 text-slate-950 font-extrabold py-3.5 rounded-2xl transition-all shadow-lg flex items-center justify-center gap-2">
                     <i class="fa-solid fa-search"></i>
                     <span>عرض النتائج والمواقع</span>
                 </button>
@@ -128,7 +139,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-6 mt-12">
+    <footer class="bg-[#0f172a] border-t border-slate-800 py-6 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 text-xs">
             جميع الحقوق محفوظة © 2026 دليل المسافر العراقي - مرجعك الموثوق للسفر والسياحة
         </div>
@@ -136,23 +147,21 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // Comprehensive Visa Database for Iraqi Passport
         const visaDatabase = [
-            { country: "ماليزيا (Malaysia)", type: "arrival", badge: "بدون فيزا مسبقة", badgeClass: "bg-emerald-50 text-emerald-600", desc: "يُسمح للدخول السياحي لفترة محدودة (حتى 30 يوماً) مع توفر تذكرة عودة وحجز فندق." },
-            { country: "تركيا (Turkey)", type: "arrival", badge: "فيزا إلكترونية / شروط", badgeClass: "bg-amber-50 text-amber-600", desc: "تتطلب تأشيرة إلكترونية أو شروط خاصة حسب الفئة العمرية ومتطلبات السفر." },
-            { country: "لبنان (Lebanon)", type: "arrival", badge: "شروط عند الوصول", badgeClass: "bg-amber-50 text-amber-600", desc: "تخضع لشروط الأمن العام اللبناني (حجز فندق مؤكد، مبلغ نقدي، وتذكرة عودة)." },
-            { country: "جورجيا (Georgia)", type: "arrival", badge: "إلكترونية / شروط", badgeClass: "bg-amber-50 text-amber-600", desc: "إمكانية الدخول بشروط فندقية واضحة أو عبر الترتيب السياحي المعتمد." },
-            { country: "إيران (Iran)", type: "arrival", badge: "بدون فيزا / عند الوصول", badgeClass: "bg-emerald-50 text-emerald-600", desc: "تسهيلات واسعة وتواجد للرحلات البرية والجوية بشكل دائم." },
-            { country: "مصر (Egypt)", type: "pre", badge: "تأشيرة مسبقة / موافقة أمنية", badgeClass: "bg-rose-50 text-rose-600", desc: "تتطلب موافقة أمنية مسبقة بالتنسيق مع الشركات السياحية المعتمدة." },
-            { country: "منطقة شغنغن (Schengen)", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-50 text-rose-600", desc: "تتطلب موعد سفارة، كشف حساب بانكي، وتأمين طبي متكامل." },
-            { country: "المملكة المتحدة (UK)", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-50 text-rose-600", desc: "تتطلب تقديم إلكتروني متكامل وحجز موعد البصمة في المركز المعتمد." },
-            { country: "الولايات المتحدة (USA)", type: "pre", badge: "تأشيرة مسبقة (مقابلة سفارة)", badgeClass: "bg-rose-50 text-rose-600", desc: "تتطلب تعبئة استمارة DS-160 وحجز مقابلة شخصية في السفارة." },
-            { country: "الإمارات (UAE / Dubai)", type: "pre", badge: "تأشيرة سياحية مسبقة", badgeClass: "bg-rose-50 text-rose-600", desc: "تستخرج عن طريق شركات الطيران، الفنادق، أو مكاتب السفر المعتمدة." },
-            { country: "الأردن (Jordan)", type: "pre", badge: "تأشيرة مسبقة / موافقة", badgeClass: "bg-rose-50 text-rose-600", desc: "تتطلب ترتيبات مسبقة وموافقات تنظيمية للسفر السياحي أو العلاجي." },
-            { country: "المالديف (Maldives)", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-50 text-emerald-600", desc: "تمنح تأشيرة مجانية عند الوصول لمدة 30 يوماً مع توفر متطلبات الحجز والسكن." }
+            { country: "ماليزيا (Malaysia)", type: "arrival", badge: "بدون فيزا مسبقة", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "يُسمح للدخول السياحي لفترة محدودة (حتى 30 يوماً) مع توفر تذكرة عودة وحجز فندق." },
+            { country: "تركيا (Turkey)", type: "arrival", badge: "فيزا إلكترونية / شروط", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تتطلب تأشيرة إلكترونية أو شروط خاصة حسب الفئة العمرية ومتطلبات السفر." },
+            { country: "لبنان (Lebanon)", type: "arrival", badge: "شروط عند الوصول", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تخضع لشروط الأمن العام اللبناني (حجز فندق مؤكد، مبلغ نقدي، وتذكرة عودة)." },
+            { country: "جورجيا (Georgia)", type: "arrival", badge: "إلكترونية / شروط", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "إمكانية الدخول بشروط فندقية واضحة أو عبر الترتيب السياحي المعتمد." },
+            { country: "إيران (Iran)", type: "arrival", badge: "بدون فيزا / عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تسهيلات واسعة وتواجد للرحلات البرية والجوية بشكل دائم." },
+            { country: "مصر (Egypt)", type: "pre", badge: "تأشيرة مسبقة / موافقة أمنية", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب موافقة أمنية مسبقة بالتنسيق مع الشركات السياحية المعتمدة." },
+            { country: "منطقة شغنغن (Schengen)", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب موعد سفارة، كشف حساب بانكي، وتأمين طبي متكامل." },
+            { country: "المملكة المتحدة (UK)", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب تقديم إلكتروني متكامل وحجز موعد البصمة في المركز المعتمد." },
+            { country: "الولايات المتحدة (USA)", type: "pre", badge: "تأشيرة مسبقة (مقابلة سفارة)", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب تعبئة استمارة DS-160 وحجز مقابلة شخصية في السفارة." },
+            { country: "الإمارات (UAE / Dubai)", type: "pre", badge: "تأشيرة سياحية مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تستخرج عن طريق شركات الطيران، الفنادق، أو مكاتب السفر المعتمدة." },
+            { country: "الأردن (Jordan)", type: "pre", badge: "تأشيرة مسبقة / موافقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب ترتيبات مسبقة وموافقات تنظيمية للسفر السياحي أو العلاجي." },
+            { country: "المالديف (Maldives)", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تمنح تأشيرة مجانية عند الوصول لمدة 30 يوماً مع توفر متطلبات الحجز والسكن." }
         ];
 
-        // Guide Database
         const guideDatabase = {
             istanbul: {
                 hotels: [
@@ -229,7 +238,6 @@
             }
         };
 
-        // Render Visa Cards on Load
         function renderVisaGrid(filter = 'all') {
             const grid = document.getElementById('visa-grid');
             let html = "";
@@ -237,17 +245,17 @@
             visaDatabase.forEach(item => {
                 if (filter === 'all' || item.type === filter) {
                     html += `
-                        <div class="visa-card bg-white rounded-2xl shadow-sm border border-slate-100 p-6 flex flex-col justify-between" data-category="${item.type}">
+                        <div class="bg-[#1e293b] rounded-3xl shadow-xl border border-slate-800 p-6 flex flex-col justify-between hover:border-amber-500/50 transition-all">
                             <div>
                                 <div class="flex justify-between items-start mb-4">
-                                    <h3 class="font-bold text-slate-900 text-lg">${item.country}</h3>
+                                    <h3 class="font-bold text-white text-lg">${item.country}</h3>
                                     <span class="${item.badgeClass} text-xs font-bold px-3 py-1 rounded-full">${item.badge}</span>
                                 </div>
-                                <p class="text-slate-600 text-xs leading-relaxed mb-4">${item.desc}</p>
+                                <p class="text-slate-400 text-xs leading-relaxed mb-4">${item.desc}</p>
                             </div>
-                            <div class="border-t pt-4 text-xs text-slate-500 flex justify-between items-center">
+                            <div class="border-t border-slate-800 pt-4 text-xs text-slate-400 flex justify-between items-center">
                                 <span>للجواز العراقي</span>
-                                <a href="https://wa.me/9647800000000?text=${encodeURIComponent('استفسار عن تأشيرة ' + item.country)}" target="_blank" class="text-blue-600 font-bold hover:underline">التفاصيل والشروط <i class="fa-solid fa-arrow-left mr-1"></i></a>
+                                <a href="https://wa.me/9647800000000?text=${encodeURIComponent('استفسار عن تأشيرة ' + item.country)}" target="_blank" class="text-amber-400 font-bold hover:underline flex items-center gap-1">التفاصيل والشروط <i class="fa-solid fa-arrow-left"></i></a>
                             </div>
                         </div>
                     `;
@@ -267,17 +275,17 @@
             if (tab === 'visa') {
                 visaSec.classList.remove('hidden');
                 guideSec.classList.add('hidden');
-                navVisa.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 bg-blue-600 text-white shadow-sm";
-                navGuide.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 text-slate-600 hover:text-slate-900";
-                mobNavVisa.className = "flex-1 py-2 rounded-lg text-xs font-bold bg-blue-600 text-white text-center shadow-sm";
-                mobNavGuide.className = "flex-1 py-2 rounded-lg text-xs font-bold text-slate-600 text-center";
+                navVisa.className = "px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 gold-gradient text-slate-950 shadow-md";
+                navGuide.className = "px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 text-slate-400 hover:text-white";
+                mobNavVisa.className = "flex-1 py-2 rounded-xl text-xs font-bold gold-gradient text-slate-950 text-center shadow-md";
+                mobNavGuide.className = "flex-1 py-2 rounded-xl text-xs font-bold text-slate-400 text-center";
             } else {
                 visaSec.classList.add('hidden');
                 guideSec.classList.remove('hidden');
-                navGuide.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 bg-blue-600 text-white shadow-sm";
-                navVisa.className = "px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 text-slate-600 hover:text-slate-900";
-                mobNavGuide.className = "flex-1 py-2 rounded-lg text-xs font-bold bg-blue-600 text-white text-center shadow-sm";
-                mobNavVisa.className = "flex-1 py-2 rounded-lg text-xs font-bold text-slate-600 text-center";
+                navGuide.className = "px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 gold-gradient text-slate-950 shadow-md";
+                navVisa.className = "px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 text-slate-400 hover:text-white";
+                mobNavGuide.className = "flex-1 py-2 rounded-xl text-xs font-bold gold-gradient text-slate-950 text-center shadow-md";
+                mobNavVisa.className = "flex-1 py-2 rounded-xl text-xs font-bold text-slate-400 text-center";
                 loadGuideData();
             }
         }
@@ -285,9 +293,9 @@
         function filterVisa(category) {
             const buttons = document.querySelectorAll('.visa-filter-btn');
             buttons.forEach(btn => {
-                btn.className = "visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-all";
+                btn.className = "visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all";
             });
-            event.target.className = "visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-blue-600 text-white shadow-sm transition-all";
+            event.target.className = "visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold gold-gradient text-slate-950 shadow-md transition-all";
             renderVisaGrid(category);
         }
 
@@ -304,22 +312,22 @@
             } else {
                 items.forEach(item => {
                     html += `
-                        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-all flex flex-col justify-between">
+                        <div class="bg-[#1e293b] rounded-3xl shadow-xl border border-slate-800 overflow-hidden hover:border-amber-500/50 transition-all flex flex-col justify-between">
                             <div>
-                                <div class="h-48 overflow-hidden bg-slate-200">
-                                    <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover">
+                                <div class="h-48 overflow-hidden bg-slate-900 relative">
+                                    <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover opacity-90">
                                 </div>
                                 <div class="p-5">
-                                    <h3 class="font-bold text-slate-900 text-lg mb-1">${item.title}</h3>
-                                    <p class="text-slate-600 text-xs leading-relaxed mb-4">${item.desc}</p>
+                                    <h3 class="font-bold text-white text-lg mb-1">${item.title}</h3>
+                                    <p class="text-slate-400 text-xs leading-relaxed mb-4">${item.desc}</p>
                                 </div>
                             </div>
                             <div class="p-5 pt-0 flex gap-2">
-                                <a href="${item.map}" target="_blank" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-2.5 rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-1.5">
-                                    <i class="fa-solid fa-location-dot text-rose-500"></i> اللوكيشن
-                                </a>
-                                <a href="https://wa.me/9647800000000?text=${encodeURIComponent('استفسار بخصوص حجز ' + item.title)}" target="_blank" class="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 py-2.5 rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-1.5">
-                                    <i class="fa-brands fa-whatsapp text-emerald-600"></i> تفاصيل الحجز
+                                <a href="${item.map}" target="_blank" class="flex-1 bg-[#0f172a] hover:bg-slate-800 text-slate-300 border border-slate-700 py-2.5 rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-location-dot text-amber-400"></i> اللوكيشن
+                                </6a>
+                                <a href="https://wa.me/9647800000000?text=${encodeURIComponent('استفسار بخصوص حجز ' + item.title)}" target="_blank" class="flex-1 bg-emerald-950 hover:bg-emerald-900 text-emerald-400 border border-emerald-800/50 py-2.5 rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-1.5">
+                                    <i class="fa-brands fa-whatsapp text-emerald-400"></i> تفاصيل الحجز
                                 </a>
                             </div>
                         </div>
@@ -329,7 +337,6 @@
             grid.innerHTML = html;
         }
 
-        // Initialize on load
         window.onload = function() {
             renderVisaGrid('all');
         };
