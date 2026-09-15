@@ -259,17 +259,18 @@
             </div>
         </section>
 
-        <!-- لوحة التحكم -->
-        <section id="section-admin" class="hidden space-y-6">
+        <!-- ================= 4. لوحة تحكم الأدمن (مع خانة إدارة محتوى الصفحات السفلى) ================= -->
+        <section id="section-admin" class="hidden space-y-8">
              <div class="bg-amber-500/10 border border-amber-500/30 rounded-3xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div>
-                    <h2 class="text-2xl font-extrabold text-amber-400">لوحة تحكم الأدمن (خاصة بك)</h2>
-                    <p class="text-slate-300 text-xs">إدارة طلبات وحجوزات المسافرين وتتبع الأرباح بدقة.</p>
+                    <h2 class="text-2xl font-extrabold text-amber-400">لوحة تحكم الأدمن (إدارة المنصة بالكامل)</h2>
+                    <p class="text-slate-300 text-xs">إدارة محتوى الموقع السفلي (من نحن، اتصل بنا، سياسة الخصوصية) وتعديلها فوراً.</p>
                 </div>
                 <div>
                     <span class="bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-xl text-xs font-bold border border-emerald-500/30"><i class="fa-solid fa-circle-check ml-1"></i> النظام متصل وقيد التشغيل</span>
                 </div>
             </div>
+
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div class="bg-[#1e293b] p-5 rounded-2xl border border-slate-800 shadow-xl">
                     <p class="text-slate-400 text-xs mb-1">إجمالي طلبات المسافرين</p>
@@ -284,21 +285,40 @@
                     <h3 class="text-xl font-extrabold text-emerald-400">3,120,000 دينار</h3>
                 </div>
             </div>
+
+            <!-- خانة الأدمن لتعديل وتغيير محتوى "من نحن" و"اتصل بنا" وغيرها -->
+            <div class="bg-[#1e293b] border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
+                <h3 class="text-lg font-extrabold text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square"></i> إدارة محتوى الصفحات السفلى (من نحن، اتصل بنا، الشروط)
+                </h3>
+                <p class="text-slate-300 text-xs">يمكنك هنا تعديل النصوص أو أرقام الهواتف أو الإيميلات لتظهر فوراً في تذييل الموقع (Footer) وفي النوافذ الخاصة بها.</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-slate-300">عنوان الشركة (في "من نحن")</label>
+                        <textarea id="admin-about-text" rows="3" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-xl p-3 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none">منصة Flyway هي البوابة الذكية الأولى لإدارة السفر، حجز الفنادق الفاخرة، إصدار التأشيرات، وتأمين السفر المعتمد للمسافر العراقي والعربي.</textarea>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-slate-300">معلومات التواصل (في "اتصل بنا")</label>
+                        <textarea id="admin-contact-text" rows="3" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-xl p-3 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none">العنوان: بغداد، الكرادة، العراق&#10;الهاتف / واتساب: +964 770 000 0000&#10;البريد الإلكتروني: flywaytravel.co@gmail.com</textarea>
+                    </div>
+                </div>
+                <button onclick="saveSiteContent()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-6 py-3 rounded-xl text-xs font-extrabold shadow-lg transition-all">
+                    <i class="fa-solid fa-floppy-disk ml-1"></i> حفظ وتحديث التغييرات في الموقع
+                </button>
+            </div>
         </section>
 
     </main>
 
-    <!-- ================= زر وشات الدعم الفوري العائم (Live Chat Widget) ================= -->
+    <!-- ================= شات الدعم الفوري العائم ================= -->
     <div class="fixed bottom-6 left-6 z-50">
-        <!-- زر فتح الشات -->
         <button onclick="toggleChat()" class="gold-gradient text-slate-950 w-14 h-14 rounded-full flex items-center justify-center text-xl shadow-2xl hover:scale-105 transition-all relative">
             <i class="fa-solid fa-headset"></i>
             <span class="absolute -top-1 -right-1 bg-emerald-500 w-4 h-4 rounded-full border-2 border-slate-900 animate-pulse"></span>
         </button>
 
-        <!-- نافذة الشات العائمة -->
         <div id="chat-window" class="chat-box absolute bottom-20 left-0 w-80 sm:w-96 bg-[#1e293b] border border-slate-700 rounded-3xl shadow-2xl flex-col overflow-hidden text-right z-50">
-            <!-- رأس الشات -->
             <div class="bg-[#0f172a] p-4 border-b border-slate-700 flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <div class="w-9 h-9 rounded-full gold-gradient text-slate-950 flex items-center justify-center font-bold text-sm">SS</div>
@@ -307,28 +327,24 @@
                         <p class="text-[10px] text-emerald-400"><i class="fa-solid fa-circle text-[8px] ml-1"></i> متصل الآن للإجابة</p>
                     </div>
                 </div>
-                <button onclick="toggleChat()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i>.</button>
+                <button onclick="toggleChat()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
-            <!-- رسائل الشات -->
             <div id="chat-messages" class="p-4 space-y-3 h-72 overflow-y-auto text-xs bg-[#0b1120]/50">
                 <div class="bg-[#0f172a] p-3 rounded-2xl rounded-tr-none text-slate-200 border border-slate-800">
-                    أهلاً بك أستاذنا العزيز في منصة Flyway! ✈️ كيف يمكننا مساعدتك اليوم؟ يمكنك اختيار أحد الأسئلة الشائعة أدناه أو كتابة استفسارك مباشرة.
+                    أهلاً بك أستاذنا العزيز في منصة Flyway! ✈️ اختر أحد الأسئلة الشائعة أدناه أو اكتب استفسارك مباشرة.
                 </div>
             </div>
 
-            <!-- أسئلة شائعة جاهزة للضغط السريع -->
             <div class="p-3 bg-[#1e293b] border-t border-slate-800 space-y-1.5">
-                <p class="text-[10px] font-bold text-amber-400 mb-1">الأسئلة الشائعة (انقر للسؤال الفوري):</p>
+                <p class="text-[10px] font-bold text-amber-400 mb-1">الأسئلة الشائعة:</p>
                 <div class="flex flex-wrap gap-1.5">
                     <button onclick="sendFAQ('شنو شروط فيزا تركيا وجورجيا للمسافر العراقي؟')" class="bg-[#0f172a] hover:bg-amber-500/20 text-slate-300 border border-slate-700 px-2.5 py-1.5 rounded-lg text-[10px] transition-all">✈️ شروط الفيزا</button>
                     <button onclick="sendFAQ('شنو سياسة إلغاء الحجز الفندقي؟')" class="bg-[#0f172a] hover:bg-amber-500/20 text-slate-300 border border-slate-700 px-2.5 py-1.5 rounded-lg text-[10px] transition-all">🏨 إلغاء الحجز</button>
                     <button onclick="sendFAQ('شوكت استلم وثيقة تأمين السفر بعد الدفع؟')" class="bg-[#0f172a] hover:bg-amber-500/20 text-slate-300 border border-slate-700 px-2.5 py-1.5 rounded-lg text-[10px] transition-all">🛡️ وثيقة التأمين</button>
-                    <button onclick="sendFAQ('أريد حجز فندق وتذكرة طيران مع بعض.')" class="bg-[#0f172a] hover:bg-amber-500/20 text-slate-300 border border-slate-700 px-2.5 py-1.5 rounded-lg text-[10px] transition-all">💼 حجز شامل</button>
                 </div>
             </div>
 
-            <!-- حقل إدخال الرسالة الحرة -->
             <div class="p-3 bg-[#0f172a] border-t border-slate-700 flex gap-2">
                 <input type="text" id="chat-input" placeholder="اكتب استفسارك هنا..." class="flex-grow bg-[#1e293b] border border-slate-700 text-white rounded-xl px-3 py-2 text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none">
                 <button onclick="sendCustomMessage()" class="gold-gradient text-slate-950 px-3 py-2 rounded-xl text-xs font-bold shadow"><i class="fa-solid fa-paper-plane"></i></button>
@@ -354,22 +370,45 @@
             </div>
             <div class="space-y-2">
                 <h3 class="text-xl font-extrabold text-white">تم إصدار وثيقة التأمين بنجاح!</h3>
-                <p class="text-slate-300 text-xs leading-relaxed">تم خصم الرسوم وتوثيق البوليصة رسمياً. تم إرسال نسخة PDF من وثيقة التأمين إلى رقم الواتساب والبريد الإلكتروني المسجل.</p>
+                <p class="text-slate-300 text-xs leading-relaxed">تم خصم الرسوم وتوثيق البوليصة وإرسالها عبر الواتساب والإيميل.</p>
             </div>
-            <button onclick="closeInsuranceModal()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 py-3 rounded-xl text-xs font-extrabold shadow-lg transition-all">
-                حسناً، تم استلام الوثيقة
-            </button>
+            <button onclick="closeInsuranceModal()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 py-3 rounded-xl text-xs font-extrabold shadow-lg transition-all">حسناً</button>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-[#0f172a] border-t border-slate-800 py-6 text-center text-slate-500 text-xs">
-        <p>جميع الحقوق محفوظة © 2026 منصة Flyway - إدارة المبيعات وتأشيرات وتأمين المسافر العراقي</p>
+    <!-- نافذة عامة لعرض محتوى (من نحن، اتصل بنا، الشروط) -->
+    <div id="info-modal" class="modal fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-[#1e293b] border border-slate-700 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-4 shadow-2xl relative text-right">
+            <button onclick="closeInfoModal()" class="absolute left-6 top-6 text-slate-400 hover:text-white bg-[#0f172a] w-10 h-10 rounded-full flex items-center justify-center border border-slate-700"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="info-modal-title" class="text-xl font-extrabold text-amber-400">العنوان</h3>
+            <p id="info-modal-body" class="text-slate-300 text-xs leading-relaxed whitespace-pre-line"></p>
+        </div>
+    </div>
+
+    <!-- Footer الاحترافي (مع روابط من نحن، اتصل بنا، الشروط، سياسة الخصوصية) -->
+    <footer class="bg-[#0f172a] border-t border-slate-800 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+            <p>جميع الحقوق محفوظة © 2026 منصة Flyway - إدارة المبيعات وتأشيرات وتأمين المسافر العراقي</p>
+            <div class="flex flex-wrap gap-6 font-bold">
+                <button onclick="openInfoPage('about')" class="hover:text-amber-400 transition-all">من نحن</button>
+                <button onclick="openInfoPage('contact')" class="hover:text-amber-400 transition-all">اتصل بنا</button>
+                <button onclick="openInfoPage('terms')" class="hover:text-amber-400 transition-all">الشروط والأحكام</button>
+                <button onclick="openInfoPage('privacy')" class="hover:text-amber-400 transition-all">سياسة الخصوصية</button>
+            </div>
+        </div>
     </footer>
 
     <!-- JavaScript Engine -->
     <script>
         let isLoggedIn = true;
+
+        // محتوى الصفحات السفلى القابل للتعديل من لوحة الأدمن
+        let siteContent = {
+            about: "منصة Flyway هي البوابة الذكية الأولى لإدارة السفر، حجز الفنادق الفاخرة، إصدار التأشيرات، وتأمين السفر المعتمد للمسافر العراقي والعربي.\n\nنعمل باحترافية عالية لتقديم خدمات متكاملة تضمن راحة المسافر وتلبية كافة متطلباته دون عناء.",
+            contact: "العنوان الرئيسي: بغداد، الكرادة، العراق\nرقم الهاتف والواتساب للدعم: +964 770 000 0000\nالبريد الإلكتروني الرسمي: flywaytravel.co@gmail.com\nأوقات العمل: من السبت إلى الخميس (9 صباحاً - 9 مساءً)",
+            terms: "1. كافة الحجوزات تخضع لسياسة الفنادق والشركات المعتمدة.\n2. يتم استرداد المبالغ حسب سياسة الإلغاء المجاني المحددة لكل فندق.\n3. وثائق التأمين والسفر تصدر رسمياً وتعتبر نهائية بعد إتمام الدفع.",
+            privacy: "نحن في منصة Flyway نلتزم بحماية سرية البيانات الشخصية ومعلومات جوازات السفر للمستخدمين وعدم مشاركتها مع أي جهة خارجية إلا لأغراض إصدار التأشيرات والبوليصات الرسمية."
+        };
 
         const visaDatabase = [
             { id: 1, country: "تركيا", type: "بدون فيزا", badgeClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", duration: "90 يوماً", passport: "صالح لمدة 6 أشهر على الأقل", desc: "دخول مباشر لحملة الجوازات العادية بدون فيزا مسبقة للسياحة.", image: "https://images.unsplash.com/photo-1524231757913-215fce3a9b5a?auto=format&fit=crop&w=800&q=80" },
@@ -522,21 +561,38 @@
 
         function closeInsuranceModal() { document.getElementById('insurance-modal').classList.remove('modal-open'); }
 
-        // وظائف الشات الذكي والدعم الفوري
-        function toggleChat() {
-            document.getElementById('chat-window').classList.toggle('chat-open');
+        // وظائف صفحات (من نحن، اتصل بنا، الخ)
+        function openInfoPage(type) {
+            const titles = { about: 'من نحن - Flyway', contact: 'اتصل بنا ودعم العملاء', terms: 'الشروط والأحكام', privacy: 'سياسة الخصوصية' };
+            document.getElementById('info-modal-title').innerText = titles[type];
+            document.getElementById('info-modal-body').innerText = siteContent[type] || 'محتوى قيد التحديث...';
+            document.getElementById('info-modal').classList.add('modal-open');
         }
+
+        function closeInfoModal() {
+            document.getElementById('info-modal').classList.remove('modal-open');
+        }
+
+        // حفظ محتوى الموقع من لوحة تحكم الأدمن
+        function saveSiteContent() {
+            siteContent.about = document.getElementById('admin-about-text').value;
+            siteContent.contact = document.getElementById('admin-contact-text').value;
+            alert('تم حفظ وتحديث محتوى الموقع بنجاح! ستظهر التعديلات فوراً للمستخدمين.');
+        }
+
+        // الشات الفوري
+        function toggleChat() { document.getElementById('chat-window').classList.toggle('chat-open'); }
 
         function sendFAQ(question) {
             appendMessage(question, 'user');
             setTimeout(() => {
-                let reply = "شكراً لتواصلك! بالنسبة لاستمتاعك بالرحلة، فريق دعم Flyway متواجد لتأكيد طلبك فوراً.";
+                let reply = "شكراً لتواصلك! فريق دعم Flyway متواجد لتأكيد طلبك فوراً.";
                 if(question.includes('فيزا')) {
-                    reply = "تستطيع السفر إلى تركيا وجورجيا وماليزيا وإيران بدون فيزا مسبقة لحملة الجواز العراقي. بينما الإمارات ومصر تحتاجان ترتيب مسبق من خلال قسم التأشيرات في منصتنا.";
+                    reply = "تستطيع السفر إلى تركيا وجورجيا وماليزيا بدون فيزا مسبقة. بينما الإمارات ومصر تحتاجان ترتيب مسبق من خلال قسم التأشيرات.";
                 } else if(question.includes('إلغاء')) {
-                    reply = "أغلب الفنادق في منصتنا توفر ميزة الإلغاء المجاني قبل 24 إلى 48 ساعة من موعد الوصول بدون أي غرامات مالية.";
+                    reply = "أغلب الفنادق توفر ميزة الإلغاء المجاني قبل 24 إلى 48 ساعة من موعد الوصول بدون غرامات.";
                 } else if(question.includes('تأمين')) {
-                    reply = "يتم إصدار وثيقة تأمين السفر بشكل رسمي وفوري خلال دقائق بعد إتمام الدفع، وتصلك نسختها بصيغة PDF على الواتساب والإيميل المسجل.";
+                    reply = "يتم إصدار وثيقة تأمين السفر خلال دقائق بعد إتمام الدفع، وتصلك نسختها بصيغة PDF على الواتساب والإيميل.";
                 }
                 appendMessage(reply, 'bot');
             }, 500);
@@ -549,7 +605,7 @@
             appendMessage(text, 'user');
             input.value = '';
             setTimeout(() => {
-                appendMessage("تم استلام استفسارك بنجاح! تم تحويل الرسالة إلى مشرف المبيعات وسيتم الرد عليك هنا وفي واتساب خلال دقائق معدودة.", 'bot');
+                appendMessage("تم استلام استفسارك! تم تحويل الرسالة إلى مشرف المبيعات وسيتم الرد عليك هنا خلال دقائق.", 'bot');
             }, 800);
         }
 
