@@ -57,13 +57,15 @@
                     <i class="fa-solid fa-coins ml-1"></i> الدينار العراقي (IQD)
                 </span>
                 
+                <!-- زر تسجيل الدخول (يظهر حصراً عند تسجيل الخروج) -->
                 <div id="logged-out-area" class="hidden">
                      <button onclick="simulateLogin()" class="bg-[#C9603A] hover:bg-[#8F3F22] text-[#EFE6D2] px-4 py-2 rounded-xl text-xs font-extrabold transition-all shadow-lg">
                         <i class="fa-solid fa-user-lock ml-1"></i> تسجيل الدخول
                     </button>
                 </div>
 
-                <div id="logged-in-area" class="relative">
+                <!-- منطقة الحساب المسجل (تختفي تماماً عند تسجيل الخروج) -->
+                <div id="logged-in-area" class="relative hidden">
                     <button onclick="toggleDropdown()" class="flex items-center gap-3 bg-[#123243] pl-3 pr-4 py-2 rounded-xl border border-[#EFE6D2]/10 hover:border-[#C9603A]/30 transition-all relative">
                         <span class="text-xs font-bold text-[#EFE6D2]">Super Support</span>
                         <div class="w-9 h-9 rounded-full bg-[#C9603A] text-[#EFE6D2] flex items-center justify-center font-bold text-sm shadow-md">SS</div>
@@ -308,7 +310,7 @@
             </div>
         </section>
 
-        <!-- 5. لوحة التحكم (مع نافذة الرد الاحترافية) -->
+        <!-- 5. لوحة التحكم -->
         <section id="section-admin" class="hidden space-y-8">
              <div class="bg-[#C9603A]/10 border border-[#C9603A]/30 rounded-3xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div>
@@ -442,7 +444,7 @@
         </div>
     </div>
 
-    <!-- نافذة رد الأدمن الاحترافية المخصصة (Modal) -->
+    <!-- نافذة رد الأدمن الاحترافية -->
     <div id="admin-reply-modal" class="modal fixed inset-0 z-50 bg-[#0E2735]/85 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
         <div class="bg-[#123243] border border-[#EFE6D2]/15 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-5 shadow-2xl relative text-right">
             <button onclick="closeAdminReplyModal()" class="absolute left-6 top-6 text-[#C9BFA9] hover:text-[#EFE6D2] bg-[#0E2735] w-10 h-10 rounded-full flex items-center justify-center border border-[#EFE6D2]/10"><i class="fa-solid fa-xmark"></i></button>
@@ -476,7 +478,7 @@
         </div>
     </div>
 
-    <!-- نوافذ أخرى (معلومات، تأمين، فندق) -->
+    <!-- نوافذ أخرى -->
     <div id="info-modal" class="modal fixed inset-0 z-50 bg-[#0E2735]/80 backdrop-blur-sm items-center justify-center p-4 overflow-y-auto">
         <div class="bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-4 shadow-2xl relative text-right">
             <button onclick="closeInfoModal()" class="absolute left-6 top-6 text-[#C9BFA9] hover:text-[#EFE6D2] bg-[#0E2735] w-10 h-10 rounded-full flex items-center justify-center border border-[#EFE6D2]/10"><i class="fa-solid fa-xmark"></i></button>
@@ -520,7 +522,8 @@
 
     <!-- JavaScript Engine -->
     <script>
-        let isLoggedIn = true;
+        // استخدام localStorage لحفظ حالة تسجيل الدخول بشكل دائم عبر التحديثات (Refresh)
+        let isLoggedIn = localStorage.getItem('flyway_logged_in') !== 'false';
         let supportMessages = [];
         let activeReplyId = null;
 
@@ -834,7 +837,6 @@
             });
         }
 
-        // فتح نافذة الرد الاحترافية للأدمن
         function openAdminReplyModal(id) {
             const msg = supportMessages.find(m => m.id === id);
             if(!msg) return;
@@ -850,7 +852,6 @@
             activeReplyId = null;
         }
 
-        // إرسال الرد وعرضه في الشات العائم للزبون
         function submitAdminReply() {
             const replyText = document.getElementById('admin-reply-textarea').value.trim();
             if(!replyText) {
@@ -858,10 +859,7 @@
                 return;
             }
 
-            // إرسال الرد كرسالة من البوت داخل الشات العائم
             appendMessage("رد فريق الدعم: " + replyText, 'bot');
-
-            // إزالة الرسالة من صندوق الوارد في الداشبورد وتحديث الإشعارات
             supportMessages = supportMessages.filter(m => m.id !== activeReplyId);
             updateAdminSupportUI();
             closeAdminReplyModal();
@@ -876,11 +874,17 @@
             container.scrollTop = container.scrollHeight;
         }
 
+        // تحديث حالة العرض بناءً على التخزين المحلي
         function updateAuthState() {
             const outArea = document.getElementById('logged-out-area');
             const inArea = document.getElementById('logged-in-area');
-            if (isLoggedIn) { outArea.classList.add('hidden'); inArea.classList.remove('hidden'); }
-            else { outArea.classList.remove('hidden'); inArea.classList.add('hidden'); }
+            if (isLoggedIn) { 
+                outArea.classList.add('hidden'); 
+                inArea.classList.remove('hidden'); 
+            } else { 
+                outArea.classList.remove('hidden'); 
+                inArea.classList.add('hidden'); 
+            }
         }
 
         function toggleDropdown() { document.getElementById('user-dropdown').classList.toggle('dropdown-open'); }
@@ -898,8 +902,21 @@
             if(activeNav) activeNav.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-[#C9603A] text-[#EFE6D2] shadow-md";
         }
 
-        function simulateLogin() { isLoggedIn = true; updateAuthState(); }
-        function simulateLogout() { isLoggedIn = false; updateAuthState(); switchTab('visa'); document.getElementById('user-dropdown').classList.remove('dropdown-open'); }
+        // تسجيل الدخول وتخزين الحالة
+        function simulateLogin() { 
+            isLoggedIn = true; 
+            localStorage.setItem('flyway_logged_in', 'true');
+            updateAuthState(); 
+        }
+
+        // تسجيل الخروج وتثبيته نهائياً حتى مع التحديث (Refresh)
+        function simulateLogout() { 
+            isLoggedIn = false; 
+            localStorage.setItem('flyway_logged_in', 'false');
+            updateAuthState(); 
+            switchTab('visa'); 
+            document.getElementById('user-dropdown').classList.remove('dropdown-open'); 
+        }
 
         renderVisas(visaDatabase);
         renderListings(globalDirectory);
