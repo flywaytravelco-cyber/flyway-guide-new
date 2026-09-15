@@ -21,71 +21,78 @@
     <!-- Header / Navbar -->
     <header class="bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="gold-gradient text-slate-950 p-2.5 rounded-2xl shadow-lg shadow-amber-500/10">
-                    <i class="fa-solid fa-plane-departure text-xl"></i>
-                </div>
-                <div>
-                    <h1 class="text-xl font-extrabold text-white tracking-tight">Flyway</h1>
-                    <p class="text-xs font-semibold gold-text">بوابة السفر والخدمات الذكية</p>
-                </div>
-            </div>
             
-            <!-- Navigation Tabs -->
-            <nav class="hidden md:flex items-center gap-2 bg-[#1e293b] p-1.5 rounded-2xl border border-slate-700/50">
-                <button onclick="switchTab('visa')" id="nav-visa" class="px-4 py-2 rounded-xl text-xs font-bold transition-all gold-gradient text-slate-950 shadow-md">قسم التأشيرات (الفيزا)</button>
-                <button onclick="switchTab('destinations')" id="nav-destinations" class="px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white">دليل الوجهات الخارجيّة</button>
-                <!-- زر الأدمن تم إزالته من هنا -->
-            </nav>
+            <!-- الجهة اليمنى: الشعار وروابط التنقل -->
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3">
+                    <div class="gold-gradient text-slate-950 p-2.5 rounded-2xl shadow-lg shadow-amber-500/10">
+                        <i class="fa-solid fa-plane-departure text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-extrabold text-white tracking-tight">Flyway</h1>
+                        <p class="text-xs font-semibold gold-text">بوابة السفر والخدمات الذكية</p>
+                    </div>
+                </div>
+                
+                <!-- Navigation Tabs -->
+                <nav class="hidden md:flex items-center gap-2 bg-[#1e293b] p-1.5 rounded-2xl border border-slate-700/50">
+                    <button onclick="switchTab('visa')" id="nav-visa" class="px-4 py-2 rounded-xl text-xs font-bold transition-all gold-gradient text-slate-950 shadow-md">قسم التأشيرات (الفيزا)</button>
+                    <button onclick="switchTab('destinations')" id="nav-destinations" class="px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white">دليل الوجهات الخارجيّة</button>
+                </nav>
+            </div>
 
+            <!-- الجهة اليسرى: العملة وحساب المستخدم / تسجيل الدخول -->
             <div class="flex items-center gap-3 relative">
                 <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-3 py-1.5 rounded-xl hidden sm:inline-block">
                     <i class="fa-solid fa-coins ml-1"></i> العملة: الدينار العراقي (IQD)
                 </span>
                 
-                <!-- =================== UPDATED PROFILE/LOGIN AREA =================== -->
+                <!-- حالة عدم تسجيل الدخول -->
                 <div id="logged-out-area">
-                     <button onclick="openLoginModal()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2 rounded-xl text-xs font-extrabold transition-all shadow-lg shadow-amber-500/20">
+                     <button onclick="simulateLogin()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2 rounded-xl text-xs font-extrabold transition-all shadow-lg shadow-amber-500/20">
                         <i class="fa-solid fa-user-lock ml-1"></i> تسجيل الدخول
                     </button>
                 </div>
-                <div id="logged-in-area" class="hidden relative">
-                    <button onclick="toggleDropdown()" class="flex items-center gap-3 bg-[#1e293b] pl-4 pr-2 py-2 rounded-xl border border-slate-700 hover:border-amber-500/30 transition-all">
-                        <div class="w-9 h-9 rounded-full gold-gradient text-slate-950 flex items-center justify-center font-bold text-sm">SS</div>
+
+                <!-- حالة تسجيل الدخول (يظهر اسم المسافر/الأدمن مع القائمة المنسدلة عند الضغط) -->
+                <div id="logged-in-area" class="relative">
+                    <button onclick="toggleDropdown()" class="flex items-center gap-3 bg-[#1e293b] pl-3 pr-4 py-2 rounded-xl border border-slate-700 hover:border-amber-500/30 transition-all">
                         <span class="text-xs font-bold text-white">Super Support</span>
-                        <i class="fa-solid fa-chevron-down text-slate-500 text-xs mr-2"></i>
+                        <div class="w-9 h-9 rounded-full gold-gradient text-slate-950 flex items-center justify-center font-bold text-sm shadow-md">SS</div>
+                        <i class="fa-solid fa-chevron-down text-slate-400 text-xs mr-1"></i>
                     </button>
-                    <!-- The Dropdown Menu -->
-                    <div id="user-dropdown" class="dropdown-menu absolute left-0 top-full mt-2 w-64 bg-[#1e293b] border border-slate-700 rounded-3xl p-4 shadow-2xl z-50">
+                    
+                    <!-- القائمة المنسدلة للملف الشخصي -->
+                    <div id="user-dropdown" class="dropdown-menu absolute left-0 top-full mt-2 w-64 bg-[#1e293b] border border-slate-700 rounded-3xl p-4 shadow-2xl z-50 text-right">
                         <div class="flex items-center gap-3 mb-4 p-3 bg-[#0f172a] rounded-2xl">
                              <div class="w-10 h-10 rounded-full gold-gradient text-slate-950 flex items-center justify-center font-bold text-md">SS</div>
-                             <div>
-                                 <p class="text-sm font-extrabold text-white">Super Support</p>
-                                 <p class="text-xs text-slate-400">flywaytravel.co@gmail.com</p>
+                             <div class="overflow-hidden">
+                                 <p class="text-sm font-extrabold text-white truncate">Super Support</p>
+                                 <p class="text-xs text-slate-400 truncate">flywaytravel.co@gmail.com</p>
                              </div>
                         </div>
                         <ul class="space-y-1 text-xs font-bold text-slate-300">
-                            <li><a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#0f172a] hover:text-white"><i class="fa-solid fa-user-circle text-slate-500"></i>إدارة حسابي</a></li>
-                            <li><a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#0f172a] hover:text-white"><i class="fa-solid fa-suitcase text-slate-500"></i>حجوزاتي</a></li>
-                            <li><a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#0f172a] hover:text-white"><i class="fa-solid fa-bookmark text-slate-500"></i>المحفظات</a></li>
-                            <!-- زر لوحة تحكم الأدمن (يظهر لك فقط) -->
-                            <li id="admin-dropdown-link" class="hidden border-t border-slate-700 pt-1 mt-1">
-                                <button onclick="switchTab('admin')" class="flex w-full items-center gap-3 p-3 rounded-xl hover:bg-amber-950 hover:text-amber-400 text-amber-400"><i class="fa-solid fa-cog"></i>لوحة التحكم (الأدمن)</button>
+                            <li><a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#0f172a] hover:text-white"><i class="fa-solid fa-user-circle text-slate-500 w-5"></i>إدارة حسابي</a></li>
+                            <li><a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#0f172a] hover:text-white"><i class="fa-solid fa-suitcase text-slate-500 w-5"></i>حجوزاتي</a></li>
+                            <li><a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#0f172a] hover:text-white"><i class="fa-solid fa-bookmark text-slate-500 w-5"></i>المحفظات</a></li>
+                            
+                            <!-- زر لوحة التحكم الخاصة بالأدمن -->
+                            <li id="admin-dropdown-link" class="border-t border-slate-700/80 pt-1 mt-1">
+                                <button onclick="switchTab('admin'); toggleDropdown();" class="flex w-full items-center gap-3 p-3 rounded-xl hover:bg-amber-500/10 text-amber-400">
+                                    <i class="fa-solid fa-gauge-high w-5"></i>لوحة التحكم (الأدمن)
+                                </button>
                             </li>
-                             <li class="border-t border-slate-700 pt-1 mt-1"><button onclick="performLogout()" class="flex w-full items-center gap-3 p-3 rounded-xl hover:bg-rose-950 hover:text-rose-400 text-rose-400"><i class="fa-solid fa-sign-out-alt"></i>تسجيل الخروج</button></li>
+                            
+                            <li class="border-t border-slate-700/80 pt-1 mt-1">
+                                <button onclick="simulateLogout()" class="flex w-full items-center gap-3 p-3 rounded-xl hover:bg-rose-500/10 text-rose-400">
+                                    <i class="fa-solid fa-sign-out-alt w-5"></i>تسجيل الخروج
+                                </button>
+                            </li>
                         </ul>
                     </div>
                 </div>
-                <!-- ================================================================== -->
 
             </div>
-        </div>
-        
-        <div class="flex md:hidden bg-[#1e293b] p-2 gap-1 border-t border-slate-800 text-xs">
-            <button onclick="switchTab('visa')" id="mob-nav-visa" class="flex-1 py-2 rounded-lg font-bold gold-gradient text-slate-950 text-center">التأشيرات</button>
-            <button onclick="switchTab('destinations')" id="mob-nav-destinations" class="flex-1 py-2 rounded-lg font-bold text-slate-400 text-center">الوجهات</button>
-            <!-- زر الأدمن للموبايل يظهر فقط بعد تسجيل الدخول -->
-            <button onclick="switchTab('admin')" id="mob-nav-admin" class="flex-1 py-2 rounded-lg font-bold text-amber-400 text-center hidden">الأدمن</button>
         </div>
     </header>
 
@@ -95,27 +102,18 @@
         <!-- ================= SECTION 1: VISAS ================= -->
         <section id="section-visa" class="space-y-6">
              <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-800 p-8 sm:p-12 text-center shadow-2xl mb-8">
-                <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80');"></div>
+                <div class="absolute inset-0 opacity-25 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80');"></div>
                 <div class="relative z-10 max-w-2xl mx-auto">
                     <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-3 py-1.5 rounded-full inline-block mb-3">خاص بالمسافر العراقي</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">دليل التأشيرات والفيزا الرسمية</h2>
                     <p class="text-slate-300 text-xs sm:text-sm mb-6">ابحث عن الدولة لمعرفة الشروط التفصيلية، مدة الإقامة، صلاحية الجواز، والمستندات المطلوبة بدقة.</p>
                     
                     <div class="relative">
-                        <input type="text" id="visa-search" oninput="searchVisas()" placeholder="ابحث أو اختر الدولة (مثال: تركيا، ماليزيا، جورجيا...)" class="w-full bg-[#0f172a]/90 backdrop-blur border border-slate-700 text-white placeholder-slate-400 rounded-2xl px-5 py-4 pr-12 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none shadow-xl">
-                        <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 text-base"></i>
+                        <input type="text" id="visa-search" placeholder="ابحث أو اختر الدولة (مثال: تركيا، ماليزيا، جورجيا...)" class="w-full bg-[#0f172a]/90 backdrop-blur border border-slate-700 text-white placeholder-slate-400 rounded-2xl px-5 py-4 pl-12 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none shadow-xl">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-base"></i>
                     </div>
                 </div>
             </div>
-
-            <div class="flex flex-wrap justify-center gap-2 mb-8">
-                <button onclick="filterVisaCat('all')" id="btn-cat-all" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md">كل الدول</button>
-                <button onclick="filterVisaCat('بدون فيزا')" id="btn-cat-none" class="bg-[#1e293b] text-emerald-400 border border-emerald-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all">بدون فيزا مسبقة</button>
-                <button onclick="filterVisaCat('عند الوصول')" id="btn-cat-arrival" class="bg-[#1e293b] text-amber-400 border border-amber-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all">فيزا عند الوصول</button>
-                <button onclick="filterVisaCat('مسبقة')" id="btn-cat-pre" class="bg-[#1e293b] text-rose-400 border border-rose-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all">تحتاج فيزا مسبقة</button>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="visa-grid"></div>
         </section>
 
         <!-- ================= SECTION 2: DESTINATIONS ================= -->
@@ -124,7 +122,6 @@
                 <h2 class="text-3xl font-extrabold text-white mb-2">دليل الوجهات الخارجية والخدمات</h2>
                 <p class="text-slate-400 text-xs">الفنادق، الأماكن الترفيهية، والمستشفيات في وجهاتك الخارجية المفضلة.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="destinations-grid"></div>
         </section>
 
         <!-- ================= SECTION 3: ADMIN DASHBOARD ================= -->
@@ -135,15 +132,95 @@
                     <p class="text-slate-300 text-xs">إدارة طلبات وحجوزات المسافرين، تتبع المبيعات والأرباح بدقة.</p>
                 </div>
                 <div>
-                    <span class="bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-xl text-xs font-bold border border-emerald-500/30">النظام متصل وقيد التشغيل</span>
+                    <span class="bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-xl text-xs font-bold border border-emerald-500/30"><i class="fa-solid fa-circle-check ml-1"></i> النظام متصل وقيد التشغيل</span>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div class="bg-[#1e293b] p-5 rounded-2xl border border-slate-800 shadow-xl">
                     <p class="text-slate-400 text-xs mb-1">إجمالي طلبات المسافرين</p>
-                    <h3 class="text-xl font-extrabold text-white" id="stat-count">0 طلب</h3>
+                    <h3 class="text-xl font-extrabold text-white">0 طلب</h3>
                 </div>
                 <div class="bg-[#1e293b] p-5 rounded-2xl border border-slate-800 shadow-xl">
                     <p class="text-slate-400 text-xs mb-1">حجم المبيعات التقريبي</p>
-                    <h3 class="text-xl font-extrabold text-
+                    <h3 class="text-xl font-extrabold text-amber-400">0 دينار</h3>
+                </div>
+                <div class="bg-[#1e293b] p-5 rounded-2xl border border-slate-800 shadow-xl">
+                    <p class="text-slate-400 text-xs mb-1">صافي الأرباح</p>
+                    <h3 class="text-xl font-extrabold text-emerald-400">0 دينار</h3>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#0f172a] border-t border-slate-800 py-6 text-center text-slate-500 text-xs">
+        <p>جميع الحقوق محفوظة © 2026 منصة Flyway - إدارة المبيعات وتأشيرات المسافر العراقي</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        let isLoggedIn = true; // اجعلها true لتجربة الحساب المسجل مباشرة
+
+        function updateAuthState() {
+            const outArea = document.getElementById('logged-out-area');
+            const inArea = document.getElementById('logged-in-area');
+            if (isLoggedIn) {
+                outArea.classList.add('hidden');
+                inArea.classList.remove('hidden');
+            } else {
+                outArea.classList.remove('hidden');
+                inArea.classList.add('hidden');
+            }
+        }
+
+        function toggleDropdown() {
+            const dropdown = document.getElementById('user-dropdown');
+            dropdown.classList.toggle('dropdown-open');
+        }
+
+        // إغلاق القائمة عند النقر خارجها
+        window.addEventListener('click', function(e) {
+            const inArea = document.getElementById('logged-in-area');
+            if (inArea && !inArea.contains(e.target)) {
+                document.getElementById('user-dropdown').classList.remove('dropdown-open');
+            }
+        });
+
+        function switchTab(tabId) {
+            document.getElementById('section-visa').classList.add('hidden');
+            document.getElementById('section-destinations').classList.add('hidden');
+            document.getElementById('section-admin').classList.add('hidden');
+
+            document.getElementById('nav-visa').className = "px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white";
+            document.getElementById('nav-destinations').className = "px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white";
+
+            if(tabId === 'visa') {
+                document.getElementById('section-visa').classList.remove('hidden');
+                document.getElementById('nav-visa').className = "px-4 py-2 rounded-xl text-xs font-bold transition-all gold-gradient text-slate-950 shadow-md";
+            } else if(tabId === 'destinations') {
+                document.getElementById('section-destinations').classList.remove('hidden');
+                document.getElementById('nav-destinations').className = "px-4 py-2 rounded-xl text-xs font-bold transition-all gold-gradient text-slate-950 shadow-md";
+            } else if(tabId === 'admin') {
+                document.getElementById('section-admin').classList.remove('hidden');
+            }
+        }
+
+        function simulateLogin() {
+            isLoggedIn = true;
+            updateAuthState();
+        }
+
+        function simulateLogout() {
+            isLoggedIn = false;
+            updateAuthState();
+            switchTab('visa');
+            document.getElementById('user-dropdown').classList.remove('dropdown-open');
+        }
+
+        // التهيئة الأولية
+        updateAuthState();
+    </script>
+</body>
+</html>
