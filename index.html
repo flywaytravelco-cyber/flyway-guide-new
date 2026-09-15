@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة Flyway | الدليل الشامل للوجهات والتأشيرات</title>
+    <title>منصة Flyway | الدليل الشامل للوجهات والفنادق العالمية</title>
     <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=192&h=192&q=80">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,6 +14,8 @@
         .gold-text { background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .dropdown-menu { display: none; }
         .dropdown-open { display: block; }
+        .modal { display: none; }
+        .modal-open { display: flex; }
     </style>
 </head>
 <body class="bg-[#0b1120] text-slate-100 antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
@@ -34,8 +36,8 @@
                 </div>
                 
                 <nav class="hidden md:flex items-center gap-2 bg-[#1e293b] p-1.5 rounded-2xl border border-slate-700/50">
-                    <button onclick="switchTab('visa')" id="nav-visa" class="px-4 py-2 rounded-xl text-xs font-bold transition-all gold-gradient text-slate-950 shadow-md">قسم التأشيرات (الفيزا)</button>
-                    <button onclick="switchTab('destinations')" id="nav-destinations" class="px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white">دليل الوجهات والفنادق</button>
+                    <button onclick="switchTab('visa')" id="nav-visa" class="px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white">قسم التأشيرات (الفيزا)</button>
+                    <button onclick="switchTab('destinations')" id="nav-destinations" class="px-4 py-2 rounded-xl text-xs font-bold transition-all gold-gradient text-slate-950 shadow-md">دليل الوجهات والفنادق</button>
                 </nav>
             </div>
 
@@ -92,7 +94,7 @@
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
 
         <!-- ================= SECTION 1: VISAS ================= -->
-        <section id="section-visa" class="space-y-6">
+        <section id="section-visa" class="hidden space-y-6">
              <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-800 p-8 sm:p-12 text-center shadow-2xl mb-8">
                 <div class="absolute inset-0 opacity-25 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80');"></div>
                 <div class="relative z-10 max-w-2xl mx-auto">
@@ -118,29 +120,27 @@
         </section>
 
         <!-- ================= SECTION 2: DESTINATIONS & GLOBAL DIRECTORY ================= -->
-        <section id="section-destinations" class="hidden space-y-8">
+        <section id="section-destinations" class="space-y-8">
             <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-800 p-8 sm:p-12 text-center shadow-2xl">
                 <div class="absolute inset-0 opacity-30 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');"></div>
                 <div class="relative z-10 max-w-3xl mx-auto space-y-3">
-                    <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-3.5 py-1.5 rounded-full inline-block">دليل الوجهات والخدمات</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">الدليل الشامل للوجهات العالمية</h2>
-                    <p class="text-slate-300 text-xs sm:text-sm">تصفح الفنادق، المطاعم، الأماكن الترفيهية والمستشفيات مع فلاتر النجوم والبحث السريع.</p>
+                    <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-3.5 py-1.5 rounded-full inline-block">دليل الوجهات والفنادق الذكي</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">الدليل الشامل لفنادق وخدمات العالم</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm">ابحث عن أي دولة (تركيا، جورجيا، الإمارات، مصر، السعودية...) لتظهر لك جميع فنادقها المتاحة مع سياساتها الكاملة ومرافقها الخدمية.</p>
                 </div>
             </div>
 
-            <!-- الترتيب الجديد: اسم الوجهة (يمين) -> التصنيف الرئيسي (وسط) -> فلتر النجوم (يسار) -->
+            <!-- الفلاتر الثلاثة -->
             <div class="bg-[#1e293b] border border-slate-800 rounded-3xl p-4 sm:p-6 shadow-2xl grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
                 
-                <!-- 1. اسم الوجهة (أقصى اليمين) -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 mb-1.5 text-right">اسم الوجهة (الدولة أو المدينة)</label>
+                    <label class="block text-xs font-bold text-slate-400 mb-1.5 text-right">اسم الوجهة (ابحث عن أي دولة أو مدينة)</label>
                     <div class="relative">
-                        <input type="text" id="destination-search" oninput="filterListings()" placeholder="ابحث عن دولة تركيا، دبي، مصر..." class="w-full bg-[#0f172a] border border-slate-700 text-white placeholder-slate-400 rounded-2xl px-4 py-3 pr-10 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                        <input type="text" id="destination-search" oninput="filterListings()" placeholder="اكتب اسم الدولة (تركيا، جورجيا، الإمارات...)" class="w-full bg-[#0f172a] border border-slate-700 text-white placeholder-slate-400 rounded-2xl px-4 py-3 pr-10 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none">
                         <i class="fa-solid fa-location-dot absolute right-3.5 top-1/2 -translate-y-1/2 text-amber-400 text-xs"></i>
                     </div>
                 </div>
 
-                <!-- 2. التصنيف الرئيسي والخدمات (الوسط) - مع كافة التصنيفات المطلوبة -->
                 <div>
                     <label class="block text-xs font-bold text-slate-400 mb-1.5 text-right">التصنيف الرئيسي والخدمات</label>
                     <div class="relative">
@@ -155,16 +155,11 @@
                             <option value="صرافة">💱 مكاتب الصرافة وتحويل الأموال</option>
                             <option value="مساجد">🕌 مساجد ومصليات</option>
                             <option value="سيارات">🚗 شركات تأجير السيارات والمواصلات</option>
-                            <option value="سفارات">🏛️ مراكز الشرطة والسفارات العراقية</option>
-                            <option value="اتصالات">📱 محلات الاتصالات وشراء الشرائح (سيم كارد)</option>
-                            <option value="سهر">🌙 أماكن السهر والفعاليات الليلية</option>
-                            <option value="صالونات">💇 صالونات ومركز العناية الشخصية</option>
                         </select>
                         <i class="fa-solid fa-chevron-down absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
                     </div>
                 </div>
 
-                <!-- 3. فلتر تصنيف النجوم للفنادق (أقصى اليسار) -->
                 <div>
                     <label class="block text-xs font-bold text-slate-400 mb-1.5 text-right">فلتر تصنيف النجوم (للفنادق)</label>
                     <div class="relative">
@@ -214,6 +209,16 @@
 
     </main>
 
+    <!-- Modal التفاصيل الشاملة -->
+    <div id="hotel-modal" class="modal fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-[#1e293b] border border-slate-700 rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl relative max-h-[90vh] overflow-y-auto text-right">
+            <button onclick="closeModal()" class="absolute left-6 top-6 text-slate-400 hover:text-white bg-[#0f172a] w-10 h-10 rounded-full flex items-center justify-center border border-slate-700">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+            <div id="modal-content" class="space-y-6"></div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-[#0f172a] border-t border-slate-800 py-6 text-center text-slate-500 text-xs">
         <p>جميع الحقوق محفوظة © 2026 منصة Flyway - إدارة المبيعات وتأشيرات المسافر العراقي</p>
@@ -223,7 +228,6 @@
     <script>
         let isLoggedIn = true;
 
-        // قاعدة بيانات التأشيرات (الفيزا) الخاصة بالمسافر العراقي
         const visaDatabase = [
             { id: 1, country: "تركيا", type: "بدون فيزا", badgeClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", duration: "90 يوماً", passport: "صالح لمدة 6 أشهر على الأقل", desc: "دخول مباشر لحملة الجوازات العادية بدون فيزا مسبقة للسياحة.", image: "https://images.unsplash.com/photo-1524231757913-215fce3a9b5a?auto=format&fit=crop&w=800&q=80" },
             { id: 2, country: "جورجيا", type: "بدون فيزا", badgeClass: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30", duration: "30 يوماً", passport: "صالح لمدة 6 أشهر", desc: "متاحة الدخول للمسافر العراقي بسهولة مع حجز الفندق وتذكرة العودة.", image: "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80" },
@@ -233,26 +237,61 @@
             { id: 6, country: "فرنسا (شنغن)", type: "مسبقة", badgeClass: "bg-rose-500/20 text-rose-400 border-rose-500/30", duration: "حسب الفترة المحددة", passport: "صالح لمدة 3 أشهر بعد السفر", desc: "تتطلب موعد مقابلة، كشف حساب بانكي، وتأمين صحي للسفر.", image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80" }
         ];
 
-        // قاعدة بيانات الوجهات والفنادق
         const globalDirectory = [
-            { id: 1, name: "فندق القصر الملكي في تركيا", country: "تركيا", city: "إسطنبول", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80", desc: "تصنيف الفندق: 5 نجوم ⭐⭐⭐⭐⭐ | يوفر أروع الخدمات، غرف مكيفة.", badgeText: "5 نجوم" },
-            { id: 2, name: "فندق النجمة الذهبية في تركيا", country: "تركيا", city: "إسطنبول", category: "فنادق", stars: 4, image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80", desc: "تصنيف الفندق: 4 نجوم ⭐⭐⭐⭐ | غرف مريحة وقريبة من ميدان تقسيم.", badgeText: "4 نجوم" },
-            { id: 3, name: "فندق بالتيمور تبليسي", country: "جورجيا", city: "تبليسي", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80", desc: "تصنيف الفندق: 5 نجوم ⭐⭐⭐⭐⭐ | إطلالة ساحرة على شارع روستافلي.", badgeText: "5 نجوم" },
-            { id: 4, name: "مجموعة مستشفيات أجيبادم الدولية", country: "تركيا", city: "إسطنبول", category: "مستشفيات", stars: 5, image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80", desc: "رعاية طبية متطورة على مدار 24 ساعة مع مترجمين عرب.", badgeText: "طوارئ 24 ساعة" },
-            { id: 5, name: "مول دبي ومجمع التسوق العالمي", country: "الإمارات", city: "دبي", category: "أسواق", stars: 5, image: "https://images.unsplash.com/photo-1567449303183-ae0d6ed1498e?auto=format&fit=crop&w=800&q=80", desc: "أكبر مركز تسوق وترفيه يضم أشهر الماركات العالمية.", badgeText: "مول تجاري" }
+            { id: 1, name: "فندق القصر الملكي الفاخر", country: "تركيا", city: "إسطنبول", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 5 نجوم ⭐⭐⭐⭐⭐ | إطلالة بانورامية على البوسفور، يوفر أفخم الخدمات الفندقية.", badgeText: "5 نجوم", 
+              policy: "إلغاء مجاني حتى 48 ساعة قبل موعد الوصول. تمديد الإقامة متاح بسهولة حسب التوفر وبنفس سعر الليلة.", 
+              facilities: ["موقف سيارات مجاني ومؤمن 24 ساعة", "صيدلية ومركز طبي داخل الفندق", "ملاعب تنس وصالة رياضية متكاملة (GYM)", "3 كافيهات ومطاعم عالمية فاخرة", "مسبح داخلي وخارجي مغطى"] 
+            },
+            { id: 2, name: "فندق النجمة الذهبية", country: "تركيا", city: "إسطنبول", category: "فنادق", stars: 4, image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 4 نجوم ⭐⭐⭐⭐ | غرف مريحة وقريبة جداً من ميدان تقسيم والأسواق.", badgeText: "4 نجوم", 
+              policy: "إلغاء مجاني قبل 24 ساعة من موعد الوصول. يمكن طلب تمديد ليلة إضافية مباشرة من مكتب الاستقبال.", 
+              facilities: ["موقف سيارات خاص للنزلاء", "مرفق صيدلية ومستلزمات طبية طارئة", "كافيه ومطعم يقدم وجبات إفطار عثمانية وعالمية", "خدمة تأجير سيارات ونقل هوائي"] 
+            },
+            { id: 3, name: "منتجع رويال أنطاليا الساحلي", country: "تركيا", city: "أنطاليا", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 5 نجوم ⭐⭐⭐⭐⭐ | منتجع شاطئي متكامل يطل على البحر الأبيض المتوسط.", badgeText: "5 نجوم", 
+              policy: "سياسة مرنة لإلغاء الحجز قبل 72 ساعة. إمكانية تمديد الإقامة مع خصم 10% للضيوف الدائمين.", 
+              facilities: ["مواقف سيارات واسعة مجانية", "نادي صحي وسبا وعيادة طبية طارئة", "ملاعب أطفال وملاعب تنس وكرة طائرة شاطئية", "5 مطاعم والكافيهات تعمل على مدار الساعة"] 
+            },
+            { id: 4, name: "فندق بالتيمور تبليسي الدولي", country: "جورجيا", city: "تبليسي", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 5 نجوم ⭐⭐⭐⭐⭐ | إطلالة ساحرة على شارع روستافلي التاريخي.", badgeText: "5 نجوم", 
+              policy: "إلغاء مجاني قبل 24 ساعة. تمديد ليلتي متاح فوراً مع تأكيد الغرفة.", 
+              facilities: ["مواقف سيارات آمنة تحت الأرض", "صيدلية ومراكز عناية صحية", "مسبح داخلي مدفأ وصالة رياضة", "كافيه فاخر ومطعم للمشاوي والأطباق المحلية"] 
+            },
+            { id: 5, name: "فندق وسبا قفقاس باتومي", country: "جورجيا", city: "باتومي", category: "فنادق", stars: 4, image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 4 نجوم ⭐⭐⭐⭐ | إطلالة خلابة على البحر الأسود وبوليفارد باتومي.", badgeText: "4 نجوم", 
+              policy: "إلغاء مرن بدون رسوم قبل يومين من الوصول. تمديد الإقامة متاح بسهولة.", 
+              facilities: ["مواقف سيارات مجانية للنزلاء", "ركن طبي وصيدلية مصغرة", "كافيه شاطئي ومطعم مأكولات بحرية", "حدائق ومناطق ترفيهية عائلية"] 
+            },
+            { id: 6, name: "فندق برج العرب وسبا دبي", country: "الإمارات", city: "دبي", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 5 نجوم ⭐⭐⭐⭐⭐ | الفندق الأيقوني الفاخر بخدمات ملكية لا مثيل لها.", badgeText: "5 نجوم", 
+              policy: "إلغاء الحجز قبل 5 أيام. تمديد الإقامة يتطلب التنسيق المسبق مع إدارة الحجوزات.", 
+              facilities: ["مهبط هليكوبتر ومواقف سيارات مع خدمة تفيض السيارات (Valet)", "مركز طبي متكامل وصيدلية", "شاطئ خاص وملاعب رياضية", "أرقى المطاعم العالمية والكافيهات في العالم"] 
+            },
+            { id: 7, name: "فندق روتانا جميرا دبي", country: "الإمارات", city: "دبي", category: "فنادق", stars: 4, image: "https://images.unsplash.com/photo-1561501900-3701fa6a0864?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 4 نجوم ⭐⭐⭐⭐ | موقع استراتيجي قرب مناطق التسوق والأعمال.", badgeText: "4 نجوم", 
+              policy: "إلغاء مجاني قبل 24 ساعة من موعد الوصول. تمديد الإقامة متاح بمرونة عالية.", 
+              facilities: ["موقف سيارات مظلل ومجاني", "صيدلية ومراكز خدمات طبية طارئة", "نادي رياضي ومسبح خارجي", "كافيه ومطعم يقدم أشهى المأكولات"] 
+            },
+            { id: 8, name: "فندق نايل فيو القاهرة", country: "مصر", city: "القاهرة", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 5 نجوم ⭐⭐⭐⭐⭐ | إطلالة مباشرة ومذهلة على نهر النيل والأهرامات.", badgeText: "5 نجوم", 
+              policy: "إلغاء مجاني قبل 48 ساعة. إمكانية تمديد الإقامة مع توفير وجبات مجانية إضافية.", 
+              facilities: ["موقف سيارات واسع ومؤمن", "صيدلية طوارئ وعيادة فندقية", "مسبح خارجي وكافيهات نيلية مميزة", "مطاعم شرقية وعالمية"] 
+            },
+            { id: 9, name: "فندق الأقصر وأسوان السياحي", country: "مصر", city: "أسوان", category: "فنادق", stars: 4, image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 4 نجوم ⭐⭐⭐⭐ | تصميم تراثي ساحر على ضفاف النيل مباشرة.", badgeText: "4 نجوم", 
+              policy: "إلغاء مرن قبل يوم واحد. تمديد ليالي الإقامة متاح بكل سهولة.", 
+              facilities: ["مواقف سيارات خاصة", "صيدلية وركن خدمات طبية", "جلسات كافيه شرقية على النيل", "حدائق ومسبح هادئ"] 
+            },
+            { id: 10, name: "فندق برج الساعة الملكي مكة", country: "السعودية", city: "مكة المكرمة", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 5 نجوم ⭐⭐⭐⭐⭐ | إطلالة مباشرة ومباركة على الكعبة المشرفة والحرم.", badgeText: "5 نجوم", 
+              policy: "إلغاء مجاني قبل 72 ساعة. تمديد الإقامة متاح حسب التوفر خلال مواسم العمرة والحج.", 
+              facilities: ["مواقف سيارات ضخمة ومتعددة الطوابق", "صيدلية مركزية وعيادة طبية طارئة تعمل 24 ساعة", "عدة مطاعم وكافيهات عالمية وإسكان متكامل", "مصلى فخم يتسع لآلاف المصلين"] 
+            },
+            { id: 11, name: "فندق دار التقوى المدينة", country: "السعودية", city: "المدينة المنورة", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 5 نجوم ⭐⭐⭐⭐⭐ | خطوات معدودة عن المسجد النبوي الشريف.", badgeText: "5 نجوم", 
+              policy: "إلغاء مجاني قبل 48 ساعة. سياسة مرنة جداً لتمديد ليالي الإقامة للمعتمرين والزوار.", 
+              facilities: ["مواقف سيارات تحت الأرض مؤمنة بالكامل", "صيدلية ومراكز صحية مجهزة", "كافيه فاخر ومطاعم تقدم أشهى الأطباق", "مرافق خدمات متكاملة"] 
+            },
+            { id: 12, name: "مجموعة مستشفيات أجيبادم الدولية", country: "تركيا", city: "إسطنبول", category: "مستشفيات", stars: 5, image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80", desc: "رعاية طبية متطورة على مدار 24 ساعة مع مترجمين عرب.", badgeText: "طوارئ 24 ساعة", policy: "استشارات طبية فورية وطوارئ مفتوحة دائماً.", facilities: ["صيدلية مركزية 24 ساعة", "مواقف سيارات ضخمة", "مطعم وكافيه للمرافقين"] },
+            { id: 13, name: "مول دبي ومجمع التسوق العالمي", country: "الإمارات", city: "دبي", category: "أسواق", stars: 5, image: "https://images.unsplash.com/photo-1567449303183-ae0d6ed1498e?auto=format&fit=crop&w=800&q=80", desc: "أكبر مركز تسوق وترفيه يضم أشهر الماركات العالمية.", badgeText: "مول تجاري", policy: "مفتوح يومياً حتى منتصف الليل.", facilities: ["مواقف لأكثر من 14 ألف سيارة", "أكثر من 50 كافيه ومطعم", "صيدليات وعيادات طوارئ وسينما وألعاب"] }
         ];
 
         let currentVisaFilter = 'all';
 
         function renderVisas(data) {
             const grid = document.getElementById('visa-grid');
+            if(!grid) return;
             grid.innerHTML = '';
-
-            if (data.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 text-xs">لا توجد نتائج مطابقة لبحثك في قسم التأشيرات...</div>`;
-                return;
-            }
-
             data.forEach(item => {
                 grid.innerHTML += `
                     <div class="bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
@@ -281,57 +320,74 @@
 
         function filterVisaCat(category) {
             currentVisaFilter = category;
-            
             ['all', 'none', 'arrival', 'pre'].forEach(cat => {
                 const btn = document.getElementById(`btn-cat-${cat}`);
-                if(btn) {
-                    btn.className = "bg-[#1e293b] text-slate-300 border border-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition-all";
-                }
+                if(btn) btn.className = "bg-[#1e293b] text-slate-300 border border-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition-all";
             });
-
             const activeBtnId = category === 'all' ? 'btn-cat-all' : (category === 'بدون فيزا' ? 'btn-cat-none' : (category === 'عند الوصول' ? 'btn-cat-arrival' : 'btn-cat-pre'));
             const activeBtn = document.getElementById(activeBtnId);
-            if(activeBtn) {
-                activeBtn.className = "bg-amber-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md";
-            }
-
-            filterVisas();
-        }
-
-        function filterVisas() {
-            const searchVal = document.getElementById('visa-search').value.trim().toLowerCase();
+            if(activeBtn) activeBtn.className = "bg-amber-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md";
             
+            const searchVal = document.getElementById('visa-search').value.trim().toLowerCase();
             const filtered = visaDatabase.filter(item => {
                 let matchCat = currentVisaFilter === 'all' || item.type === currentVisaFilter;
                 let matchSearch = searchVal === '' || item.country.toLowerCase().includes(searchVal) || item.desc.toLowerCase().includes(searchVal);
                 return matchCat && matchSearch;
             });
+            renderVisas(filtered);
+        }
 
+        function filterVisas() {
+            const searchVal = document.getElementById('visa-search').value.trim().toLowerCase();
+            const filtered = visaDatabase.filter(item => {
+                let matchCat = currentVisaFilter === 'all' || item.type === currentVisaFilter;
+                let matchSearch = searchVal === '' || item.country.toLowerCase().includes(searchVal) || item.desc.toLowerCase().includes(searchVal);
+                return matchCat && matchSearch;
+            });
             renderVisas(filtered);
         }
 
         function renderListings(filteredData) {
             const grid = document.getElementById('destinations-grid');
+            if(!grid) return;
             grid.innerHTML = '';
+            
             if (filteredData.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 text-xs">لا توجد نتائج مطابقة...</div>`;
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-16 bg-[#1e293b] border border-slate-800 rounded-3xl space-y-4 shadow-2xl">
+                        <div class="w-16 h-16 bg-amber-500/10 text-amber-400 rounded-full flex items-center justify-center mx-auto text-2xl">
+                            <i class="fa-solid fa-hotel"></i>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-white">لم نجد نتائج مطابقة تماماً، لكننا جاهزون لتلبية طلبك!</h3>
+                        <p class="text-slate-400 text-xs max-w-md mx-auto">نظام Flyway يقوم بجلب الفنادق عبر ربط ذكي ومتطور. يمكنك طلب الحجز المباشر لأي فندق في العالم وسنقوم بتوفيره لك فوراً.</p>
+                        <button class="bg-amber-500 text-slate-950 px-6 py-3 rounded-xl text-xs font-extrabold shadow-lg">طلب حجز مخصص عبر الدعم</button>
+                    </div>`;
                 return;
             }
+
             filteredData.forEach(item => {
                 grid.innerHTML += `
                     <div class="bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
                         <div>
                             <div class="h-48 bg-cover bg-center relative" style="background-image: url('${item.image}');">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#1e293b] via-transparent to-transparent"></div>
                                 <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur text-amber-400 border border-amber-500/30 px-3 py-1 rounded-xl text-xs font-bold">${item.country} - ${item.city}</span>
                                 <span class="absolute top-4 left-4 bg-amber-500 text-slate-950 px-2.5 py-1 rounded-xl text-[10px] font-extrabold shadow-md">${item.badgeText}</span>
                             </div>
                             <div class="p-6 space-y-3">
                                 <h3 class="text-base font-extrabold text-white">${item.name}</h3>
                                 <p class="text-slate-300 text-xs leading-relaxed">${item.desc}</p>
+                                
+                                <div class="bg-[#0f172a] p-3 rounded-2xl space-y-1.5 text-xs border border-slate-800">
+                                    <p class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check ml-1"></i> ${item.policy ? item.policy.substring(0, 45) + '...' : 'إلغاء مجاني وسياسة مرنة'}</p>
+                                    <p class="text-slate-400"><i class="fa-solid fa-shield-heart text-amber-400 ml-1"></i> مرافق متكاملة: ${item.facilities ? item.facilities.length : 3} خدمات رئيسية داخل الفندق</p>
+                                </div>
                             </div>
                         </div>
                         <div class="p-6 pt-0">
-                            <button class="w-full bg-[#0f172a] hover:bg-amber-500 hover:text-slate-950 text-amber-400 border border-amber-500/30 py-2.5 rounded-xl text-xs font-bold transition-all">عرض التفاصيل</button>
+                            <button onclick="openHotelDetails(${item.id})" class="w-full bg-[#0f172a] hover:bg-amber-500 hover:text-slate-950 text-amber-400 border border-amber-500/30 py-3 rounded-xl text-xs font-bold transition-all shadow-md flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-circle-info"></i> عرض التفاصيل والسياسات والمرافق
+                            </button>
                         </div>
                     </div>
                 `;
@@ -346,10 +402,64 @@
             const filtered = globalDirectory.filter(item => {
                 let matchStar = starVal === 'all' || (item.category === 'فنادق' && item.stars === parseInt(starVal));
                 let matchCategory = categoryVal === 'all' || item.category === categoryVal;
-                let matchSearch = searchVal === '' || item.name.toLowerCase().includes(searchVal) || item.country.toLowerCase().includes(searchVal);
+                let matchSearch = searchVal === '' || 
+                                  item.name.toLowerCase().includes(searchVal) || 
+                                  item.country.toLowerCase().includes(searchVal) || 
+                                  item.city.toLowerCase().includes(searchVal);
                 return matchStar && matchCategory && matchSearch;
             });
             renderListings(filtered);
+        }
+
+        function openHotelDetails(id) {
+            const item = globalDirectory.find(h => h.id === id);
+            if(!item) return;
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <div class="h-64 bg-cover bg-center rounded-2xl relative shadow-lg" style="background-image: url('${item.image}');">
+                        <span class="absolute top-4 right-4 bg-slate-900/90 text-amber-400 px-3.5 py-1.5 rounded-xl text-xs font-extrabold border border-amber-500/30">${item.country} - ${item.city}</span>
+                        <span class="absolute top-4 left-4 bg-amber-500 text-slate-950 px-3 py-1 rounded-xl text-xs font-extrabold">${item.badgeText}</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h2 class="text-2xl font-extrabold text-white">${item.name}</h2>
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">${item.desc}</p>
+                    </div>
+
+                    <div class="bg-[#0f172a] p-4 rounded-2xl border border-slate-700 space-y-2">
+                        <h4 class="text-xs font-extrabold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-file-contract text-sm"></i> سياسات الحجز والإلغاء وتمديد الإقامة</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed">${item.policy || 'سياسة إلغاء مجاني قبل 24 ساعة، مع إمكانية تمديد الإقامة لعدد ليالي غير محدود حسب توفر الغرف وبنفس السعر اليومي.'}</p>
+                    </div>
+
+                    <div class="bg-[#0f172a] p-4 rounded-2xl border border-slate-700 space-y-3">
+                        <h4 class="text-xs font-extrabold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-star-of-life text-sm"></i> المرافق والخدمات الداخلية (لن تحتاج للخروج من الفندق!)</h4>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+                            ${item.facilities ? item.facilities.map(f => `<li class="flex items-center gap-2 bg-[#1e293b] p-2 rounded-xl border border-slate-800"><i class="fa-solid fa-check text-emerald-400"></i> ${f}</li>`).join('') : `
+                                <li class="flex items-center gap-2 bg-[#1e293b] p-2 rounded-xl border border-slate-800"><i class="fa-solid fa-check text-emerald-400"></i> موقف سيارات مجاني ومؤمن</li>
+                                <li class="flex items-center gap-2 bg-[#1e293b] p-2 rounded-xl border border-slate-800"><i class="fa-solid fa-check text-emerald-400"></i> صيدلية وخدمة طبية طارئة</li>
+                                <li class="flex items-center gap-2 bg-[#1e293b] p-2 rounded-xl border border-slate-800"><i class="fa-solid fa-check text-emerald-400"></i> كافيه ومطعم عالمي يعمل 24 ساعة</li>
+                                <li class="flex items-center gap-2 bg-[#1e293b] p-2 rounded-xl border border-slate-800"><i class="fa-solid fa-check text-emerald-400"></i> صالة رياضية ومسبح فخم</li>
+                            `}
+                        </ul>
+                    </div>
+
+                    <div class="pt-4 flex gap-3">
+                        <button onclick="closeModal(); alert('تم استلام طلب الحجز بنجاح! سيقوم فريق المبيعات بالتواصل معك لتأكيد التفاصيل.');" class="flex-1 bg-amber-500 hover:bg-amber-400 text-slate-950 py-3 rounded-xl text-xs font-extrabold shadow-lg transition-all">
+                            <i class="fa-solid fa-calendar-check ml-1"></i> تأكيد الحجز الفوري
+                        </button>
+                        <button onclick="closeModal()" class="bg-[#0f172a] hover:bg-slate-800 text-slate-300 border border-slate-700 px-6 py-3 rounded-xl text-xs font-bold transition-all">
+                            إغلاق
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.getElementById('hotel-modal').classList.add('modal-open');
+        }
+
+        function closeModal() {
+            document.getElementById('hotel-modal').classList.remove('modal-open');
         }
 
         function updateAuthState() {
