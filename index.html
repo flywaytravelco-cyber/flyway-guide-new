@@ -128,9 +128,12 @@
                 </div>
             </div>
 
+            <!-- تم تعديل الترتيب من اليمين إلى اليسار (فلتر النجوم -> التصنيف الرئيسي -> اسم الوجهة) -->
             <div class="bg-[#1e293b] border border-slate-800 rounded-3xl p-4 sm:p-6 shadow-2xl grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                
+                <!-- 1. فلتر النجوم (أقصى اليمين) -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 mb-1.5">فلتر تصنيف النجوم (للفنادق)</label>
+                    <label class="block text-xs font-bold text-slate-400 mb-1.5 text-right">فلتر تصنيف النجوم (للفنادق)</label>
                     <div class="relative">
                         <select id="star-filter" onchange="filterListings()" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl px-4 py-3 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none appearance-none cursor-pointer">
                             <option value="all">⭐ كل النجوم (1 إلى 5)</option>
@@ -143,8 +146,9 @@
                     </div>
                 </div>
 
+                <!-- 2. التصنيف الرئيسي والخدمات (الوسط) -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 mb-1.5">التصنيف الرئيسي والخدمات</label>
+                    <label class="block text-xs font-bold text-slate-400 mb-1.5 text-right">التصنيف الرئيسي والخدمات</label>
                     <div class="relative">
                         <select id="category-filter" onchange="filterListings()" class="w-full bg-[#0f172a] border border-slate-700 text-amber-400 font-bold rounded-2xl px-4 py-3 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none appearance-none cursor-pointer">
                             <option value="all">🌐 كافة التصنيفات والخدمات</option>
@@ -166,13 +170,15 @@
                     </div>
                 </div>
 
+                <!-- 3. اسم الوجهة (اليسار) -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 mb-1.5">اسم الوجهة (الدولة أو المدينة)</label>
+                    <label class="block text-xs font-bold text-slate-400 mb-1.5 text-right">اسم الوجهة (الدولة أو المدينة)</label>
                     <div class="relative">
                         <input type="text" id="destination-search" oninput="filterListings()" placeholder="ابحث عن دولة تركيا، دبي، مصر..." class="w-full bg-[#0f172a] border border-slate-700 text-white placeholder-slate-400 rounded-2xl px-4 py-3 pr-10 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none">
                         <i class="fa-solid fa-location-dot absolute right-3.5 top-1/2 -translate-y-1/2 text-amber-400 text-xs"></i>
                     </div>
                 </div>
+
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="destinations-grid"></div>
@@ -276,7 +282,6 @@
         function filterVisaCat(category) {
             currentVisaFilter = category;
             
-            // تحديث ألوان الأزرار
             ['all', 'none', 'arrival', 'pre'].forEach(cat => {
                 const btn = document.getElementById(`btn-cat-${cat}`);
                 if(btn) {
@@ -385,7 +390,6 @@
         function simulateLogin() { isLoggedIn = true; updateAuthState(); }
         function simulateLogout() { isLoggedIn = false; updateAuthState(); switchTab('visa'); document.getElementById('user-dropdown').classList.remove('dropdown-open'); }
 
-        // التشغيل الأولي
         renderVisas(visaDatabase);
         renderListings(globalDirectory);
         updateAuthState();
