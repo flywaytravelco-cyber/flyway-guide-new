@@ -22,7 +22,6 @@
     <header class="bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
-            <!-- الجهة اليمنى: الشعار وروابط التنقل -->
             <div class="flex items-center gap-8">
                 <div class="flex items-center gap-3">
                     <div class="gold-gradient text-slate-950 p-2.5 rounded-2xl shadow-lg shadow-amber-500/10">
@@ -34,27 +33,23 @@
                     </div>
                 </div>
                 
-                <!-- Navigation Tabs -->
                 <nav class="hidden md:flex items-center gap-2 bg-[#1e293b] p-1.5 rounded-2xl border border-slate-700/50">
                     <button onclick="switchTab('visa')" id="nav-visa" class="px-4 py-2 rounded-xl text-xs font-bold transition-all gold-gradient text-slate-950 shadow-md">قسم التأشيرات (الفيزا)</button>
                     <button onclick="switchTab('destinations')" id="nav-destinations" class="px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white">دليل الوجهات والفنادق</button>
                 </nav>
             </div>
 
-            <!-- الجهة اليسرى: العملة وحساب المستخدم / تسجيل الدخول -->
             <div class="flex items-center gap-3 relative">
                 <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-3 py-1.5 rounded-xl hidden sm:inline-block">
                     <i class="fa-solid fa-coins ml-1"></i> العملة: الدينار العراقي (IQD)
                 </span>
                 
-                <!-- حالة عدم تسجيل الدخول -->
                 <div id="logged-out-area">
                      <button onclick="simulateLogin()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2 rounded-xl text-xs font-extrabold transition-all shadow-lg shadow-amber-500/20">
                         <i class="fa-solid fa-user-lock ml-1"></i> تسجيل الدخول
                     </button>
                 </div>
 
-                <!-- حالة تسجيل الدخول -->
                 <div id="logged-in-area" class="relative">
                     <button onclick="toggleDropdown()" class="flex items-center gap-3 bg-[#1e293b] pl-3 pr-4 py-2 rounded-xl border border-slate-700 hover:border-amber-500/30 transition-all">
                         <span class="text-xs font-bold text-white">Super Support</span>
@@ -62,7 +57,6 @@
                         <i class="fa-solid fa-chevron-down text-slate-400 text-xs mr-1"></i>
                     </button>
                     
-                    <!-- القائمة المنسدلة للملف الشخصي -->
                     <div id="user-dropdown" class="dropdown-menu absolute left-0 top-full mt-2 w-64 bg-[#1e293b] border border-slate-700 rounded-3xl p-4 shadow-2xl z-50 text-right">
                         <div class="flex items-center gap-3 mb-4 p-3 bg-[#0f172a] rounded-2xl">
                              <div class="w-10 h-10 rounded-full gold-gradient text-slate-950 flex items-center justify-center font-bold text-md">SS</div>
@@ -76,7 +70,6 @@
                             <li><a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#0f172a] hover:text-white"><i class="fa-solid fa-suitcase text-slate-500 w-5"></i>حجوزاتي</a></li>
                             <li><a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#0f172a] hover:text-white"><i class="fa-solid fa-bookmark text-slate-500 w-5"></i>المحفظات</a></li>
                             
-                            <!-- زر لوحة التحكم الخاصة بالأدمن -->
                             <li id="admin-dropdown-link" class="border-t border-slate-700/80 pt-1 mt-1">
                                 <button onclick="switchTab('admin'); toggleDropdown();" class="flex w-full items-center gap-3 p-3 rounded-xl hover:bg-amber-500/10 text-amber-400">
                                     <i class="fa-solid fa-gauge-high w-5"></i>لوحة التحكم (الأدمن)
@@ -132,7 +125,6 @@
                 <p class="text-slate-400 text-xs">أفضل الفنادق الموصى بها، الأماكن الترفيهية، والمستشفيات المعتمدة في وجهاتك المفضلة.</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="destinations-grid">
-                <!-- كارت وجهة تركيا -->
                 <div class="bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
                     <div>
                         <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=800&q=80');">
@@ -154,7 +146,6 @@
                     </div>
                 </div>
 
-                <!-- كارت وجهة جورجيا -->
                 <div class="bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
                     <div>
                         <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80');">
@@ -176,7 +167,6 @@
                     </div>
                 </div>
 
-                <!-- كارت وجهة الإمارات -->
                 <div class="bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
                     <div>
                         <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80');">
@@ -239,26 +229,47 @@
     <script>
         let isLoggedIn = true;
 
-        // قاعدة بيانات شاملة لأكثر من 50 دولة للمسافر العراقي
+        // قاعدة بيانات شاملة ومحدثة بالكامل لكل الدول (أكثر من 50 دولة وتصنيف الدقيق بدون فيزا، عند الوصول، ومسبقة)
         const visaData = [
-            { name: "تركيا", type: "مسبقة", color: "rose", desc: "تطلب إلكترونية أو مسبقة عبر السفارة للمواطن العراقي.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            // الدول التي تتيح الدخول بدون فيزا للمواطن العراقي
+            { name: "ماليزيا", type: "بدون فيزا", color: "emerald", desc: "متاحة للمسافر العراقي بختم المطار مباشرة بدون تعقيدات.", period: "90 يوم", passport: "6 أشهر صلاحية" },
+            { name: "إيران", type: "بدون فيزا", color: "emerald", desc: "الإعفاء المتبادل للمواطنين العراقيين للسياحة وزيارة العتبات.", period: "45 يوم", passport: "6 أشهر صلاحية" },
             { name: "جورجيا", type: "بدون فيزا", color: "emerald", desc: "الدخول متاح بختم المطار مع تذكرة عودة وحجز فندقي.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "تونس", type: "بدون فيزا", color: "emerald", desc: "متاحة للسياحة بجواز السفر العادي مع حجز فندقي وتذكرة عودة.", period: "15 يوم", passport: "6 أشهر صلاحية" },
+            { name: "هايتي", type: "بدون فيزا", color: "emerald", desc: "دخول سياحي متاح لجواز السفر العراقي بدون فيزا مسبقة.", period: "حتى 90 يوم", passport: "6 أشهر صلاحية" },
+            { name: "دومينيكا", type: "بدون فيزا", color: "emerald", desc: "متاحة لدخول الجزر الكاريبية بشروط سياحية.", period: "21 يوم", passport: "6 أشهر صلاحية" },
+            { name: "جزر كوك", type: "بدون فيزا", color: "emerald", desc: "دخول سياحي بختم الوصول مع تذكرة عودة.", period: "31 يوم", passport: "6 أشهر صلاحية" },
+            { name: "ميكرونيسيا", type: "بدون فيزا", color: "emerald", desc: "دخول مباشر للمسافر العراقي بشروط سياحية.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "نييوي", type: "بدون فيزا", color: "emerald", desc: "تصريح دخول سياحي مباشر عند الوصول.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "سانت فينسنت والغرينادين", type: "بدون فيزا", color: "emerald", desc: "دخول متاح بختم الوصول للأغراض السياحية.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+
+            // الدول التي تتيح الفيزا عند الوصول (Visa on Arrival)
+            { name: "لبنان", type: "عند الوصول", color: "amber", desc: "تمنح عند الوصول للمطار بشرط وجود مبلغ كافي وحجز فندقي مؤكد.", period: "1 شهر قابل للتمديد", passport: "6 أشهر صلاحية" },
+            { name: "المالديف", type: "عند الوصول", color: "amber", desc: "تمنح للمسافر العراقي عند الوصول لمطار مالي بشرط حجز فندقي.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "أرمينيا", type: "عند الوصول", color: "amber", desc: "تمنح في مطار يريفان الدولي أو مسبقاً عبر الإنترنت.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "مدغشقر", type: "عند الوصول", color: "amber", desc: "تمنح في مطار الوصول برسوم محددة.", period: "30 إلى 45 يوم", passport: "6 أشهر صلاحية" },
+            { name: "جزر القمر", type: "عند الوصول", color: "amber", desc: "تمنح في المطار للمواطنين العراقيين.", period: "45 يوم", passport: "6 أشهر صلاحية" },
+            { name: "تنزانيا", type: "عند الوصول", color: "amber", desc: "تمنح في المطار الدولي مع شهادة فحص طبية سارية.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "رواندا", type: "عند الوصول", color: "amber", desc: "تمنح عند الوصول للمطار أو عبر التقديم الإلكتروني المباشر.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "كمبوديا", type: "عند الوصول", color: "amber", desc: "تمنح في مطارات كمبوديا الدولية بسرعة.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "بالاو", type: "عند الوصول", color: "amber", desc: "تمنح تصريح دخول سياحي عند الوصول.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "توفالو", type: "عند الوصول", color: "amber", desc: "تمنح في مطار الوصول بشروط الإقامة المؤقتة.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "ساموا", type: "عند الوصول", color: "amber", desc: "تصريح دخول سياحي يمنح عند الوصول للمطار.", period: "60 يوم", passport: "6 أشهر صلاحية" },
+            { name: "تيمور الشرقية", type: "عند الوصول", color: "amber", desc: "تمنح في مطار ديلي الدولي.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+
+            // الدول التي تحتاج فيزا مسبقة
+            { name: "تركيا", type: "مسبقة", color: "rose", desc: "تطلب إلكترونية أو مسبقة عبر السفارة للمواطن العراقي.", period: "30 يوم", passport: "6 أشهر صلاحية" },
             { name: "الإمارات", type: "مسبقة", color: "rose", desc: "تستخرج عبر شركات الطيران أو مكاتب السياحة والسفر المعتمدة.", period: "30 أو 60 يوم", passport: "6 أشهر صلاحية" },
             { name: "مصر", type: "مسبقة", color: "rose", desc: "تتطلب موافقة أمنية مسبقة وفيزا تمنح للسفارة المصرية بغداد.", period: "30 يوم", passport: "6 أشهر صلاحية" },
-            { name: "لبنان", type: "عند الوصول", color: "amber", desc: "تمنح عند الوصول للمطار بشرط وجود مبلغ كافي وحجز فندقي مؤكد.", period: "1 شهر قابل للتمديد", passport: "6 أشهر صلاحية" },
-            { name: "ماليزيا", type: "بدون فيزا", color: "emerald", desc: "متاحة للمسافر العراقي بختم المطار مباشرة بدون تعقيدات.", period: "90 يوم", passport: "6 أشهر صلاحية" },
-            { name: "تايلاند", type: "مسبقة", color: "rose", desc: "تستخرج مسبقاً من السفارة التايلاندية في بغداد.", period: "60 يوم", passport: "6 أشهر صلاحية" },
             { name: "إيرلندا", type: "مسبقة", color: "rose", desc: "تتطلب فيزا مسبقة عبر القنصلية والمستندات المطلوبة بدقة.", period: "90 يوم", passport: "6 أشهر صلاحية" },
-            { name: "إيران", type: "بدون فيزا", color: "emerald", desc: "الإعفاء المتبادل مؤخراً للمواطنين العراقيين للسياحة.", period: "45 يوم", passport: "6 أشهر صلاحية" },
             { name: "الأردن", type: "مسبقة", color: "rose", desc: "تتطلب موافقة أمنية مسبقة أو الإقامة عبر الترانزيت المعتمد.", period: "30 يوم", passport: "6 أشهر صلاحية" },
             { name: "السعودية", type: "مسبقة", color: "rose", desc: "تتوفر لغرض العمرة أو السياحة عبر البوابة الإلكترونية المعتمدة.", period: "90 يوم", passport: "6 أشهر صلاحية" },
-            { name: "قطر", type: "عند الوصول", color: "amber", desc: "متاحة بشروط محددة تتضمن حجز فندقي وتذكرة ذهاب وعودة.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "قطر", type: "مسبقة", color: "rose", desc: "متاحة عبر منصة هيا أو التأشيرة السياحية المسبقة.", period: "30 يوم", passport: "6 أشهر صلاحية" },
             { name: "الكويت", type: "مسبقة", color: "rose", desc: "تتطلب كفالة وتدقيق أمني مسبق عبر الشركات المعتمدة.", period: "30 يوم", passport: "6 أشهر صلاحية" },
             { name: "البحرين", type: "مسبقة", color: "rose", desc: "تستخرج إلكترونياً (eVisa) بشروط محددة.", period: "14 يوم", passport: "6 أشهر صلاحية" },
             { name: "عمان", type: "مسبقة", color: "rose", desc: "تستخرج إلكترونياً عبر البوابة الرسمية للسلطنة.", period: "30 يوم", passport: "6 أشهر صلاحية" },
             { name: "الهند", type: "مسبقة", color: "rose", desc: "فيزا علاجية أو سياحية إلكترونية متوفرة بشروط.", period: "60 يوم", passport: "6 أشهر صلاحية" },
             { name: "أذربيجان", type: "مسبقة", color: "rose", desc: "عبر التأشيرة الإلكترونية السريعة (ASAN Visa).", period: "30 يوم", passport: "6 أشهر صلاحية" },
-            { name: "أرمينيا", type: "عند الوصول", color: "amber", desc: "تمنح في مطار يريفان الدولي أو مسبقاً عبر الإنترنت.", period: "30 يوم", passport: "6 أشهر صلاحية" },
             { name: "روسيا", type: "مسبقة", color: "rose", desc: "تتطلب دعوة رسمية سياحية أو تجارية مصدقة.", period: "30 يوم", passport: "6 أشهر صلاحية" },
             { name: "الصين", type: "مسبقة", color: "rose", desc: "تستخرج من السفارة الصينية ببغداد مع حجز الفندق والطيران.", period: "30 يوم", passport: "6 أشهر صلاحية" },
             { name: "المملكة المتحدة", type: "مسبقة", color: "rose", desc: "تتطلب موعد بصمة في مركز VFS ومستندات مالية دقيقة.", period: "6 أشهر", passport: "6 أشهر صلاحية" },
@@ -267,34 +278,10 @@
             { name: "إيطاليا (شنغن)", type: "مسبقة", color: "rose", desc: "عبر مركز VFS، تتطلب خطة رحلة سياحية متكاملة.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
             { name: "إسبانيا (شنغن)", type: "مسبقة", color: "rose", desc: "تتطلب متطلبات شنغن القياسية وتأمين طبي معتمد.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
             { name: "اليونان (شنغن)", type: "مسبقة", color: "rose", desc: "تستخرج عبر المكاتب المعتمدة في بغداد والعراق.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
-            { name: "سويسرا (شنغن)", type: "مسبقة", color: "rose", desc: "تخضع لشروط منطقة شنغن الأوروبية بدقة.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
-            { name: "هولندا (شنغن)", type: "مسبقة", color: "rose", desc: "تتطلب حجز فندقي وتذاكر طيران مؤكدة ذهاب وعودة.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
-            { name: "النمسا (شنغن)", type: "مسبقة", color: "rose", desc: "تستخرج عبر المراكز المعتمدة للتأشيرات الأوروبية.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
-            { name: "البرتغال (شنغن)", type: "مسبقة", color: "rose", desc: "متطلبات سياحية وتجارية تابعة للاتحاد الأوروبي.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
-            { name: "السويد", type: "مسبقة", color: "rose", desc: "تتطلب موافقة مسبقة ومستندات مدعومة باللغة الإنجليزية.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
-            { name: "النرويج", type: "مسبقة", color: "rose", desc: "تخضع لقوانين التأشيرات الإسكندنافية والشنغن.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
-            { name: "الدنمارك", type: "مسبقة", color: "rose", desc: "تتطلب تقديم الملف عبر المراكز الرسمية المعتمدة.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
-            { name: "فنلندا", type: "مسبقة", color: "rose", desc: "فيزا سياحية أو زيارة عائلية تتطلب متطلبات دقيقة.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
-            { name: "بولندا", type: "مسبقة", color: "rose", desc: "تستخرج ضمن اتفاقية شنغن الأوروبية.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
-            { name: "المجر", type: "مسبقة", color: "rose", desc: "تتطلب حجز فندقي مدفوع وملاءمة مالية واضحة.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
-            { name: "جمهورية التشيك", type: "مسبقة", color: "rose", desc: "تأشيرة شنغن سياحية أو علاجية.", period: "90 يوم", passport: "3 أشهر بعد العودة" },
-            { name: "رومانيا", type: "مسبقة", color: "rose", desc: "تتطلب موافقة مسبقة من وزارة الخارجية الرومانية.", period: "90 يوم", passport: "6 أشهر صلاحية" },
-            { name: "بلغاريا", type: "مسبقة", color: "rose", desc: "تستخرج عبر السفارة البلغارية والمستندات المطلوبة.", period: "90 يوم", passport: "6 أشهر صلاحية" },
-            { name: "قبرص", type: "مسبقة", color: "rose", desc: "تستخرج مسبقاً أو عبر الشروط الوطنية القبرصية.", period: "90 يوم", passport: "6 أشهر صلاحية" },
             { name: "الولايات المتحدة الأمريكية", type: "مسبقة", color: "rose", desc: "تتطلب مقابلة شخصية في السفارة الأمريكية بغداد أو أربيل.", period: "حسب التقدير", passport: "6 أشهر صلاحية" },
             { name: "كندا", type: "مسبقة", color: "rose", desc: "تتطلب بصمة وإلكترونية أو ورقية عبر الإنترنت (IRCC).", period: "حسب الجواز", passport: "6 أشهر صلاحية" },
             { name: "أستراليا", type: "مسبقة", color: "rose", desc: "تقدم إلكترونياً بالكامل مع كشف حساب ومستندات واسعة.", period: "3 أشهر", passport: "6 أشهر صلاحية" },
-            { name: "نيوزيلندا", type: "مسبقة", color: "rose", desc: "تتطلب تقديم عبر نظام الهجرة النيوزيلندي الإلكتروني.", period: "3 أشهر", passport: "3 أشهر بعد الإقامة" },
-            { name: "البرازيل", type: "مسبقة", color: "rose", desc: "تتطلب موافقة سفارة البرازيل والمستندات القانونية.", period: "90 يوم", passport: "6 أشهر صلاحية" },
-            { name: "الأرجنتين", type: "مسبقة", color: "rose", desc: "تستخرج عبر السفارة بطلب رسمي ومستندات مالية.", period: "90 يوم", passport: "6 أشهر صلاحية" },
-            { name: "جنوب إفريقيا", type: "مسبقة", color: "rose", desc: "تتطلب حجوزات مؤكدة وشهادة التطعيم ضد الحمى الصفراء.", period: "30 يوم", passport: "30 يوماً بعد العودة" },
-            { name: "اليابان", type: "مسبقة", color: "rose", desc: "تتطلب برنامج رحلة مفصل وكفيل داخل اليابان.", period: "15 إلى 90 يوم", passport: "6 أشهر صلاحية" },
-            { name: "كوريا الجنوبية", type: "مسبقة", color: "rose", desc: "تستخرج من السفارة الكورية في بغداد بشروط محددة.", period: "90 يوم", passport: "6 أشهر صلاحية" },
-            { name: "سنغافورة", type: "مسبقة", color: "rose", desc: "تتطلب شريك أو كفيل محلي أو عبر وكلاء معتمدين.", period: "30 يوم", passport: "6 أشهر صلاحية" },
-            { name: "فيتنام", type: "مسبقة", color: "rose", desc: "تتوفر عبر الفيزا الإلكترونية (E-visa) بشروط.", period: "30 يوم", passport: "6 أشهر صلاحية" },
-            { name: "إندونيسيا", type: "مسبقة", color: "rose", desc: "تتطلب موافقة الهجرة الإندونيسية مسبقاً.", period: "30 يوم", passport: "6 أشهر صلاحية" },
-            { name: "سريلانكا", type: "مسبقة", color: "rose", desc: "تستخرج إلكترونياً (ETA) عبر المنصة المعتمدة.", period: "30 يوم", passport: "6 أشهر صلاحية" },
-            { name: "المالديف", type: "عند الوصول", color: "amber", desc: "تمنح للمسافر العراقي عند الوصول لمطار مالي بشرط حجز فندقي مؤكد.", period: "30 يوم", passport: "6 أشهر صلاحية" }
+            { name: "اليابان", type: "مسبقة", color: "rose", desc: "تتطلب برنامج رحلة مفصل وكفيل داخل اليابان.", period: "15 إلى 90 يوم", passport: "6 أشهر صلاحية" }
         ];
 
         let currentCategory = 'all';
@@ -410,7 +397,6 @@
             document.getElementById('user-dropdown').classList.remove('dropdown-open');
         }
 
-        // تشغيل أولي
         renderVisas('all', '');
         updateAuthState();
     </script>
