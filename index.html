@@ -114,6 +114,15 @@
                     </div>
                 </div>
             </div>
+
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button onclick="filterVisaCat('all')" id="btn-cat-all" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md">كل الدول</button>
+                <button onclick="filterVisaCat('بدون فيزا')" id="btn-cat-none" class="bg-[#1e293b] text-emerald-400 border border-emerald-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all">بدون فيزا مسبقة</button>
+                <button onclick="filterVisaCat('عند الوصول')" id="btn-cat-arrival" class="bg-[#1e293b] text-amber-400 border border-amber-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all">فيزا عند الوصول</button>
+                <button onclick="filterVisaCat('مسبقة')" id="btn-cat-pre" class="bg-[#1e293b] text-rose-400 border border-rose-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all">تحتاج فيزا مسبقة</button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="visa-grid"></div>
         </section>
 
         <!-- ================= SECTION 2: DESTINATIONS ================= -->
@@ -122,6 +131,7 @@
                 <h2 class="text-3xl font-extrabold text-white mb-2">دليل الوجهات الخارجية والخدمات</h2>
                 <p class="text-slate-400 text-xs">الفنادق، الأماكن الترفيهية، والمستشفيات في وجهاتك الخارجية المفضلة.</p>
             </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="destinations-grid"></div>
         </section>
 
         <!-- ================= SECTION 3: ADMIN DASHBOARD ================= -->
@@ -161,7 +171,7 @@
 
     <!-- JavaScript -->
     <script>
-        let isLoggedIn = true; // اجعلها true لتجربة الحساب المسجل مباشرة
+        let isLoggedIn = true;
 
         function updateAuthState() {
             const outArea = document.getElementById('logged-out-area');
@@ -180,7 +190,6 @@
             dropdown.classList.toggle('dropdown-open');
         }
 
-        // إغلاق القائمة عند النقر خارجها
         window.addEventListener('click', function(e) {
             const inArea = document.getElementById('logged-in-area');
             if (inArea && !inArea.contains(e.target)) {
@@ -219,7 +228,6 @@
             document.getElementById('user-dropdown').classList.remove('dropdown-open');
         }
 
-        // التهيئة الأولية
         updateAuthState();
     </script>
 </body>
