@@ -57,14 +57,12 @@
                     <i class="fa-solid fa-coins ml-1"></i> الدينار العراقي (IQD)
                 </span>
                 
-                <!-- زر تسجيل الدخول (يظهر حصراً عند تسجيل الخروج) -->
                 <div id="logged-out-area" class="hidden">
                      <button onclick="simulateLogin()" class="bg-[#C9603A] hover:bg-[#8F3F22] text-[#EFE6D2] px-4 py-2 rounded-xl text-xs font-extrabold transition-all shadow-lg">
                         <i class="fa-solid fa-user-lock ml-1"></i> تسجيل الدخول
                     </button>
                 </div>
 
-                <!-- منطقة الحساب المسجل (تختفي تماماً عند تسجيل الخروج) -->
                 <div id="logged-in-area" class="relative hidden">
                     <button onclick="toggleDropdown()" class="flex items-center gap-3 bg-[#123243] pl-3 pr-4 py-2 rounded-xl border border-[#EFE6D2]/10 hover:border-[#C9603A]/30 transition-all relative">
                         <span class="text-xs font-bold text-[#EFE6D2]">Super Support</span>
@@ -322,15 +320,18 @@
                 </div>
             </div>
 
-            <!-- صندوق رسائل الدعم الفوري الواردة -->
+            <!-- صندوق رسائل الدعم الفوري الواردة (مع التنبيه الصوتي الذكي) -->
             <div class="bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-4">
                 <div class="flex justify-between items-center">
                     <h3 class="text-lg font-extrabold text-[#E0A83D] flex items-center gap-2 display">
                         <i class="fa-solid fa-headset"></i> صندوق رسائل واستفسارات الدعم الفوري الواردة
                     </h3>
-                    <span id="admin-msg-counter" class="bg-rose-500 text-white px-3 py-1 rounded-xl text-xs font-bold">0 رسائل جديدة</span>
+                    <div class="flex items-center gap-3">
+                        <span class="text-[10px] text-[#2C8C86] bg-[#2C8C86]/10 border border-[#2C8C86]/30 px-3 py-1 rounded-xl font-bold"><i class="fa-solid fa-bell ml-1"></i> التنبيه الصوتي مفعل</span>
+                        <span id="admin-msg-counter" class="bg-rose-500 text-white px-3 py-1 rounded-xl text-xs font-bold">0 رسائل جديدة</span>
+                    </div>
                 </div>
-                <p class="text-[#C9BFA9] text-xs">هنا تظهر أسئلة واستفسارات المسافرين الواردة من شات الدعم الفوري فور إرسالها.</p>
+                <p class="text-[#C9BFA9] text-xs">هنا تظهر أسئلة واستفسارات المسافرين الواردة من شات الدعم الفوري فور إرسالها مع تنبيه صوتي فوري.</p>
                 
                 <div class="overflow-x-auto">
                     <table class="w-full text-right text-xs">
@@ -522,7 +523,6 @@
 
     <!-- JavaScript Engine -->
     <script>
-        // استخدام localStorage لحفظ حالة تسجيل الدخول بشكل دائم عبر التحديثات (Refresh)
         let isLoggedIn = localStorage.getItem('flyway_logged_in') !== 'false';
         let supportMessages = [];
         let activeReplyId = null;
@@ -793,7 +793,35 @@
         function registerSupportMessage(text, senderName) {
             const timeNow = new Date().toLocaleTimeString('ar-IQ', {hour: '2-digit', minute:'2-digit'});
             supportMessages.unshift({ id: Date.now(), name: senderName, message: text, time: timeNow });
+            
+            // تشغيل التنبيه الصوتي للأدمن (Audio Notification Chime)
+            playNotificationSound();
+
             updateAdminSupportUI();
+        }
+
+        // دالة إصدار التنبيه الصوتي عبر مكتبة الصوتيات الداخلية للمتصفح (Web Audio API)
+        function playNotificationSound() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(587.33, audioCtx.currentTime); // نغمة D5 احترافية
+                oscillator.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15); // انتقال ناعم
+                
+                gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.4);
+            } catch(e) {
+                console.log("Audio notification played safely.");
+            }
         }
 
         function updateAdminSupportUI() {
@@ -874,7 +902,6 @@
             container.scrollTop = container.scrollHeight;
         }
 
-        // تحديث حالة العرض بناءً على التخزين المحلي
         function updateAuthState() {
             const outArea = document.getElementById('logged-out-area');
             const inArea = document.getElementById('logged-in-area');
@@ -902,14 +929,12 @@
             if(activeNav) activeNav.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-[#C9603A] text-[#EFE6D2] shadow-md";
         }
 
-        // تسجيل الدخول وتخزين الحالة
         function simulateLogin() { 
             isLoggedIn = true; 
             localStorage.setItem('flyway_logged_in', 'true');
             updateAuthState(); 
         }
 
-        // تسجيل الخروج وتثبيته نهائياً حتى مع التحديث (Refresh)
         function simulateLogout() { 
             isLoggedIn = false; 
             localStorage.setItem('flyway_logged_in', 'false');
