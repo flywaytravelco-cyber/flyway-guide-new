@@ -3,17 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل السفر الشامل للمسافر العراقي | Flyway</title>
+    <title>منصة Flyway | دليل التأشيرات والخدمات السياحية للمسافر العراقي</title>
     
-    <!-- Real Image Favicon & Apple Touch Icons for iOS & Android Home Screen -->
+    <!-- Real Image Favicon & Apple Touch Icons -->
     <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=192&h=192&q=80">
     <link rel="apple-touch-icon" href="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=192&h=192&q=80">
-    <link rel="apple-touch-icon-precomposed" href="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=192&h=192&q=80">
-
-    <!-- WhatsApp & Social Media Preview Meta Tags -->
-    <meta property="og:title" content="دليل السفر الشامل للمسافر العراقي | Flyway">
-    <meta property="og:description" content="بوابتك الذكية لمعرفة التأشيرات لأكثر من 150 دولة وحجز أرقى الفنادق والخدمات السياحية.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -44,38 +38,43 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="gold-gradient text-slate-950 p-2.5 rounded-2xl shadow-lg shadow-amber-500/10">
-                    <i class="fa-solid fa-compass text-xl"></i>
+                    <i class="fa-solid fa-plane-departure text-xl"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-extrabold text-white tracking-tight">دليل المسافر العراقي</h1>
-                    <p class="text-xs font-semibold gold-text">بوابتك الذكية للسفر الآمن</p>
+                    <h1 class="text-xl font-extrabold text-white tracking-tight">Flyway</h1>
+                    <p class="text-xs font-semibold gold-text">بوابة السفر والخدمات الذكية</p>
                 </div>
             </div>
             
             <!-- Navigation Tabs -->
             <nav class="hidden md:flex items-center gap-2 bg-[#1e293b] p-1.5 rounded-2xl border border-slate-700/50">
                 <button onclick="switchTab('visa')" id="nav-visa" class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 gold-gradient text-slate-950 shadow-md">
-                    <i class="fa-solid fa-passport ml-2"></i>دليل التأشيرات الرسمي
+                    <i class="fa-solid fa-passport ml-2"></i>قسم التأشيرات (الفيزا)
                 </button>
-                <button onclick="switchTab('guide')" id="nav-guide" class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 text-slate-400 hover:text-white">
-                    <i class="fa-solid fa-map-location-dot ml-2"></i>الدليل الشامل للوجهات
+                <button onclick="switchTab('destinations')" id="nav-destinations" class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-earth-americas ml-2"></i>دليل الوجهات الخارجية
                 </button>
             </nav>
 
-            <!-- Contact Button -->
-            <a href="https://wa.me/9647800000000" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-emerald-900/20 flex items-center gap-2">
-                <i class="fa-brands fa-whatsapp text-lg"></i>
-                <span class="hidden sm:inline">استفسار سداسي</span>
-            </a>
+            <!-- Currency & Contact -->
+            <div class="flex items-center gap-3">
+                <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-3 py-1.5 rounded-xl hidden sm:inline-block">
+                    <i class="fa-solid fa-coins ml-1"></i> العملة: الدينار العراقي (IQD)
+                </span>
+                <a href="https://wa.me/9647800000000" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-emerald-900/20 flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span class="hidden sm:inline">الدعم الفني</span>
+                </a>
+            </div>
         </div>
         
         <!-- Mobile Navigation Bar -->
         <div class="flex md:hidden bg-[#1e293b] p-2 gap-2 border-t border-slate-800">
             <button onclick="switchTab('visa')" id="mob-nav-visa" class="flex-1 py-2 rounded-xl text-xs font-bold gold-gradient text-slate-950 text-center shadow-md">
-                دليل التأشيرات
+                التأشيرات والفيزا
             </button>
-            <button onclick="switchTab('guide')" id="mob-nav-guide" class="flex-1 py-2 rounded-xl text-xs font-bold text-slate-400 text-center">
-                الدليل الشامل
+            <button onclick="switchTab('destinations')" id="mob-nav-destinations" class="flex-1 py-2 rounded-xl text-xs font-bold text-slate-400 text-center">
+                دليل الوجهات الخارجية
             </button>
         </div>
     </header>
@@ -83,95 +82,84 @@
     <!-- Main Content Container -->
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
 
-        <!-- TAB 1: Visa Guide -->
+        <!-- ================= SECTION 1: VISAS (التأشيرات) ================= -->
         <section id="section-visa" class="space-y-6">
             <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-800 mb-8 h-64 sm:h-80 flex items-center justify-center">
-                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80" alt="السفر والسياحة" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80" alt="التأشيرات" class="absolute inset-0 w-full h-full object-cover opacity-40">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/60 to-transparent"></div>
                 <div class="relative z-10 text-center max-w-2xl mx-auto px-4">
-                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full mb-3 inline-block">بوابة السفر الرسمية</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">حالة التأشيرات العالمية للجواز العراقي</h2>
-                    <p class="text-slate-300 text-sm">ابحث عن أي دولة في العالم لتعرف فوراً متطلبات الفيزا للمسافر العراقي.</p>
+                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full mb-3 inline-block">خاص بالمسافر العراقي</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">دليل التأشيرات والفيزا الرسمية</h2>
+                    <p class="text-slate-300 text-sm">ابحث عن الدولة لمعرفة الشروط التفصيلية، مدة الإقامة، صلاحية الجواز، والمستندات المطلوبة بدقة.</p>
                 </div>
             </div>
 
-            <div class="max-w-2xl mx-auto mb-6 relative">
+            <!-- Smart Search Bar with Suggestions -->
+            <div class="max-w-2xl mx-auto mb-4 relative">
                 <span class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-amber-400">
                     <i class="fa-solid fa-search text-lg"></i>
                 </span>
-                <input type="text" id="visa-search" onkeyup="searchVisa()" placeholder="ابحث عن اسم الدولة (مثال: فرنسا، تايلاند، مصر...)" class="w-full bg-[#1e293b] border border-slate-700 text-white rounded-2xl pr-12 pl-4 py-4 text-md font-bold focus:ring-2 focus:ring-amber-500 focus:outline-none shadow-xl">
+                <input type="text" id="visa-search" oninput="handleVisaInput()" placeholder="ابحث أو اختر الدولة (مثال: تركيا، ماليزيا، جورجيا...)" class="w-full bg-[#1e293b] border border-slate-700 text-white rounded-2xl pr-12 pl-4 py-4 text-md font-bold focus:ring-2 focus:ring-amber-500 focus:outline-none shadow-xl">
+                
+                <!-- Suggestions Dropdown -->
+                <div id="visa-suggestions" class="absolute top-full left-0 right-0 mt-2 bg-[#1e293b] border border-slate-700 rounded-2xl shadow-2xl z-50 hidden max-h-60 overflow-y-auto"></div>
             </div>
 
+            <!-- Quick Suggestions Pills -->
             <div class="flex flex-wrap justify-center gap-2 mb-8">
-                <button onclick="filterVisaBtn('all')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold gold-gradient text-slate-950 shadow-md transition-all">الكل</button>
-                <button onclick="filterVisaBtn('arrival')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all">بدون فيزا / عند الوصول / إلكترونية</button>
-                <button onclick="filterVisaBtn('pre')" class="visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all">تأشيرة مسبقة مطلوبة</button>
+                <span class="text-xs text-slate-400 self-center ml-2">الدول الأكثر طلباً:</span>
+                <button onclick="selectQuickVisa('تركيا')" class="bg-[#1e293b] hover:bg-slate-700 text-amber-400 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition-all">تركيا</button>
+                <button onclick="selectQuickVisa('ماليزيا')" class="bg-[#1e293b] hover:bg-slate-700 text-amber-400 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition-all">ماليزيا</button>
+                <button onclick="selectQuickVisa('جورجيا')" class="bg-[#1e293b] hover:bg-slate-700 text-amber-400 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition-all">جورجيا</button>
+                <button onclick="selectQuickVisa('مصر')" class="bg-[#1e293b] hover:bg-slate-700 text-amber-400 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition-all">مصر</button>
+                <button onclick="selectQuickVisa('الإمارات')" class="bg-[#1e293b] hover:bg-slate-700 text-amber-400 border border-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition-all">الإمارات</button>
             </div>
 
+            <!-- Visa Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="visa-grid"></div>
         </section>
 
-        <!-- TAB 2: Comprehensive Travel Guide -->
-        <section id="section-guide" class="hidden space-y-6">
+        <!-- ================= SECTION 2: DESTINATIONS (دليل الوجهات الخارجية) ================= -->
+        <section id="section-destinations" class="hidden space-y-6">
             <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-800 mb-8 h-64 sm:h-80 flex items-center justify-center">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" alt="دليل الوجهات" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" alt="الوجهات الخارجية" class="absolute inset-0 w-full h-full object-cover opacity-40">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/60 to-transparent"></div>
                 <div class="relative z-10 text-center max-w-2xl mx-auto px-4">
-                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full mb-3 inline-block">دليل الوجهات والخدمات</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">الدليل الشامل للوجهات العالمية</h2>
-                    <p class="text-slate-300 text-sm">تصفح الفنادق، المطاعم، الأماكن الترفيهية والمستشفيات مع فلتر النجوم والبحث السريع.</p>
+                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-extrabold px-4 py-1.5 rounded-full mb-3 inline-block">دليل الوجهات السياحية</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">دليل الوجهات الخارجية والخدمات</h2>
+                    <p class="text-slate-300 text-sm">استكشف الفنادق، المنتجعات، المطاعم والمراكز الصحية في وجهتك الخارجية المفضلة.</p>
                 </div>
             </div>
 
-            <!-- Search & Filter Bar -->
+            <!-- Search & Filters -->
             <div class="bg-[#1e293b] rounded-3xl shadow-2xl border border-slate-800 p-6 max-w-5xl mx-auto mb-8">
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <!-- 1. Destination Search -->
-                    <div>
-                        <label class="block text-sm font-bold text-slate-300 mb-2">اسم الوجهة (الدولة أو المدينة)</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-amber-400">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </span>
-                            <input type="text" id="guide-search" oninput="loadGuideData()" placeholder="ابحث عن دولة (تركيا، دبي، مصر...)" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl pr-11 pl-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
-                        </div>
+                    <div class="relative">
+                        <label class="block text-sm font-bold text-slate-300 mb-2">ابحث عن الوجهة الخارجية</label>
+                        <input type="text" id="dest-search" oninput="loadDestinationsData()" placeholder="ابحث (تركيا، دبي، مصر...)" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl pr-4 pl-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
                     </div>
-                    <!-- 2. Category Selector -->
                     <div>
-                        <label class="block text-sm font-bold text-slate-300 mb-2">التصنيف الرئيسي</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-amber-400">
-                                <i class="fa-solid fa-filter"></i>
-                            </span>
-                            <select id="guide-category" onchange="loadGuideData()" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl pr-11 pl-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
-                                <option value="hotels">فنادق ومنتجعات</option>
-                                <option value="restaurants">مطاعم وكافيهات</option>
-                                <option value="entertainment">أماكن سياحية وترفيهية</option>
-                                <option value="hospitals">مستشفيات ومراكز صحية (طوارئ)</option>
-                            </select>
-                        </div>
+                        <label class="block text-sm font-bold text-slate-300 mb-2">التصنيف السياحي</label>
+                        <select id="dest-category" onchange="loadDestinationsData()" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl pr-4 pl-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                            <option value="hotels">فنادق ومنتجعات</option>
+                            <option value="restaurants">مطاعم وكافيهات</option>
+                            <option value="entertainment">أماكن ترفيهية</option>
+                            <option value="hospitals">مستشفيات ومراكز طبية</option>
+                        </select>
                     </div>
-                    <!-- 3. Star Rating Filter -->
                     <div>
-                        <label class="block text-sm font-bold text-slate-300 mb-2">فلتر تصنيف النجوم (للفنادق)</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-amber-400">
-                                <i class="fa-solid fa-star"></i>
-                            </span>
-                            <select id="star-filter" onchange="loadGuideData()" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl pr-11 pl-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
-                                <option value="all">🌟 كل النجوم (من 1 إلى 5)</option>
-                                <option value="5">⭐⭐⭐⭐⭐ (5 نجوم)</option>
-                                <option value="4">⭐⭐⭐⭐ (4 نجوم)</option>
-                                <option value="3">⭐⭐⭐ (3 نجوم)</option>
-                                <option value="2">⭐⭐ (نجمتان)</option>
-                                <option value="1">⭐ (نجمة واحدة)</option>
-                            </select>
-                        </div>
+                        <label class="block text-sm font-bold text-slate-300 mb-2">فلتر تصنيف النجوم</label>
+                        <select id="dest-stars" onchange="loadDestinationsData()" class="w-full bg-[#0f172a] border border-slate-700 text-white rounded-2xl pr-4 pl-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                            <option value="all">🌟 كل النجوم</option>
+                            <option value="5">⭐⭐⭐⭐⭐ (5 نجوم)</option>
+                            <option value="4">⭐⭐⭐⭐ (4 نجوم)</option>
+                            <option value="3">⭐⭐⭐ (3 نجوم)</option>
+                        </select>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="guide-results-grid"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="destinations-grid"></div>
         </section>
 
     </main>
@@ -179,78 +167,159 @@
     <!-- Footer -->
     <footer class="bg-[#0f172a] border-t border-slate-800 py-6 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 text-xs">
-            جميع الحقوق محفوظة © 2026 دليل المسافر العراقي - مرجعك الموثوق للسفر والسياحة
+            جميع الحقوق محفوظة © 2026 منصة Flyway - المرجع المتكامل للمسافر العراقي
         </div>
     </footer>
 
-    <!-- JavaScript Logic -->
+    <!-- JavaScript Application Logic -->
     <script>
+        // Comprehensive Visa Database with Iraqi Passport Requirements
         const visaDatabase = [
-            {country: "ماليزيا", type: "arrival", badge: "بدون فيزا", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "دخول سياحي مجاني لمدة 30 يوماً مع تذكرة عودة."},
-            {country: "تركيا", type: "arrival", badge: "فيزا إلكترونية / شروط", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تأشيرة إلكترونية مسبقة أو شروط خاصة حسب العمر."},
-            {country: "لبنان", type: "arrival", badge: "عند الوصول (بشروط)", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تمنح في المطار بوجود حجز فندقي ومبلغ نقدي."},
-            {country: "إيران", type: "arrival", badge: "بدون فيزا / ميسر", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تسهيلات واسعة ورحلات متواصلة للعراقيين."},
-            {country: "المالديف", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تأشيرة مجانية في المطار لمدة 30 يوماً السياحية."},
-            {country: "جورجيا", type: "arrival", badge: "إلكترونية / ترتيب سياحي", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تتطلب متطلبات فندقية واضحة أو فيزا إلكترونية."},
-            {country: "أذربيجان", type: "arrival", badge: "فيزا إلكترونية", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تستخرج عبر نظام ASAN قبل السفر بسهولة."},
-            {country: "أرمينيا", type: "arrival", badge: "فيزا عند الوصول", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "تمنح مباشرة في المطار للمسافر العراقي."},
-            {country: "سريلانكا", type: "arrival", badge: "فيزا إلكترونية ETA", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تسجيل إلكتروني بسيط قبل السفر."},
-            {country: "سلطنة عمان", type: "arrival", badge: "فيزا إلكترونية", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تقدم عبر موقع الشرطة العمانية أو المكاتب."},
-            {country: "قطر", type: "arrival", badge: "هيا / إلكترونية", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "التسجيل بمنصة هيا أو التقديم الإلكتروني."},
-            {country: "البحرين", type: "arrival", badge: "فيزا إلكترونية", badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50", desc: "تقديم عبر البوابة الإلكترونية الحكومية."},
-            {country: "سيشيل", type: "arrival", badge: "تصريح مجاني", badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50", desc: "بدون فيزا، فقط تصريح سفر سياحي وحجز."},
-            {country: "السعودية", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "عمرة أو سياحة وتستخرج عبر المنصات والمكاتب."},
-            {country: "الإمارات", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "سياحية تستخرج عن طريق الفنادق وشركات الطيران."},
-            {country: "مصر", type: "pre", badge: "موافقة أمنية مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب تنسيق عبر الشركات السياحية المعتمدة."},
-            {country: "فرنسا", type: "pre", badge: "تأشيرة شنغن", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب موعد سفارة، كشف حساب وتأمين."},
-            {country: "ألمانيا", type: "pre", badge: "تأشيرة شنغن", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب بصمة وملف كامل مقدم للسفارة."},
-            {country: "إيطاليا", type: "pre", badge: "تأشيرة شنغن", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب حجوزات مؤكدة وموعد في المركز."},
-            {country: "المملكة المتحدة (بريطانيا)", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم إلكتروني وحجز موعد لأخذ البصمات."},
-            {country: "الولايات المتحدة (أمريكا)", type: "pre", badge: "مقابلة سفارة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "استمارة DS-160 ومقابلة شخصية رسمية."},
-            {country: "كندا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تقديم أونلاين وتحديد موعد بصمة."},
-            {country: "أستراليا", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تأشيرة سياحية إلكترونية تتطلب ملف متكامل."},
-            {country: "الصين", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "تتطلب تقديم الأوراق للسفارة الصينية."},
-            {country: "اليابان", type: "pre", badge: "تأشيرة مسبقة", badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50", desc: "ملف كامل ومراجعة للسفارة اليابانية."}
+            {
+                country: "ماليزيا",
+                badge: "بدون فيزا مسبقة",
+                badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50",
+                duration: "30 يوماً",
+                validity: "6 أشهر على الأقل في الجواز",
+                requirements: "تذكرة ذهاب وعودة مؤكدة + حجز فندقي + إثبات مالي كافي.",
+                bankStatement: "مطلوب كشف حساب مبدئي أو نقود كافية (يفضل 1000$)",
+                scanner: "صورة جواز سكنر واضحة ملونة",
+                tips: "تأكد من ختم الدخول عند الوصول وعدم تجاوز المدة المحددة."
+            },
+            {
+                country: "تركيا",
+                badge: "فيزا إلكترونية / شروط",
+                badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50",
+                duration: "30 إلى 90 يوماً حسب الفئة",
+                validity: "6 أشهر على الأقل",
+                requirements: "حجز فندقي مؤكد، تذكرة طيران ذهاب وعودة، وفيزا إلكترونية (للفئات العمرية المشمولة).",
+                bankStatement: "يفضل وجود كشف حساب أو نقدية كافية",
+                scanner: "صورة جواز سكنر واضحة",
+                tips: "يُفضل حجز الفنادق عبر منصات معتمدة والحصول على التأمين الصحي."
+            },
+            {
+                country: "جورجيا",
+                badge: "ترتيب سياحي / إلكترونية",
+                badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50",
+                duration: "30 يوماً",
+                validity: "6 أشهر صالحة",
+                requirements: "تأمين صحي، حجز فندقي، تذكرة طيران عودة.",
+                bankStatement: "كشف حساب لآخر 3 أشهر (موصى به بقوة)",
+                scanner: "صورة جواز سكنر ملونة",
+                tips: "احمل معك نسباً نقدية وحجوزاتك الورقية والرقمية لسهولة العبور."
+            },
+            {
+                country: "مصر",
+                badge: "تأشيرة مسبقة / موافقة أمنية",
+                badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50",
+                duration: "30 يوماً",
+                validity: "6 أشهر",
+                requirements: "موافقة أمنية مسبقة، تنسيق عبر شركة سياحية معتمدة.",
+                bankStatement: "كشف حساب بنكي حديث لآخر 3 أشهر مختوم",
+                scanner: "صورة جواز سكنر وصورة شخصية خلفية بيضاء",
+                tips: "الالتزام بالشروط والتعاون مع الشركات السياحية المرخصة."
+            },
+            {
+                country: "الإمارات",
+                badge: "تأشيرة سياحية مسبقة",
+                badgeClass: "bg-rose-950 text-rose-400 border border-rose-800/50",
+                duration: "30 أو 60 يوماً",
+                validity: "6 أشهر",
+                requirements: "تقدم عبر شركات الطيران أو الفنادق أو مكاتب السفر المعتمدة.",
+                bankStatement: "غير إجباري في الغالب عند التقديم عبر الشركات السياحية",
+                scanner: "صورة جواز سكنر ملونة وواضحة جداً",
+                tips: "احجز تذكرة الطيران والسكن مسبقاً لضمان سرعة صدور التأشيرة."
+            },
+            {
+                country: "إيران",
+                badge: "بدون فيزا / ميسر",
+                badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50",
+                duration: "14 إلى 30 يوماً",
+                validity: "6 أشهر",
+                requirements: "جواز ساري المفعول وتنسيق الدخول عبر المنافذ الحدودية أو المطارات.",
+                bankStatement: "غير مطلوب",
+                scanner: "صورة جواز سكنر",
+                tips: "متابعة التعليمات المستجدة في المنافذ الحدودية."
+            },
+            {
+                country: "لبنان",
+                badge: "تمنح عند الوصول (بشروط)",
+                badgeClass: "bg-amber-950 text-amber-400 border border-amber-800/50",
+                duration: "شهر قابل للتجديد",
+                validity: "6 أشهر",
+                requirements: "حجز فندقي، مبلغ نقدي (لا يقل عن 2000$ أو ما يعادلها)، تذكرة عودة.",
+                bankStatement: "مطلوب إبراز نقدية أو بطاقة ائتمانية",
+                scanner: "صورة جواز سكنر",
+                tips: "التأكد من توفر كافة الشروط المطلوبة من الأمن العام اللبناني."
+            },
+            {
+                country: "المالديف",
+                badge: "فيزا مجانية عند الوصول",
+                badgeClass: "bg-emerald-950 text-emerald-400 border border-emerald-800/50",
+                duration: "30 يوماً",
+                validity: "6 أشهر",
+                requirements: "حجز منتجع أو فندق مؤكد لكامل المدة + تذكرة عودة + استمارة صحية إلكترونية.",
+                bankStatement: "إثبات كفاية مالية",
+                scanner: "صورة جواز سكنر",
+                tips: "يجب تعبئة نموذج الإقرار الصحي قبل الوصول بـ 24 ساعة."
+            }
         ];
 
-        let currentVisaFilter = 'all';
+        // Switch Tabs Logic
+        function switchTab(tab) {
+            const visaSec = document.getElementById('section-visa');
+            const destSec = document.getElementById('section-destinations');
+            const navVisa = document.getElementById('nav-visa');
+            const navDest = document.getElementById('nav-destinations');
+            const mobVisa = document.getElementById('mob-nav-visa');
+            const mobDest = document.getElementById('mob-nav-destinations');
 
-        function filterVisaBtn(category) {
-            currentVisaFilter = category;
-            const buttons = document.querySelectorAll('.visa-filter-btn');
-            buttons.forEach(btn => {
-                btn.className = "visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-[#1e293b] text-slate-300 border border-slate-700 hover:bg-[#334155] transition-all";
-            });
-            event.target.className = "visa-filter-btn px-5 py-2.5 rounded-xl text-xs font-bold gold-gradient text-slate-950 shadow-md transition-all";
-            renderVisaGrid();
+            if (tab === 'visa') {
+                visaSec.classList.remove('hidden');
+                destSec.classList.add('hidden');
+                navVisa.className = "px-5 py-2.5 rounded-xl text-sm font-bold gold-gradient text-slate-950 shadow-md transition-all";
+                navDest.className = "px-5 py-2.5 rounded-xl text-sm font-bold text-slate-400 hover:text-white transition-all";
+                mobVisa.className = "flex-1 py-2 rounded-xl text-xs font-bold gold-gradient text-slate-950 text-center shadow-md";
+                mobDest.className = "flex-1 py-2 rounded-xl text-xs font-bold text-slate-400 text-center";
+            } else {
+                visaSec.classList.add('hidden');
+                destSec.classList.remove('hidden');
+                navDest.className = "px-5 py-2.5 rounded-xl text-sm font-bold gold-gradient text-slate-950 shadow-md transition-all";
+                navVisa.className = "px-5 py-2.5 rounded-xl text-sm font-bold text-slate-400 hover:text-white transition-all";
+                mobDest.className = "flex-1 py-2 rounded-xl text-xs font-bold gold-gradient text-slate-950 text-center shadow-md";
+                mobVisa.className = "flex-1 py-2 rounded-xl text-xs font-bold text-slate-400 text-center";
+                loadDestinationsData();
+            }
         }
 
-        function searchVisa() {
-            renderVisaGrid();
-        }
-
-        function renderVisaGrid() {
+        // Render Visa Grid & Suggestions
+        function renderVisaGrid(filterText = "") {
             const grid = document.getElementById('visa-grid');
-            const searchInput = document.getElementById('visa-search').value.trim().toLowerCase();
             let html = "";
-            
+
             visaDatabase.forEach(item => {
-                const matchesFilter = currentVisaFilter === 'all' || item.type === currentVisaFilter;
-                const matchesSearch = item.country.toLowerCase().includes(searchInput);
-                
-                if (matchesFilter && matchesSearch) {
+                if (filterText === "" || item.country.toLowerCase().includes(filterText.toLowerCase())) {
                     html += `
                         <div class="bg-[#1e293b] rounded-3xl shadow-xl border border-slate-800 p-6 flex flex-col justify-between hover:border-amber-500/50 transition-all">
                             <div>
                                 <div class="flex justify-between items-start mb-4">
-                                    <h3 class="font-bold text-white text-lg">${item.country}</h3>
+                                    <h3 class="font-bold text-white text-lg"><i class="fa-solid fa-location-dot text-amber-400 ml-2"></i>${item.country}</h3>
                                     <span class="${item.badgeClass} text-xs font-bold px-3 py-1 rounded-full text-center">${item.badge}</span>
                                 </div>
-                                <p class="text-slate-400 text-xs leading-relaxed mb-4">${item.desc}</p>
+                                <div class="space-y-2 text-xs text-slate-300 mb-6 bg-[#0f172a] p-4 rounded-2xl border border-slate-800">
+                                    <p><strong><i class="fa-solid fa-clock text-amber-400 ml-1"></i> مدة الإقامة:</strong> ${item.duration}</p>
+                                    <p><strong><i class="fa-solid fa-passport text-amber-400 ml-1"></i> صلاحية الجواز:</strong> ${item.validity}</p>
+                                    <p><strong><i class="fa-solid fa-file-lines text-amber-400 ml-1"></i> المستندات المطلوبة:</strong> ${item.requirements}</p>
+                                    <p><strong><i class="fa-solid fa-wallet text-amber-400 ml-1"></i> كشف الحساب والمالية:</strong> ${item.bankStatement}</p>
+                                    <p><strong><i class="fa-solid fa-camera text-amber-400 ml-1"></i> صورة الجواز:</strong> ${item.scanner}</p>
+                                    <p class="text-amber-300/90 pt-1 border-t border-slate-800"><strong>💡 نصيحة قبل السفر:</strong> ${item.tips}</p>
+                                </div>
                             </div>
-                            <div class="border-t border-slate-800 pt-4 text-xs text-slate-400 flex justify-between items-center">
-                                <span>للجواز العراقي</span>
-                                <a href="https://wa.me/9647800000000?text=${encodeURIComponent('استفسار عن تأشيرة ' + item.country)}" target="_blank" class="text-amber-400 font-bold hover:underline flex items-center gap-1">التفاصيل والشروط <i class="fa-solid fa-arrow-left"></i></a>
+                            <div class="border-t border-slate-800 pt-4 flex justify-between items-center">
+                                <span class="text-xs text-slate-400 font-semibold">تحديثات جواز السفر العراقي</span>
+                                <a href="https://wa.me/9647800000000?text=${encodeURIComponent('استفسار عن تأشيرة وشروط ' + item.country)}" target="_blank" class="bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+                                    <i class="fa-brands fa-whatsapp"></i> طلب معاملة الفيزا
+                                </a>
                             </div>
                         </div>
                     `;
@@ -258,116 +327,87 @@
             });
 
             if(html === "") {
-                grid.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 font-bold">لا توجد نتائج مطابقة لبحثك.</div>`;
+                grid.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 font-bold">لا توجد نتائج مطابقة لبحثك عن هذه الدولة.</div>`;
             } else {
                 grid.innerHTML = html;
             }
         }
 
-        function generateData(countryName) {
-            const starsList = [5, 4, 5, 3, 4, 2, 5, 3, 4, 1];
-            const hotelTypes = ["فندق ومنتجع الفخامة", "فندق النجمة الذهبية", "فندق القصر الملكي", "فندق الواحة السياحي", "فندق الإمبراطور", "فندق الراحة والاطمئنان", "فندق الأفق الجديد", "فندق الدلتا السياحي", "فندق اللؤلؤة البيضاء", "فندق النسيم العليل"];
-            const hotelImages = [
-                "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85",
-                "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85",
-                "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=85",
-                "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=85",
-                "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=800&q=85",
-                "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=85",
-                "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=85",
-                "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85",
-                "https://images.unsplash.com/photo-1561501900-3701fa6a0864?auto=format&fit=crop&w=800&q=85",
-                "https://images.unsplash.com/photo-1535827841776-24afc1e255ac?auto=format&fit=crop&w=800&q=85"
-            ];
+        function handleVisaInput() {
+            const query = document.getElementById('visa-search').value.trim();
+            const suggestionsBox = document.getElementById('visa-suggestions');
+            
+            renderVisaGrid(query);
 
-            let hotels = [];
-            for (let i = 0; i < 10; i++) {
-                let stars = starsList[i];
-                let starString = "⭐".repeat(stars);
-                hotels.push({
-                    title: `${hotelTypes[i]} في ${countryName}`,
-                    desc: `التصنيف: ${starString} (${stars} نجوم). يوفر أروع الخدمات، غرف مكيفة، وخدمة عملاء على مدار الساعة.`,
-                    img: hotelImages[i],
-                    stars: stars,
-                    map: "https://maps.google.com"
-                });
-            }
-
-            const restaurants = [
-                { title: `مطعم السلطان في ${countryName}`, desc: "أشهى الأطباق الشرقية والعالمية مع جلسات عائلية فاخرة.", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" },
-                { title: `مقهى وحديقة البوسفور في ${countryName}`, desc: "أجواء هادئة ومشروبات مميزة مع إطلالة رائعة.", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" }
-            ];
-
-            const entertainment = [
-                { title: `المدينة الترفيهية الكبرى في ${countryName}`, desc: "ألعاب حديثة وفعاليات ممتعة لكافة أفراد العائلة.", img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" },
-                { title: `المعرض التاريخي والثقافي في ${countryName}`, desc: "جولة استكشافية لأهم معالم التراث والآثار.", img: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" }
-            ];
-
-            const hospitals = [
-                { title: `مستشفى الطوارئ الدولي في ${countryName}`, desc: "خدمات إسعاف وطوارئ طبية متكاملة على مدار الساعة مع مترجمين.", img: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" },
-                { title: `مركز الرعاية الصحية الشاملة في ${countryName}`, desc: "استشارات طبية وأقسام متخصصة لمختلف الحالات.", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" }
-            ];
-
-            return { hotels, restaurants, entertainment, hospitals };
-        }
-
-        const guideDatabase = {
-            "تركيا": generateData("تركيا"),
-            "الإمارات": generateData("الإمارات"),
-            "مصر": generateData("مصر"),
-            "جورجيا": generateData("جورجيا"),
-            "السعودية": generateData("السعودية"),
-            "بريطانيا": generateData("بريطانيا"),
-            "ماليزيا": generateData("ماليزيا"),
-            "إيران": generateData("إيران"),
-            "لبنان": generateData("لبنان"),
-            "المالديف": generateData("المالديف")
-        };
-
-        function switchTab(tab) {
-            const visaSec = document.getElementById('section-visa');
-            const guideSec = document.getElementById('section-guide');
-            const navVisa = document.getElementById('nav-visa');
-            const navGuide = document.getElementById('nav-guide');
-            const mobNavVisa = document.getElementById('mob-nav-visa');
-            const mobNavGuide = document.getElementById('mob-nav-guide');
-
-            if (tab === 'visa') {
-                visaSec.classList.remove('hidden');
-                guideSec.classList.add('hidden');
-                navVisa.className = "px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 gold-gradient text-slate-950 shadow-md";
-                navGuide.className = "px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 text-slate-400 hover:text-white";
-                mobNavVisa.className = "flex-1 py-2 rounded-xl text-xs font-bold gold-gradient text-slate-950 text-center shadow-md";
-                mobNavGuide.className = "flex-1 py-2 rounded-xl text-xs font-bold text-slate-400 text-center";
+            if (query.length > 0) {
+                const matches = visaDatabase.filter(item => item.country.toLowerCase().includes(query.toLowerCase()));
+                if (matches.length > 0) {
+                    let sHtml = "";
+                    matches.forEach(m => {
+                        sHtml += `<div onclick="selectSuggestion('${m.country}')" class="px-4 py-3 hover:bg-slate-800 cursor-pointer text-sm font-bold text-white border-b border-slate-800/50 flex justify-between items-center">
+                            <span>${m.country}</span>
+                            <span class="text-xs text-amber-400">${m.badge}</span>
+                        </div>`;
+                    });
+                    suggestionsBox.innerHTML = sHtml;
+                    suggestionsBox.classList.remove('hidden');
+                } else {
+                    suggestionsBox.classList.add('hidden');
+                }
             } else {
-                visaSec.classList.add('hidden');
-                guideSec.classList.remove('hidden');
-                navGuide.className = "px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 gold-gradient text-slate-950 shadow-md";
-                navVisa.className = "px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 text-slate-400 hover:text-white";
-                mobNavGuide.className = "flex-1 py-2 rounded-xl text-xs font-bold gold-gradient text-slate-950 text-center shadow-md";
-                mobNavVisa.className = "flex-1 py-2 rounded-xl text-xs font-bold text-slate-400 text-center";
-                loadGuideData();
+                suggestionsBox.classList.add('hidden');
             }
         }
 
-        function loadGuideData() {
-            const searchText = document.getElementById('guide-search').value.trim();
-            const category = document.getElementById('guide-category').value;
-            const starFilter = document.getElementById('star-filter').value;
-            const grid = document.getElementById('guide-results-grid');
+        function selectSuggestion(countryName) {
+            document.getElementById('visa-search').value = countryName;
+            document.getElementById('visa-suggestions').classList.add('hidden');
+            renderVisaGrid(countryName);
+        }
+
+        function selectQuickVisa(countryName) {
+            document.getElementById('visa-search').value = countryName;
+            renderVisaGrid(countryName);
+        }
+
+        // Destinations Data & Logic
+        function generateDestData(countryName) {
+            return {
+                hotels: [
+                    { title: `فندق الفخامة الملكي في ${countryName}`, desc: "خدمات خمس نجوم، إطلالة ساحرة، وغرف مجهزة بالكامل للمسافرين.", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85", stars: 5, map: "https://maps.google.com" },
+                    { title: `فندق النجمة الذهبية في ${countryName}`, desc: "موقع حيوى قرب الأسواق والمقاهي السياحية.", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85", stars: 4, map: "https://maps.google.com" },
+                    { title: `فندق الواحة السياحي في ${countryName}`, desc: "إقامة مريحة وهادئة تناسب العائلات والأفراد.", img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=85", stars: 3, map: "https://maps.google.com" }
+                ],
+                restaurants: [
+                    { title: `مطعم السلطان السياحي في ${countryName}`, desc: "أشهى الأطباق الشرقية والغربية مع جلسات عائلية فاخرة.", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" },
+                    { title: `مقهى وحديقة البوسفور في ${countryName}`, desc: "أجواء متميزة ومشروبات ممتازة.", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" }
+                ],
+                entertainment: [
+                    { title: `المدينة الترفيهية الكبرى في ${countryName}`, desc: "أحدث الألعاب والفعاليات السياحية المناسبة للعوائل.", img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" },
+                    { title: `المعرض التراثي والثقافي في ${countryName}`, desc: "جولات استكشافية لأجمل المعالم والأسواق التقليدية.", img: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" }
+                ],
+                hospitals: [
+                    { title: `مستشفى الطوارئ الدولي في ${countryName}`, desc: "خدمات طبية وإسعافية على مدار الساعة مع خدمات ترجمة.", img: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" },
+                    { title: `مركز الرعاية الطبية الشاملة في ${countryName}`, desc: "عيادات متخصصة واستشارات سريعة للمسافرين.", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=85", map: "https://maps.google.com" }
+                ]
+            };
+        }
+
+        const destinationsList = ["تركيا", "ماليزيا", "جورجيا", "مصر", "الإمارات", "إيران", "لبنان", "المالديف"];
+
+        function loadDestinationsData() {
+            const searchText = document.getElementById('dest-search').value.trim();
+            const category = document.getElementById('dest-category').value;
+            const starFilter = document.getElementById('dest-stars').value;
+            const grid = document.getElementById('destinations-grid');
             let results = [];
 
             if (searchText === "") {
-                Object.keys(guideDatabase).forEach(country => {
-                    results = results.concat(guideDatabase[country][category]);
+                destinationsList.forEach(country => {
+                    results = results.concat(generateDestData(country)[category]);
                 });
             } else {
-                let matchedObj = Object.keys(guideDatabase).find(key => searchText.includes(key));
-                if(matchedObj) {
-                    results = guideDatabase[matchedObj][category];
-                } else {
-                    results = generateData(searchText)[category];
-                }
+                results = generateDestData(searchText)[category];
             }
 
             if (category === 'hotels' && starFilter !== 'all') {
@@ -396,8 +436,8 @@
                                     <i class="fa-solid fa-location-dot text-amber-400"></i> اللوكيشن
                                 </a>
                                 <a href="https://wa.me/9647800000000?text=${encodeURIComponent('استفسار بخصوص حجز ' + item.title)}" target="_blank" class="flex-1 bg-emerald-950 hover:bg-emerald-900 text-emerald-400 border border-emerald-800/50 py-2.5 rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-1.5">
-                                    <i class="fa-brands fa-whatsapp text-emerald-400"></i> تفاصيل الحجز
-                                </a>
+                                    <i class="fa-brands fa-whatsapp text-emerald-400"></i> حجز استفسار
+                                 </a>
                             </div>
                         </div>
                     `;
@@ -408,7 +448,7 @@
 
         window.onload = function() {
             renderVisaGrid();
-            loadGuideData();
+            loadDestinationsData();
         };
     </script>
 </body>
