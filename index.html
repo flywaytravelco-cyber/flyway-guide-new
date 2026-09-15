@@ -25,8 +25,6 @@
         }
         body { font-family: 'IBM Plex Sans Arabic', sans-serif; background-color: var(--ink); color: var(--sand); direction: rtl; text-align: right; }
         .display { font-family: 'Cairo', sans-serif; font-weight: 800; }
-        .gold-gradient { background: linear-gradient(135deg, var(--gold) 0%, var(--clay) 100%); }
-        .gold-text { background: linear-gradient(135deg, var(--gold) 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .dropdown-menu, .modal, .chat-box { display: none; }
         .dropdown-open, .modal-open, .chat-open { display: flex; }
     </style>
@@ -57,7 +55,7 @@
 
             <div class="flex items-center gap-3 relative">
                 <span class="bg-[#E0A83D]/10 text-[#E0A83D] border border-[#E0A83D]/30 text-xs font-extrabold px-3 py-1.5 rounded-xl hidden sm:inline-block">
-                    <i class="fa-solid fa-coins ml-1"></i> العملة: الدينار العراقي (IQD)
+                    <i class="fa-solid fa-coins ml-1"></i> الدينار العراقي (IQD)
                 </span>
                 
                 <div id="logged-out-area" class="hidden">
@@ -67,9 +65,11 @@
                 </div>
 
                 <div id="logged-in-area" class="relative">
-                    <button onclick="toggleDropdown()" class="flex items-center gap-3 bg-[#123243] pl-3 pr-4 py-2 rounded-xl border border-[#EFE6D2]/10 hover:border-[#C9603A]/30 transition-all">
+                    <button onclick="toggleDropdown()" class="flex items-center gap-3 bg-[#123243] pl-3 pr-4 py-2 rounded-xl border border-[#EFE6D2]/10 hover:border-[#C9603A]/30 transition-all relative">
                         <span class="text-xs font-bold text-[#EFE6D2]">Super Support</span>
                         <div class="w-9 h-9 rounded-full bg-[#C9603A] text-[#EFE6D2] flex items-center justify-center font-bold text-sm shadow-md">SS</div>
+                        <!-- شعار تنبيه جديد يظهر هنا -->
+                        <span id="nav-notification-badge" class="absolute -top-1 -right-1 bg-rose-500 text-white w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center hidden">0</span>
                         <i class="fa-solid fa-chevron-down text-[#C9BFA9] text-xs mr-1"></i>
                     </button>
                     <div id="user-dropdown" class="dropdown-menu absolute right-0 top-full mt-2 w-64 bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl p-4 shadow-2xl z-50 text-right">
@@ -84,8 +84,9 @@
                             <li><a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#0E2735] hover:text-[#EFE6D2]"><i class="fa-solid fa-user-circle text-[#C9BFA9] w-5"></i>إدارة حسابي</a></li>
                             <li><a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#0E2735] hover:text-[#EFE6D2]"><i class="fa-solid fa-suitcase text-[#C9BFA9] w-5"></i>حجوزاتي وتأميني</a></li>
                             <li class="border-t border-[#EFE6D2]/10 pt-1 mt-1">
-                                <button onclick="switchTab('admin'); toggleDropdown();" class="flex w-full items-center gap-3 p-3 rounded-xl hover:bg-[#C9603A]/10 text-[#E0A83D]">
-                                    <i class="fa-solid fa-gauge-high w-5"></i>لوحة التحكم (الأدمن)
+                                <button onclick="switchTab('admin'); toggleDropdown();" class="flex w-full items-center justify-between p-3 rounded-xl hover:bg-[#C9603A]/10 text-[#E0A83D]">
+                                    <span class="flex items-center gap-3"><i class="fa-solid fa-gauge-high w-5"></i>لوحة التحكم (الأدمن)</span>
+                                    <span id="dropdown-notif-count" class="bg-rose-500 text-white px-2 py-0.5 rounded-full text-[10px] hidden">0</span>
                                 </button>
                             </li>
                             <li class="border-t border-[#EFE6D2]/10 pt-1 mt-1">
@@ -309,15 +310,44 @@
             </div>
         </section>
 
-        <!-- 5. لوحة التحكم -->
+        <!-- 5. لوحة التحكم (مع نظام إشعارات الدعم الفعلي) -->
         <section id="section-admin" class="hidden space-y-8">
              <div class="bg-[#C9603A]/10 border border-[#C9603A]/30 rounded-3xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div>
                     <h2 class="text-2xl font-extrabold text-[#E0A83D] display">لوحة تحكم الأدمن (إدارة المنصة بالكامل)</h2>
-                    <p class="text-[#C9BFA9] text-xs">إدارة محتوى الموقع، الصفحات، العروض، والمسابقات والفائزين.</p>
+                    <p class="text-[#C9BFA9] text-xs">إدارة محتوى الموقع، الصفحات، وعروض المسابقات، ورسائل دعم العملاء الفورية.</p>
                 </div>
                 <div>
                     <span class="bg-[#2C8C86]/20 text-[#2C8C86] px-4 py-2 rounded-xl text-xs font-bold border border-[#2C8C86]/30"><i class="fa-solid fa-circle-check ml-1"></i> النظام متصل وقيد التشغيل</span>
+                </div>
+            </div>
+
+            <!-- خانة استفسارات الدعم الفوري الواردة (تحديث حي للإشعارات) -->
+            <div class="bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-4">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-extrabold text-[#E0A83D] flex items-center gap-2 display">
+                        <i class="fa-solid fa-headset"></i> صندوق رسائل واستفسارات الدعم الفوري الواردة
+                    </h3>
+                    <span id="admin-msg-counter" class="bg-rose-500 text-white px-3 py-1 rounded-xl text-xs font-bold">0 رسائل جديدة</span>
+                </div>
+                <p class="text-[#C9BFA9] text-xs">هنا تظهر أسئلة واستفسارات المسافرين الواردة من شات الدعم الفوري فور إرسالها.</p>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right text-xs">
+                        <thead>
+                            <tr class="border-b border-[#EFE6D2]/10 text-[#C9BFA9]">
+                                <th class="pb-3 pr-4">الوقت</th>
+                                <th class="pb-3">المرسل</th>
+                                <th class="pb-3">نص الاستفسار</th>
+                                <th class="pb-3 text-left pl-4">الإجراء</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-support-messages" class="divide-y divide-[#EFE6D2]/5 text-[#C9BFA9]">
+                            <tr>
+                                <td colspan="4" class="py-6 text-center text-[#C9BFA9]">لا توجد رسائل دعم جديدة حالياً.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -461,6 +491,7 @@
     <!-- JavaScript Engine -->
     <script>
         let isLoggedIn = true;
+        let supportMessages = []; // مصفوفة لتخزين رسائل الدعم الحية
 
         let siteContent = {
             about: "دليل المسافر العراقي (Flyway) هو البوابة الذكية الأولى لإدارة السفر، حجز الفنادق الفاخرة، إصدار التأشيرات، وتأمين السفر المعتمد.",
@@ -707,17 +738,83 @@
 
         function sendFAQ(q) {
             appendMessage(q, 'user');
+            registerSupportMessage(q, 'مسافر (سؤال شائع)');
             setTimeout(() => {
-                appendMessage("مرحباً بك! فريق الدعم متواجد لخدمتك ومساعدتك دائماً.", 'bot');
+                appendMessage("مرحباً بك! فريق الدعم تلقى سؤالك وسيتم الرد قريباً في الداشبورد.", 'bot');
             }, 500);
         }
 
         function sendCustomMessage() {
             const input = document.getElementById('chat-input');
-            if(!input.value.trim()) return;
-            appendMessage(input.value, 'user');
+            const text = input.value.trim();
+            if(!text) return;
+            appendMessage(text, 'user');
             input.value = '';
-            setTimeout(() => { appendMessage("تم إرسال استفسارك لفريق الدعم وسيتم الرد قريباً.", 'bot'); }, 700);
+            registerSupportMessage(text, 'مسافر زائر');
+            setTimeout(() => { 
+                appendMessage("تم إرسال استفسارك بنجاح إلى لوحة تحكم الأدمن وسيتم الرد عليك هنا.", 'bot'); 
+            }, 700);
+        }
+
+        // دالة تسجيل رسالة الدعم وإرسال إشعار فوري للداشبورد
+        function registerSupportMessage(text, senderName) {
+            const timeNow = new Date().toLocaleTimeString('ar-IQ', {hour: '2-digit', minute:'2-digit'});
+            supportMessages.unshift({ id: Date.now(), name: senderName, message: text, time: timeNow });
+            updateAdminSupportUI();
+        }
+
+        // تحديث واجهة الإشعارات داخل لوحة تحكم الأدمن
+        function updateAdminSupportUI() {
+            const tbody = document.getElementById('admin-support-messages');
+            const badgeNav = document.getElementById('nav-notification-badge');
+            const badgeDropdown = document.getElementById('dropdown-notif-count');
+            const msgCounter = document.getElementById('admin-msg-counter');
+            
+            const count = supportMessages.length;
+            
+            if (count > 0) {
+                badgeNav.innerText = count;
+                badgeNav.classList.remove('hidden');
+                badgeDropdown.innerText = count;
+                badgeDropdown.classList.remove('hidden');
+                msgCounter.innerText = count + " رسائل جديدة";
+            } else {
+                badgeNav.classList.add('hidden');
+                badgeDropdown.classList.add('hidden');
+                msgCounter.innerText = "0 رسائل جديدة";
+            }
+
+            if (!tbody) return;
+            if (count === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-[#C9BFA9]">لا توجد رسائل دعم جديدة حالياً.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = '';
+            supportMessages.forEach(item => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-[#0E2735]/50">
+                        <td class="py-3 pr-4 text-[#E0A83D] num">${item.time}</td>
+                        <td class="py-3 font-bold text-[#EFE6D2]">${item.name}</td>
+                        <td class="py-3 text-[#EFE6D2]">${item.message}</td>
+                        <td class="py-3 text-left pl-4">
+                            <button onclick="replyToSupport(${item.id})" class="bg-[#2C8C86] hover:bg-[#23736e] text-[#EFE6D2] px-3 py-1 rounded-lg text-[10px] font-bold">رد وتواصل</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function replyToSupport(id) {
+            const msg = supportMessages.find(m => m.id === id);
+            if(msg) {
+                const replyText = prompt(`الرد على استفسار (${msg.name}):\n"${msg.message}"\n\nاكتب ردك هنا:`);
+                if(replyText) {
+                    alert('تم إرسال الرد بنجاح إلى المسافر!');
+                    supportMessages = supportMessages.filter(m => m.id !== id);
+                    updateAdminSupportUI();
+                }
+            }
         }
 
         function appendMessage(text, sender) {
@@ -756,6 +853,7 @@
         renderListings(globalDirectory);
         renderOffersAndWinners();
         updateAuthState();
+        updateAdminSupportUI();
     </script>
 </body>
 </html>
