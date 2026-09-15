@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة Flyway — دليل المسافر العراقي</title>
+    <title>منصة Flyway | دليل المسافر العراقي</title>
+    <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=192&h=192&q=80">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root{
@@ -21,47 +23,22 @@
             --river:#2C8C86;
             --line: rgba(239,230,210,0.14);
         }
-        *{box-sizing:border-box;}
-        body{
-            margin:0;
-            background:var(--ink);
-            color:var(--sand);
-            font-family:'IBM Plex Sans Arabic', sans-serif;
-            line-height:1.8;
-            direction: rtl;
-            text-align: right;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .display{font-family:'Cairo', sans-serif; font-weight:800;}
-        .semi{font-family:'Cairo', sans-serif; font-weight:600;}
-        .num{font-family:'Inter', sans-serif;}
-        
-        .frieze{
-            height:34px;
-            width:100%;
-            background-image: repeating-linear-gradient(135deg, var(--clay) 0 10px, transparent 10px 20px),
-                               repeating-linear-gradient(45deg, var(--gold) 0 10px, transparent 10px 20px);
-            background-size: 100% 17px;
-            background-position: top, bottom;
-            background-repeat: repeat-x;
-            opacity:0.85;
-        }
-
+        body { font-family: 'IBM Plex Sans Arabic', sans-serif; background-color: var(--ink); color: var(--sand); direction: rtl; text-align: right; }
+        .display { font-family: 'Cairo', sans-serif; font-weight: 800; }
+        .gold-gradient { background: linear-gradient(135deg, var(--gold) 0%, var(--clay) 100%); }
+        .gold-text { background: linear-gradient(135deg, var(--gold) 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .dropdown-menu, .modal, .chat-box { display: none; }
         .dropdown-open, .modal-open, .chat-open { display: flex; }
     </style>
 </head>
-<body class="antialiased selection:bg-[#C9603A] selection:text-[#EFE6D2]">
+<body class="bg-[#0E2735] text-[#EFE6D2] antialiased min-h-screen flex flex-col justify-between selection:bg-[#C9603A] selection:text-[#EFE6D2]">
 
     <!-- Header / Navbar -->
-    <header class="bg-[#0E2735]/95 backdrop-blur-md border-b border-[#EFE6D2]/10 sticky top-0 z-40">
+    <header class="bg-[#0E2735]/90 backdrop-blur-md border-b border-[#EFE6D2]/10 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center gap-6">
                 <div class="flex items-center gap-3">
-                    <div class="bg-[#C9603A] text-[#EFE6D2] p-2.5 rounded-2xl shadow-lg">
+                    <div class="bg-[#C9603A] text-[#EFE6D2] p-2.5 rounded-2xl shadow-lg shadow-[#C9603A]/10">
                         <i class="fa-solid fa-plane-departure text-xl"></i>
                     </div>
                     <div>
@@ -71,48 +48,48 @@
                 </div>
                 
                 <nav class="hidden md:flex items-center gap-1.5 bg-[#123243] p-1.5 rounded-2xl border border-[#EFE6D2]/10">
-                    <button onclick="switchTab('visa')" id="nav-visa" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-[#C9603A] text-[#EFE6D2] shadow-md semi">التأشيرات</button>
-                    <button onclick="switchTab('destinations')" id="nav-destinations" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-[#C9BFA9] hover:text-[#EFE6D2] semi">الوجهات والفنادق</button>
-                    <button onclick="switchTab('insurance')" id="nav-insurance" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-[#C9BFA9] hover:text-[#EFE6D2] semi">تأمين السفر</button>
-                    <button onclick="switchTab('rewards')" id="nav-rewards" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-[#C9BFA9] hover:text-[#EFE6D2] flex items-center gap-1 semi"><i class="fa-solid fa-trophy text-[#E0A83D]"></i> العروض والمسابقات</button>
+                    <button onclick="switchTab('visa')" id="nav-visa" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-[#C9603A] text-[#EFE6D2] shadow-md">قسم التأشيرات (الفيزا)</button>
+                    <button onclick="switchTab('destinations')" id="nav-destinations" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-[#C9BFA9] hover:text-[#EFE6D2]">دليل الوجهات والفنادق</button>
+                    <button onclick="switchTab('insurance')" id="nav-insurance" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-[#C9BFA9] hover:text-[#EFE6D2]">تأمين السفر الدولي</button>
+                    <button onclick="switchTab('rewards')" id="nav-rewards" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-[#C9BFA9] hover:text-[#EFE6D2] flex items-center gap-1"><i class="fa-solid fa-trophy text-[#E0A83D]"></i> العروض والمسابقات</button>
                 </nav>
             </div>
 
             <div class="flex items-center gap-3 relative">
-                <span class="bg-[#E0A83D]/10 text-[#E0A83D] border border-[#E0A83D]/30 text-xs font-extrabold px-3.5 py-1.5 rounded-xl hidden sm:inline-block num">
-                    <i class="fa-solid fa-coins ml-1"></i> دينار عراقي (IQD)
+                <span class="bg-[#E0A83D]/10 text-[#E0A83D] border border-[#E0A83D]/30 text-xs font-extrabold px-3 py-1.5 rounded-xl hidden sm:inline-block">
+                    <i class="fa-solid fa-coins ml-1"></i> العملة: الدينار العراقي (IQD)
                 </span>
                 
                 <div id="logged-out-area" class="hidden">
-                     <button onclick="simulateLogin()" class="bg-[#C9603A] hover:bg-[#8F3F22] text-[#EFE6D2] px-4 py-2 rounded-xl text-xs font-extrabold transition-all shadow-lg semi">
+                     <button onclick="simulateLogin()" class="bg-[#C9603A] hover:bg-[#8F3F22] text-[#EFE6D2] px-4 py-2 rounded-xl text-xs font-extrabold transition-all shadow-lg">
                         <i class="fa-solid fa-user-lock ml-1"></i> تسجيل الدخول
                     </button>
                 </div>
 
                 <div id="logged-in-area" class="relative">
                     <button onclick="toggleDropdown()" class="flex items-center gap-3 bg-[#123243] pl-3 pr-4 py-2 rounded-xl border border-[#EFE6D2]/10 hover:border-[#C9603A]/30 transition-all">
-                        <span class="text-xs font-bold text-[#EFE6D2] semi">Super Support</span>
-                        <div class="w-9 h-9 rounded-full bg-[#C9603A] text-[#EFE6D2] flex items-center justify-center font-bold text-sm shadow-md display">SS</div>
+                        <span class="text-xs font-bold text-[#EFE6D2]">Super Support</span>
+                        <div class="w-9 h-9 rounded-full bg-[#C9603A] text-[#EFE6D2] flex items-center justify-center font-bold text-sm shadow-md">SS</div>
                         <i class="fa-solid fa-chevron-down text-[#C9BFA9] text-xs mr-1"></i>
                     </button>
                     <div id="user-dropdown" class="dropdown-menu absolute right-0 top-full mt-2 w-64 bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl p-4 shadow-2xl z-50 text-right">
                         <div class="flex items-center gap-3 mb-4 p-3 bg-[#0E2735] rounded-2xl">
-                             <div class="w-10 h-10 rounded-full bg-[#C9603A] text-[#EFE6D2] flex items-center justify-center font-bold text-md display">SS</div>
+                             <div class="w-10 h-10 rounded-full bg-[#C9603A] text-[#EFE6D2] flex items-center justify-center font-bold text-md">SS</div>
                              <div class="overflow-hidden">
-                                 <p class="text-sm font-extrabold text-[#EFE6D2] truncate semi">Super Support</p>
-                                 <p class="text-xs text-[#C9BFA9] truncate num">flywaytravel.co@gmail.com</p>
+                                 <p class="text-sm font-extrabold text-[#EFE6D2] truncate">Super Support</p>
+                                 <p class="text-xs text-[#C9BFA9] truncate">flywaytravel.co@gmail.com</p>
                              </div>
                         </div>
                         <ul class="space-y-1 text-xs font-bold text-[#C9BFA9]">
                             <li><a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#0E2735] hover:text-[#EFE6D2]"><i class="fa-solid fa-user-circle text-[#C9BFA9] w-5"></i>إدارة حسابي</a></li>
                             <li><a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#0E2735] hover:text-[#EFE6D2]"><i class="fa-solid fa-suitcase text-[#C9BFA9] w-5"></i>حجوزاتي وتأميني</a></li>
                             <li class="border-t border-[#EFE6D2]/10 pt-1 mt-1">
-                                <button onclick="switchTab('admin'); toggleDropdown();" class="flex w-full items-center gap-3 p-3 rounded-xl hover:bg-[#C9603A]/10 text-[#E0A83D] semi">
+                                <button onclick="switchTab('admin'); toggleDropdown();" class="flex w-full items-center gap-3 p-3 rounded-xl hover:bg-[#C9603A]/10 text-[#E0A83D]">
                                     <i class="fa-solid fa-gauge-high w-5"></i>لوحة التحكم (الأدمن)
                                 </button>
                             </li>
                             <li class="border-t border-[#EFE6D2]/10 pt-1 mt-1">
-                                <button onclick="simulateLogout()" class="flex w-full items-center gap-3 p-3 rounded-xl hover:bg-rose-500/10 text-rose-400 semi">
+                                <button onclick="simulateLogout()" class="flex w-full items-center gap-3 p-3 rounded-xl hover:bg-rose-500/10 text-rose-400">
                                     <i class="fa-solid fa-sign-out-alt w-5"></i>تسجيل الخروج
                                 </button>
                             </li>
@@ -122,40 +99,41 @@
             </div>
         </div>
     </header>
-    <div class="frieze"></div>
 
     <!-- Main Content -->
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
 
-        <!-- 1. قسم التأشيرات (شامل لكل الدول) -->
-        <section id="section-visa" class="space-y-6" style="padding: 24px 0;">
-             <div class="relative rounded-3xl overflow-hidden bg-[#123243] border border-[#EFE6D2]/10 p-8 sm:p-12 text-center shadow-2xl mb-8">
+        <!-- 1. التأشيرات -->
+        <section id="section-visa" class="space-y-6">
+             <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#0E2735] via-[#123243] to-[#0E2735] border border-[#EFE6D2]/10 p-8 sm:p-12 text-center shadow-2xl mb-8">
+                <div class="absolute inset-0 opacity-25 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80');"></div>
                 <div class="relative z-10 max-w-2xl mx-auto">
-                    <span class="bg-[#C9603A]/20 text-[#C9603A] border border-[#C9603A]/30 text-xs font-extrabold px-3.5 py-1.5 rounded-full inline-block mb-3">تحديث لحظي</span>
+                    <span class="bg-[#C9603A]/20 text-[#C9603A] border border-[#C9603A]/30 text-xs font-extrabold px-3 py-1.5 rounded-full inline-block mb-3">خاص بالمسافر العراقي</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-[#EFE6D2] mb-3 display">دليل التأشيرات والفيزا الرسمية</h2>
-                    <p class="text-[#C9BFA9] text-xs sm:text-sm mb-6">ابحث عن الدولة لمعرفة الشروط التفصيلية، مدة الإقامة، وصلاحية الجواز بدقة للمسافر العراقي.</p>
+                    <p class="text-[#C9BFA9] text-xs sm:text-sm mb-6">ابحث عن الدولة لمعرفة الشروط التفصيلية، مدة الإقامة، وصلاحية الجواز بدقة.</p>
                     <div class="relative">
-                        <input type="text" id="visa-search" oninput="filterVisas()" placeholder="ابحث أو اختر الدولة (تركيا، جورجيا، الإمارات...)" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] placeholder-[#C9BFA9] rounded-2xl px-5 py-4 pr-12 text-sm focus:ring-2 focus:ring-[#C9603A] focus:outline-none shadow-xl">
+                        <input type="text" id="visa-search" oninput="filterVisas()" placeholder="ابحث أو اختر الدولة (تركيا، ماليزيا، جورجيا...)" class="w-full bg-[#0E2735]/90 backdrop-blur border border-[#EFE6D2]/15 text-[#EFE6D2] placeholder-[#C9BFA9] rounded-2xl px-5 py-4 pr-12 text-sm focus:ring-2 focus:ring-[#C9603A] focus:outline-none shadow-xl">
                         <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-[#C9BFA9] text-base"></i>
                     </div>
                 </div>
             </div>
 
             <div class="flex flex-wrap justify-center gap-2 mb-8">
-                <button onclick="filterVisaCat('all')" id="btn-cat-all" class="bg-[#C9603A] text-[#EFE6D2] px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md semi">كل الدول</button>
-                <button onclick="filterVisaCat('بدون فيزا')" id="btn-cat-none" class="bg-[#123243] text-[#2C8C86] border border-[#2C8C86]/30 px-4 py-2 rounded-xl text-xs font-bold transition-all semi">بدون فيزا مسبقة</button>
-                <button onclick="filterVisaCat('عند الوصول')" id="btn-cat-arrival" class="bg-[#123243] text-[#E0A83D] border border-[#E0A83D]/30 px-4 py-2 rounded-xl text-xs font-bold transition-all semi">فيزا عند الوصول</button>
-                <button onclick="filterVisaCat('مسبقة')" id="btn-cat-pre" class="bg-[#123243] text-[#C9603A] border border-[#C9603A]/30 px-4 py-2 rounded-xl text-xs font-bold transition-all semi">تحتاج فيزا مسبقة</button>
+                <button onclick="filterVisaCat('all')" id="btn-cat-all" class="bg-[#C9603A] text-[#EFE6D2] px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md">كل الدول</button>
+                <button onclick="filterVisaCat('بدون فيزا')" id="btn-cat-none" class="bg-[#123243] text-[#2C8C86] border border-[#2C8C86]/30 px-4 py-2 rounded-xl text-xs font-bold transition-all">بدون فيزا مسبقة</button>
+                <button onclick="filterVisaCat('عند الوصول')" id="btn-cat-arrival" class="bg-[#123243] text-[#E0A83D] border border-[#E0A83D]/30 px-4 py-2 rounded-xl text-xs font-bold transition-all">فيزا عند الوصول</button>
+                <button onclick="filterVisaCat('مسبقة')" id="btn-cat-pre" class="bg-[#123243] text-rose-400 border border-rose-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all">تحتاج فيزا مسبقة</button>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="visa-grid"></div>
         </section>
 
-        <!-- 2. قسم الوجهات والفنادق (شامل لكل الفنادق والخدمات) -->
-        <section id="section-destinations" class="hidden space-y-8" style="padding: 24px 0;">
-            <div class="relative rounded-3xl overflow-hidden bg-[#123243] border border-[#EFE6D2]/10 p-8 sm:p-12 text-center shadow-2xl">
+        <!-- 2. الوجهات والفنادق -->
+        <section id="section-destinations" class="hidden space-y-8">
+            <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#0E2735] via-[#123243] to-[#0E2735] border border-[#EFE6D2]/10 p-8 sm:p-12 text-center shadow-2xl">
+                <div class="absolute inset-0 opacity-30 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');"></div>
                 <div class="relative z-10 max-w-3xl mx-auto space-y-3">
-                    <span class="bg-[#E0A83D]/10 text-[#E0A83D] border border-[#E0A83D]/30 text-xs font-extrabold px-3.5 py-1.5 rounded-full inline-block">دليل الوجهات والخدمات الذكي</span>
+                    <span class="bg-[#E0A83D]/10 text-[#E0A83D] border border-[#E0A83D]/30 text-xs font-extrabold px-3.5 py-1.5 rounded-full inline-block">دليل الوجهات والفنادق الذكي</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-[#EFE6D2] tracking-tight display">الدليل الشامل لفنادق وخدمات العالم</h2>
                     <p class="text-[#C9BFA9] text-xs sm:text-sm">ابحث عن أي دولة أو مدينة لتظهر لك فنادقها ومرافقها الكاملة.</p>
                 </div>
@@ -163,7 +141,7 @@
 
             <div class="bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl p-4 sm:p-6 shadow-2xl grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
                 <div>
-                    <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 text-right semi">اسم الوجهة (الدولة أو المدينة)</label>
+                    <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 text-right">اسم الوجهة (الدولة أو المدينة)</label>
                     <div class="relative">
                         <input type="text" id="destination-search" oninput="filterListings()" placeholder="ابحث عن دولة تركيا، دبي، مصر..." class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] placeholder-[#C9BFA9] rounded-2xl px-4 py-3 pr-10 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none">
                         <i class="fa-solid fa-location-dot absolute right-3.5 top-1/2 -translate-y-1/2 text-[#E0A83D] text-xs"></i>
@@ -171,9 +149,9 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 text-right semi">التصنيف الرئيسي والخدمات</label>
+                    <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 text-right">التصنيف الرئيسي والخدمات</label>
                     <div class="relative">
-                        <select id="category-filter" onchange="filterListings()" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#E0A83D] font-bold rounded-2xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none appearance-none cursor-pointer semi">
+                        <select id="category-filter" onchange="filterListings()" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#E0A83D] font-bold rounded-2xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none appearance-none cursor-pointer">
                             <option value="all">🌐 كافة التصنيفات والخدمات</option>
                             <option value="فنادق">🏨 الفنادق والشقق الفندقية والمنتجعات</option>
                             <option value="مطاعم">🍽️ المطاعم والكافيهات والجلسات العائلية</option>
@@ -190,9 +168,9 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 text-right semi">فلتر تصنيف النجوم (للفنادق)</label>
+                    <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 text-right">فلتر تصنيف النجوم (للفنادق)</label>
                     <div class="relative">
-                        <select id="star-filter" onchange="filterListings()" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-2xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none appearance-none cursor-pointer semi">
+                        <select id="star-filter" onchange="filterListings()" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-2xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none appearance-none cursor-pointer">
                             <option value="all">⭐ كل النجوم (1 إلى 5)</option>
                             <option value="5">⭐⭐⭐⭐⭐ (5 نجوم)</option>
                             <option value="4">⭐⭐⭐⭐ (4 نجوم)</option>
@@ -208,8 +186,9 @@
         </section>
 
         <!-- 3. تأمين السفر الدولي -->
-        <section id="section-insurance" class="hidden space-y-8" style="padding: 24px 0;">
-            <div class="relative rounded-3xl overflow-hidden bg-[#123243] border border-[#EFE6D2]/10 p-8 sm:p-12 text-center shadow-2xl">
+        <section id="section-insurance" class="hidden space-y-8">
+            <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#0E2735] via-[#123243] to-[#0E2735] border border-[#EFE6D2]/10 p-8 sm:p-12 text-center shadow-2xl">
+                <div class="absolute inset-0 opacity-25 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80');"></div>
                 <div class="relative z-10 max-w-3xl mx-auto space-y-3">
                     <span class="bg-[#C9603A]/20 text-[#C9603A] border border-[#C9603A]/30 text-xs font-extrabold px-3.5 py-1.5 rounded-full inline-block">خدمة إصدار بوليصة التأمين الفورية</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-[#EFE6D2] tracking-tight display">تأمين السفر الطبي المعتمد للمسافر العراقي</h2>
@@ -223,26 +202,26 @@
                     <form onsubmit="issueInsurancePolicy(event)" class="space-y-4">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 semi">اسم المسافر الثلاثي (حسب الجواز)</label>
+                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5">اسم المسافر الثلاثي (حسب الجواز)</label>
                                 <input type="text" id="ins-name" required placeholder="مثال: حسن أحمد محمد" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 semi">رقم جواز السفر</label>
-                                <input type="text" id="ins-passport" required placeholder="مثال: A12345678" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none num">
+                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5">رقم جواز السفر</label>
+                                <input type="text" id="ins-passport" required placeholder="مثال: A12345678" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none">
                             </div>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 semi">الجنسية</label>
+                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5">الجنسية</label>
                                 <input type="text" id="ins-nationality" value="عراقي" readonly class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#E0A83D] font-bold rounded-xl px-4 py-3 text-xs focus:outline-none">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 semi">عمر المسافر (سنة)</label>
-                                <input type="number" id="ins-age" required min="1" max="99" placeholder="مثال: 32" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none num">
+                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5">عمر المسافر (سنة)</label>
+                                <input type="number" id="ins-age" required min="1" max="99" placeholder="مثال: 32" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 semi">الوجهة المقصودة (الدولة)</label>
-                                <select id="ins-destination" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none semi">
+                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5">الوجهة المقصودة (الدولة)</label>
+                                <select id="ins-destination" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none">
                                     <option value="تركيا">تركيا</option>
                                     <option value="جورجيا">جورجيا</option>
                                     <option value="دول الشنغن (أوروبا)">دول الشنغن (أوروبا)</option>
@@ -255,8 +234,8 @@
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 semi">مدة السفر (عدد الأيام)</label>
-                                <select id="ins-days" onchange="calculateInsurancePrice()" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none semi">
+                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5">مدة السفر (عدد الأيام)</label>
+                                <select id="ins-days" onchange="calculateInsurancePrice()" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none">
                                     <option value="7">7 أيام</option>
                                     <option value="14" selected>14 يوماً</option>
                                     <option value="30">30 يوماً</option>
@@ -264,20 +243,20 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 semi">رقم الهاتف (لاستلام الوثيقة)</label>
-                                <input type="tel" id="ins-phone" required placeholder="07700000000" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none num">
+                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5">رقم الهاتف (لاستلام الوثيقة)</label>
+                                <input type="tel" id="ins-phone" required placeholder="07700000000" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5 semi">البريد الإلكتروني</label>
+                                <label class="block text-xs font-bold text-[#C9BFA9] mb-1.5">البريد الإلكتروني</label>
                                 <input type="email" id="ins-email" required placeholder="traveler@email.com" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl px-4 py-3 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none">
                             </div>
                         </div>
                         <div class="bg-[#0E2735] p-4 rounded-2xl border border-[#EFE6D2]/10 flex justify-between items-center">
                             <div>
                                 <p class="text-xs text-[#C9BFA9]">تكلفة بوليصة التأمين الشاملة:</p>
-                                <h4 id="ins-price-display" class="text-lg font-extrabold text-[#E0A83D] num">35,000 دينار عراقي</h4>
+                                <h4 id="ins-price-display" class="text-lg font-extrabold text-[#E0A83D]">35,000 دينار عراقي</h4>
                             </div>
-                            <button type="submit" class="bg-[#C9603A] hover:bg-[#8F3F22] text-[#EFE6D2] font-extrabold px-6 py-3 rounded-xl text-xs shadow-lg transition-all semi">
+                            <button type="submit" class="bg-[#C9603A] hover:bg-[#8F3F22] text-[#EFE6D2] font-extrabold px-6 py-3 rounded-xl text-xs shadow-lg hover:opacity-95 transition-all">
                                 <i class="fa-solid fa-credit-card ml-1"></i> ادفع وأصدر الوثيقة فوراً
                             </button>
                         </div>
@@ -296,9 +275,10 @@
             </div>
         </section>
 
-        <!-- 4. قسم العروض والمسابقات والفائزين -->
-        <section id="section-rewards" class="hidden space-y-8" style="padding: 24px 0;">
-            <div class="relative rounded-3xl overflow-hidden bg-[#123243] border border-[#EFE6D2]/10 p-8 sm:p-12 text-center shadow-2xl">
+        <!-- 4. العروض والمسابقات -->
+        <section id="section-rewards" class="hidden space-y-8">
+            <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#0E2735] via-[#123243] to-[#0E2735] border border-[#EFE6D2]/10 p-8 sm:p-12 text-center shadow-2xl">
+                <div class="absolute inset-0 opacity-25 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1600&q=80');"></div>
                 <div class="relative z-10 max-w-3xl mx-auto space-y-3">
                     <span class="bg-[#E0A83D]/10 text-[#E0A83D] border border-[#E0A83D]/30 text-xs font-extrabold px-3.5 py-1.5 rounded-full inline-block">حوافز ومكافآت للمسافرين</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-[#EFE6D2] tracking-tight display">العروض الحصرية، المسابقات، ولوحة الفائزين</h2>
@@ -316,7 +296,7 @@
                 <div class="bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl p-6 shadow-2xl overflow-x-auto">
                     <table class="w-full text-right text-xs">
                         <thead>
-                            <tr class="border-b border-[#EFE6D2]/10 text-[#C9BFA9] semi">
+                            <tr class="border-b border-[#EFE6D2]/10 text-[#C9BFA9]">
                                 <th class="pb-3 pr-4">اسم المسافر</th>
                                 <th class="pb-3">الوجهة / الجائزة</th>
                                 <th class="pb-3">عدد الرحلات</th>
@@ -329,8 +309,8 @@
             </div>
         </section>
 
-        <!-- 5. لوحة تحكم الأدمن -->
-        <section id="section-admin" class="hidden space-y-8" style="padding: 24px 0;">
+        <!-- 5. لوحة التحكم -->
+        <section id="section-admin" class="hidden space-y-8">
              <div class="bg-[#C9603A]/10 border border-[#C9603A]/30 rounded-3xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div>
                     <h2 class="text-2xl font-extrabold text-[#E0A83D] display">لوحة تحكم الأدمن (إدارة المنصة بالكامل)</h2>
@@ -346,14 +326,14 @@
                     <h3 class="text-base font-extrabold text-[#E0A83D] flex items-center gap-2 display"><i class="fa-solid fa-bullhorn"></i> إضافة عرض أو مسابقة جديدة</h3>
                     <div class="space-y-3">
                         <div>
-                            <label class="block text-xs font-bold text-[#C9BFA9] mb-1 semi">عنوان العرض أو المسابقة</label>
+                            <label class="block text-xs font-bold text-[#C9BFA9] mb-1">عنوان العرض أو المسابقة</label>
                             <input type="text" id="new-offer-title" placeholder="مثال: خصم 30% على فنادق تركيا" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl p-3 text-xs focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-[#C9BFA9] mb-1 semi">تفاصيل العرض</label>
+                            <label class="block text-xs font-bold text-[#C9BFA9] mb-1">تفاصيل العرض</label>
                             <textarea id="new-offer-desc" rows="2" placeholder="احجز رحلتك القادمة واستفاد..." class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl p-3 text-xs focus:outline-none"></textarea>
                         </div>
-                        <button onclick="addNewOffer()" class="bg-[#C9603A] hover:bg-[#8F3F22] text-[#EFE6D2] px-5 py-2.5 rounded-xl text-xs font-extrabold shadow-lg semi">نشر العرض</button>
+                        <button onclick="addNewOffer()" class="bg-[#C9603A] hover:bg-[#8F3F22] text-[#EFE6D2] px-5 py-2.5 rounded-xl text-xs font-extrabold shadow-lg">نشر العرض</button>
                     </div>
                 </div>
 
@@ -365,13 +345,13 @@
                             <input type="text" id="winner-prize" placeholder="الجائزة أو الوجهة" class="bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl p-3 text-xs focus:outline-none">
                         </div>
                         <div class="grid grid-cols-2 gap-2">
-                            <input type="number" id="winner-trips" placeholder="عدد الرحلات" class="bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl p-3 text-xs focus:outline-none num">
-                            <select id="winner-status" class="bg-[#0E2735] border border-[#EFE6D2]/15 text-[#2C8C86] font-bold rounded-xl p-3 text-xs focus:outline-none semi">
+                            <input type="number" id="winner-trips" placeholder="عدد الرحلات" class="bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl p-3 text-xs focus:outline-none">
+                            <select id="winner-status" class="bg-[#0E2735] border border-[#EFE6D2]/15 text-[#2C8C86] font-bold rounded-xl p-3 text-xs focus:outline-none">
                                 <option value="فائز بالرحلة المجانية">فائز بجائزة كبرى</option>
                                 <option value="مسافر مميز">مسافر مميز ونشط</option>
                             </select>
                         </div>
-                        <button onclick="addNewWinner()" class="bg-[#2C8C86] hover:bg-[#23736e] text-[#EFE6D2] px-5 py-2.5 rounded-xl text-xs font-extrabold shadow-lg semi">إضافة الفائز</button>
+                        <button onclick="addNewWinner()" class="bg-[#2C8C86] hover:bg-[#23736e] text-[#EFE6D2] px-5 py-2.5 rounded-xl text-xs font-extrabold shadow-lg">إضافة الفائز</button>
                     </div>
                 </div>
             </div>
@@ -380,15 +360,15 @@
                 <h3 class="text-lg font-extrabold text-[#E0A83D] flex items-center gap-2 display"><i class="fa-solid fa-pen-to-square"></i> إدارة محتوى الصفحات السفلى</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div class="space-y-2">
-                        <label class="block text-xs font-bold text-[#C9BFA9] semi">من نحن</label>
-                        <textarea id="admin-about-text" rows="3" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl p-3 text-xs">دليل المسافر العراقي (Flyway) هو البوابة الذكية الأولى لإدارة السفر، حجز الفنادق الفاخرة، إصدار التأشيرات، وتأمين السفر المعتمد للمسافر العراقي.</textarea>
+                        <label class="block text-xs font-bold text-[#C9BFA9]">من نحن</label>
+                        <textarea id="admin-about-text" rows="3" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl p-3 text-xs">دليل المسافر العراقي (Flyway) هو البوابة الذكية الأولى لإدارة السفر، حجز الفنادق الفاخرة، إصدار التأشيرات، وتأمين السفر المعتمد.</textarea>
                     </div>
                     <div class="space-y-2">
-                        <label class="block text-xs font-bold text-[#C9BFA9] semi">اتصل بنا</label>
+                        <label class="block text-xs font-bold text-[#C9BFA9]">اتصل بنا</label>
                         <textarea id="admin-contact-text" rows="3" class="w-full bg-[#0E2735] border border-[#EFE6D2]/15 text-[#EFE6D2] rounded-xl p-3 text-xs">العنوان: بغداد، الكرادة، العراق&#10;الهاتف / واتساب: +964 770 000 0000</textarea>
                     </div>
                 </div>
-                <button onclick="saveSiteContent()" class="bg-[#C9603A] hover:bg-[#8F3F22] text-[#EFE6D2] px-6 py-3 rounded-xl text-xs font-extrabold shadow-lg semi">حفظ التحديثات</button>
+                <button onclick="saveSiteContent()" class="bg-[#C9603A] hover:bg-[#8F3F22] text-[#EFE6D2] px-6 py-3 rounded-xl text-xs font-extrabold shadow-lg">حفظ التحديثات</button>
             </div>
         </section>
 
@@ -404,10 +384,10 @@
         <div id="chat-window" class="chat-box absolute bottom-20 left-0 w-80 sm:w-96 bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl shadow-2xl flex-col overflow-hidden text-right z-50">
             <div class="bg-[#0E2735] p-4 border-b border-[#EFE6D2]/10 flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-full bg-[#C9603A] text-[#EFE6D2] flex items-center justify-center font-bold text-sm display">SS</div>
+                    <div class="w-9 h-9 rounded-full bg-[#C9603A] text-[#EFE6D2] flex items-center justify-center font-bold text-sm">SS</div>
                     <div>
-                        <h4 class="text-xs font-extrabold text-[#EFE6D2] display">دعم دليل المسافر الفوري</h4>
-                        <p class="text-[10px] text-[#2C8C86]"><i class="fa-solid fa-circle text-[8px] ml-1"></i> محدّث الآن</p>
+                        <h4 class="text-xs font-extrabold text-[#EFE6D2]">دعم الدليل الفوري</h4>
+                        <p class="text-[10px] text-[#2C8C86]"><i class="fa-solid fa-circle text-[8px] ml-1"></i> متصل الآن للإجابة</p>
                     </div>
                 </div>
                 <button onclick="toggleChat()" class="text-[#C9BFA9] hover:text-[#EFE6D2]"><i class="fa-solid fa-xmark"></i></button>
@@ -415,12 +395,12 @@
 
             <div id="chat-messages" class="p-4 space-y-3 h-72 overflow-y-auto text-xs bg-[#0E2735]/50">
                 <div class="bg-[#0E2735] p-3 rounded-2xl rounded-tr-none text-[#C9BFA9] border border-[#EFE6D2]/5">
-                    أهلاً بك في دليل المسافر العراقي! ✈️ كيف يمكننا مساعدتك اليوم؟
+                    أهلاً بك أستاذنا العزيز في دليل المسافر العراقي! ✈️ كيف يمكننا مساعدتك اليوم؟
                 </div>
             </div>
 
             <div class="p-3 bg-[#123243] border-t border-[#EFE6D2]/10 space-y-1.5">
-                <p class="text-[10px] font-bold text-[#E0A83D] mb-1 semi">الأسئلة الشائعة:</p>
+                <p class="text-[10px] font-bold text-[#E0A83D] mb-1">الأسئلة الشائعة:</p>
                 <div class="flex flex-wrap gap-1.5">
                     <button onclick="sendFAQ('شنو شروط فيزا تركيا وجورجيا وماليزيا؟')" class="bg-[#0E2735] hover:bg-[#C9603A]/20 text-[#C9BFA9] border border-[#EFE6D2]/10 px-2.5 py-1.5 rounded-lg text-[10px]">✈️ شروط الفيزا</button>
                     <button onclick="sendFAQ('شلون اشترك بمسابقات الدليل؟')" class="bg-[#0E2735] hover:bg-[#C9603A]/20 text-[#C9BFA9] border border-[#EFE6D2]/10 px-2.5 py-1.5 rounded-lg text-[10px]">🏆 المسابقات</button>
@@ -434,11 +414,11 @@
         </div>
     </div>
 
-    <!-- نافذة منبثقة للمعلومات (من نحن، اتصل بنا، الخ) -->
+    <!-- نافذة منبثقة للمعلومات -->
     <div id="info-modal" class="modal fixed inset-0 z-50 bg-[#0E2735]/80 backdrop-blur-sm items-center justify-center p-4 overflow-y-auto">
         <div class="bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-4 shadow-2xl relative text-right">
             <button onclick="closeInfoModal()" class="absolute left-6 top-6 text-[#C9BFA9] hover:text-[#EFE6D2] bg-[#0E2735] w-10 h-10 rounded-full flex items-center justify-center border border-[#EFE6D2]/10"><i class="fa-solid fa-xmark"></i></button>
-            <h3 id="info-modal-title" class="text-xl font-extrabold text-[#E0A83D] display">العنوان</h3>
+            <h3 id="info-modal-title" class="text-xl font-extrabold text-[#E0A83D]">العنوان</h3>
             <p id="info-modal-body" class="text-[#C9BFA9] text-xs leading-relaxed whitespace-pre-line"></p>
         </div>
     </div>
@@ -450,10 +430,10 @@
                 <i class="fa-solid fa-circle-check"></i>
             </div>
             <div class="space-y-2">
-                <h3 class="text-xl font-extrabold text-[#EFE6D2] display">تم إصدار وثيقة التأمين بنجاح!</h3>
-                <p class="text-[#C9BFA9] text-xs leading-relaxed">محدّث الآن. تم إرسال نسخة PDF من الوثيقة عبر الواتساب والإيميل.</p>
+                <h3 class="text-xl font-extrabold text-[#EFE6D2]">تم إصدار وثيقة التأمين بنجاح!</h3>
+                <p class="text-[#C9BFA9] text-xs leading-relaxed">تم إرسال نسخة PDF من الوثيقة عبر الواتساب والإيميل.</p>
             </div>
-            <button onclick="closeInsuranceModal()" class="w-full bg-[#C9603A] text-[#EFE6D2] py-3 rounded-xl text-xs font-extrabold semi">حسناً</button>
+            <button onclick="closeInsuranceModal()" class="w-full bg-[#C9603A] text-[#EFE6D2] py-3 rounded-xl text-xs font-extrabold">حسناً</button>
         </div>
     </div>
 
@@ -465,11 +445,11 @@
         </div>
     </div>
 
-    <!-- Footer الاحترافي والمطابق للهوية -->
+    <!-- Footer -->
     <footer class="bg-[#0E2735] border-t border-[#EFE6D2]/10 py-8 mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[#C9BFA9]">
-            <p>دليل المسافر العراقي (Flyway) — نظام هوية بصرية، إصدار أول © 2026</p>
-            <div class="flex flex-wrap gap-6 font-bold semi">
+            <p>جميع الحقوق محفوظة © 2026 دليل المسافر العراقي (Flyway)</p>
+            <div class="flex flex-wrap gap-6 font-bold">
                 <button onclick="openInfoPage('about')" class="hover:text-[#E0A83D] transition-all">من نحن</button>
                 <button onclick="openInfoPage('contact')" class="hover:text-[#E0A83D] transition-all">اتصل بنا</button>
                 <button onclick="openInfoPage('terms')" class="hover:text-[#E0A83D] transition-all">الشروط والأحكام</button>
@@ -483,8 +463,8 @@
         let isLoggedIn = true;
 
         let siteContent = {
-            about: "دليل المسافر العراقي (Flyway) هو البوابة الذكية الأولى لإدارة السفر، حجز الفنادق الفاخرة، إصدار التأشيرات، وتأمين السفر المعتمد.\n\nحضارة سجّلت أول وثيقة سفر، بأدوات اليوم — معلومة رسمية ودقيقة محدّثة لحظياً.",
-            contact: "العنوان الرئيسي: بغداد، الكرادة، العراق\nرقم الهاتف والواتساب للدعم: +964 770 000 0000\nالبريد الإلكتروني الرسمي: flywaytravel.co@gmail.com",
+            about: "دليل المسافر العراقي (Flyway) هو البوابة الذكية الأولى لإدارة السفر، حجز الفنادق الفاخرة، إصدار التأشيرات، وتأمين السفر المعتمد.",
+            contact: "العنوان: بغداد، الكرادة، العراق\nالهاتف / واتساب: +964 770 000 0000\nالبريد الإلكتروني: flywaytravel.co@gmail.com",
             terms: "كافة الحجوزات تخضع لسياسة الفنادق والشركات المعتمدة.",
             privacy: "نلتزم بحماية سرية البيانات الشخصية ومعلومات جوازات السفر."
         };
@@ -515,7 +495,7 @@
 
         const globalDirectory = [
             { id: 1, name: "فندق نايل فيو القاهرة", country: "مصر", city: "القاهرة", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 5 نجوم ⭐⭐⭐⭐⭐ | إطلالة مباشرة ومذهلة على نهر النيل والأهرامات.", badgeText: "5 نجوم", policy: "إلغاء مجاني قبل 48 ساعة. إمكانية تمديد الإقامة مع توفير وجبات مجانية إضافية وبنفس السعر.", facilities: ["موقف سيارات واسع ومؤمن 24 ساعة", "صيدلية طوارئ وعيادة فندقية داخلية", "مسبح خارجي وكافيهات نيلية مميزة", "مطاعم شرقية وعالمية تعمل على مدار الساعة"] },
-            { id: 2, name: "فندق القصر الملكي الفاخر", country: "تركيا", city: "إسطنبول", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 5 نجوم ⭐⭐⭐⭐⭐ | إطلالة بانورامية على البوسفور، يوفر أفخم الخدمات الفندقية.", badgeText: "5 نجوم", policy: "إلغاء مجاني حتى 48 ساعة. تمديد الإقامة متاح بسهولة حسب التوفر.", facilities: ["موقف سيارات مجاني ومؤمن 24 ساعة", "صيدلية ومركز طبي داخل الفندق", "ملاعب تنس وصالة رياضية متكاملة (GYM)", "3 كافيهات ومطاعم عالمية فاخرة"] },
+            { id: 2, name: "فندق القصر الملكي الفاخر", country: "تركيا", city: "إسطنبول", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 5 نجوم ⭐⭐⭐⭐⭐ | إطلالة بانورامية على البوسفور، يوفر أفخم الخدمات الفندقية.", badgeText: "5 نجوم", policy: "إلغاء مجاني حتى 48 ساعة. تمديد الإقامة متاح بسهولة حسب التوفر.", facilities: ["موقف سيارات مجاني ومؤمن 24 ساعة", "صيدلية ومركز طبي داخل الفندق", "ملاعب تنس وصالة رياضة متكاملة (GYM)", "3 كافيهات ومطاعم عالمية فاخرة"] },
             { id: 3, name: "فندق النجمة الذهبية", country: "تركيا", city: "إسطنبول", category: "فنادق", stars: 4, image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 4 نجوم ⭐⭐⭐⭐ | غرف مريحة وقريبة جداً من ميدان تقسيم والأسواق.", badgeText: "4 نجوم", policy: "إلغاء مجاني قبل 24 ساعة. طلب تمديد ليلة إضافية متاح مباشرة.", facilities: ["موقف سيارات خاص للنزلاء", "مرفق صيدلية ومستلزمات طبية طارئة", "كافيه ومطعم يقدم وجبات إفطار عثمانية", "خدمة تأجير سيارات ونقل هوائي"] },
             { id: 4, name: "فندق بالتيمور تبليسي الدولي", country: "جورجيا", city: "تبليسي", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 5 نجوم ⭐⭐⭐⭐⭐ | إطلالة ساحرة على شارع روستافلي التاريخي.", badgeText: "5 نجوم", policy: "إلغاء مجاني قبل 24 ساعة. تمديد ليلتي متاح فوراً مع تأكيد الغرفة.", facilities: ["مواقف سيارات آمنة تحت الأرض", "صيدلية ومراكز عناية صحية", "مسبح داخلي مدفأ وصالة رياضة", "كافيه فاخر ومطعم للمشاوي"] },
             { id: 5, name: "فندق برج العرب وسبا دبي", country: "الإمارات", city: "دبي", category: "فنادق", stars: 5, image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80", desc: "تصنيف 5 نجوم ⭐⭐⭐⭐⭐ | الفندق الأيقوني الفاخر بخدمات ملكية لا مثيل لها.", badgeText: "5 نجوم", policy: "إلغاء الحجز قبل 5 أيام. تمديد الإقامة يتطلب التنسيق المسبق مع إدارة الحجوزات.", facilities: ["مهبط هليكوبتر ومواقف سيارات خدمة تفيض (Valet)", "مركز طبي متكامل وصيدلية", "شاطئ خاص وملاعب رياضية", "أرقى المطاعم والكافيهات العالمية"] },
@@ -534,20 +514,20 @@
                         <div>
                             <div class="h-48 bg-cover bg-center relative" style="background-image: url('${item.image}');">
                                 <div class="absolute inset-0 bg-gradient-to-t from-[#123243] via-transparent to-transparent"></div>
-                                <span class="absolute top-4 right-4 bg-[#0E2735]/90 backdrop-blur text-[#E0A83D] border border-[#E0A83D]/30 px-3 py-1 rounded-xl text-xs font-bold display">${item.country}</span>
+                                <span class="absolute top-4 right-4 bg-[#0E2735]/80 backdrop-blur text-[#E0A83D] border border-[#E0A83D]/30 px-3 py-1 rounded-xl text-xs font-bold">${item.country}</span>
                                 <span class="absolute top-4 left-4 border px-2.5 py-1 rounded-xl text-[10px] font-extrabold shadow-md ${item.badgeClass}">${item.type}</span>
                             </div>
                             <div class="p-6 space-y-3">
-                                <h3 class="text-base font-extrabold text-[#EFE6D2] display">${item.country} - تأشيرة السفر</h3>
+                                <h3 class="text-base font-extrabold text-[#EFE6D2]">${item.country} - تأشيرة السفر</h3>
                                 <p class="text-[#C9BFA9] text-xs leading-relaxed">${item.desc}</p>
                                 <div class="bg-[#0E2735] p-3 rounded-2xl space-y-1 text-xs border border-[#EFE6D2]/5">
-                                    <p class="text-[#C9BFA9]"><strong class="text-[#EFE6D2]">مدة الإقامة:</strong> <span class="num">${item.duration}</span></p>
+                                    <p class="text-[#C9BFA9]"><strong class="text-[#EFE6D2]">مدة الإقامة:</strong> ${item.duration}</p>
                                     <p class="text-[#C9BFA9]"><strong class="text-[#EFE6D2]">صلاحية الجواز:</strong> ${item.passport}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="p-6 pt-0">
-                            <button class="w-full bg-[#0E2735] hover:bg-[#C9603A] hover:text-[#EFE6D2] text-[#E0A83D] border border-[#C9603A]/30 py-2.5 rounded-xl text-xs font-bold transition-all shadow-sm semi">طلب استشارة أو حجز تذكرة</button>
+                            <button class="w-full bg-[#0E2735] hover:bg-[#C9603A] hover:text-[#EFE6D2] text-[#E0A83D] border border-[#C9603A]/30 py-2.5 rounded-xl text-xs font-bold transition-all shadow-sm">طلب استشارة أو حجز تذكرة</button>
                         </div>
                     </div>
                 `;
@@ -558,11 +538,11 @@
             currentVisaFilter = category;
             ['all', 'none', 'arrival', 'pre'].forEach(cat => {
                 const btn = document.getElementById(`btn-cat-${cat}`);
-                if(btn) btn.className = "bg-[#123243] text-[#C9BFA9] border border-[#EFE6D2]/10 px-4 py-2 rounded-xl text-xs font-bold transition-all semi";
+                if(btn) btn.className = "bg-[#123243] text-[#C9BFA9] border border-[#EFE6D2]/10 px-4 py-2 rounded-xl text-xs font-bold transition-all";
             });
             const activeBtnId = category === 'all' ? 'btn-cat-all' : (category === 'بدون فيزا' ? 'btn-cat-none' : (category === 'عند الوصول' ? 'btn-cat-arrival' : 'btn-cat-pre'));
             const activeBtn = document.getElementById(activeBtnId);
-            if(activeBtn) activeBtn.className = "bg-[#C9603A] text-[#EFE6D2] px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md semi";
+            if(activeBtn) activeBtn.className = "bg-[#C9603A] text-[#EFE6D2] px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md";
             
             const searchVal = document.getElementById('visa-search').value.trim().toLowerCase();
             const filtered = visaDatabase.filter(item => {
@@ -592,23 +572,16 @@
                     <div class="bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
                         <div>
                             <div class="h-48 bg-cover bg-center relative" style="background-image: url('${item.image}');">
-                                <div class="absolute inset-0 bg-gradient-to-t from-[#123243] via-transparent to-transparent"></div>
-                                <span class="absolute top-4 right-4 bg-[#0E2735]/90 backdrop-blur text-[#E0A83D] border border-[#E0A83D]/30 px-3 py-1 rounded-xl text-xs font-bold display">${item.country} - ${item.city}</span>
-                                <span class="absolute top-4 left-4 bg-[#C9603A] text-[#EFE6D2] px-2.5 py-1 rounded-xl text-[10px] font-extrabold shadow-md">${item.badgeText}</span>
+                                <span class="absolute top-4 right-4 bg-[#0E2735]/80 text-[#E0A83D] px-3 py-1 rounded-xl text-xs font-bold">${item.country} - ${item.city}</span>
+                                <span class="absolute top-4 left-4 bg-[#C9603A] text-[#EFE6D2] px-2.5 py-1 rounded-xl text-[10px] font-extrabold">${item.badgeText}</span>
                             </div>
                             <div class="p-6 space-y-3">
-                                <h3 class="text-base font-extrabold text-[#EFE6D2] display">${item.name}</h3>
+                                <h3 class="text-base font-extrabold text-[#EFE6D2]">${item.name}</h3>
                                 <p class="text-[#C9BFA9] text-xs leading-relaxed">${item.desc}</p>
-                                <div class="bg-[#0E2735] p-3 rounded-2xl space-y-1.5 text-xs border border-[#EFE6D2]/5">
-                                    <p class="text-[#2C8C86] font-bold semi"><i class="fa-solid fa-circle-check ml-1"></i> ${item.policy.substring(0, 45)}...</p>
-                                    <p class="text-[#C9BFA9]"><i class="fa-solid fa-shield-heart text-[#E0A83D] ml-1"></i> مرافق متكاملة: <span class="num">${item.facilities.length}</span> خدمات رئيسية</p>
-                                </div>
                             </div>
                         </div>
                         <div class="p-6 pt-0">
-                            <button onclick="openHotelDetails(${item.id})" class="w-full bg-[#0E2735] hover:bg-[#C9603A] hover:text-[#EFE6D2] text-[#E0A83D] border border-[#C9603A]/30 py-3 rounded-xl text-xs font-bold transition-all shadow-md flex items-center justify-center gap-2 semi">
-                                <i class="fa-solid fa-circle-info"></i> عرض التفاصيل والسياسات والمرافق
-                            </button>
+                            <button onclick="openHotelDetails(${item.id})" class="w-full bg-[#0E2735] hover:bg-[#C9603A] hover:text-[#EFE6D2] text-[#E0A83D] border border-[#C9603A]/30 py-3 rounded-xl text-xs font-bold transition-all">عرض التفاصيل والسياسات والمرافق</button>
                         </div>
                     </div>
                 `;
@@ -619,14 +592,10 @@
             const starVal = document.getElementById('star-filter').value;
             const categoryVal = document.getElementById('category-filter').value;
             const searchVal = document.getElementById('destination-search').value.trim().toLowerCase();
-
             const filtered = globalDirectory.filter(item => {
                 let matchStar = starVal === 'all' || (item.category === 'فنادق' && item.stars === parseInt(starVal));
                 let matchCategory = categoryVal === 'all' || item.category === categoryVal;
-                let matchSearch = searchVal === '' || 
-                                  item.name.toLowerCase().includes(searchVal) || 
-                                  item.country.toLowerCase().includes(searchVal) || 
-                                  item.city.toLowerCase().includes(searchVal);
+                let matchSearch = searchVal === '' || item.name.toLowerCase().includes(searchVal) || item.country.toLowerCase().includes(searchVal);
                 return matchStar && matchCategory && matchSearch;
             });
             renderListings(filtered);
@@ -635,35 +604,15 @@
         function openHotelDetails(id) {
             const item = globalDirectory.find(h => h.id === id);
             if(!item) return;
-
             document.getElementById('modal-content').innerHTML = `
                 <div class="space-y-4">
-                    <div class="h-64 bg-cover bg-center rounded-2xl relative shadow-lg" style="background-image: url('${item.image}');">
-                        <span class="absolute top-4 right-4 bg-[#0E2735]/90 text-[#E0A83D] px-3.5 py-1.5 rounded-xl text-xs font-extrabold border border-[#E0A83D]/30 display">${item.country} - ${item.city}</span>
-                        <span class="absolute top-4 left-4 bg-[#C9603A] text-[#EFE6D2] px-3 py-1 rounded-xl text-xs font-extrabold">${item.badgeText}</span>
-                    </div>
-                    <div class="space-y-2">
-                        <h2 class="text-2xl font-extrabold text-[#EFE6D2] display">${item.name}</h2>
-                        <p class="text-[#C9BFA9] text-xs sm:text-sm leading-relaxed">${item.desc}</p>
-                    </div>
+                    <h2 class="text-2xl font-extrabold text-[#EFE6D2]">${item.name}</h2>
+                    <p class="text-[#C9BFA9] text-xs leading-relaxed">${item.desc}</p>
                     <div class="bg-[#0E2735] p-4 rounded-2xl border border-[#EFE6D2]/10 space-y-2">
-                        <h4 class="text-xs font-extrabold text-[#E0A83D] flex items-center gap-2 display"><i class="fa-solid fa-file-contract text-sm"></i> سياسات الحجز والإلغاء وتمديد الإقامة</h4>
+                        <h4 class="text-xs font-extrabold text-[#E0A83D]">سياسات الحجز والإلغاء وتمديد الإقامة</h4>
                         <p class="text-[#C9BFA9] text-xs leading-relaxed">${item.policy}</p>
                     </div>
-                    <div class="bg-[#0E2735] p-4 rounded-2xl border border-[#EFE6D2]/10 space-y-3">
-                        <h4 class="text-xs font-extrabold text-[#E0A83D] flex items-center gap-2 display"><i class="fa-solid fa-star-of-life text-sm"></i> المرافق والخدمات الداخلية</h4>
-                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#C9BFA9]">
-                            ${item.facilities.map(f => `<li class="flex items-center gap-2 bg-[#123243] p-2 rounded-xl border border-[#EFE6D2]/5"><i class="fa-solid fa-check text-[#2C8C86]"></i> ${f}</li>`).join('')}
-                        </ul>
-                    </div>
-                    <div class="pt-4 flex gap-3">
-                        <button onclick="closeModal(); alert('تم استلام طلب الحجز بنجاح! سيقوم فريق الدعم بالتواصل معك.');" class="flex-1 bg-[#C9603A] hover:bg-[#8F3F22] text-[#EFE6D2] py-3 rounded-xl text-xs font-extrabold shadow-lg transition-all semi">
-                            <i class="fa-solid fa-calendar-check ml-1"></i> تأكيد الحجز الفوري
-                        </button>
-                        <button onclick="closeModal()" class="bg-[#0E2735] hover:bg-[#183C50] text-[#C9BFA9] border border-[#EFE6D2]/10 px-6 py-3 rounded-xl text-xs font-bold transition-all semi">
-                            إغلاق
-                        </button>
-                    </div>
+                    <button onclick="closeModal()" class="w-full bg-[#C9603A] text-[#EFE6D2] py-3 rounded-xl text-xs font-extrabold">إغلاق</button>
                 </div>
             `;
             document.getElementById('hotel-modal').classList.add('modal-open');
@@ -679,9 +628,9 @@
                     offersGrid.innerHTML += `
                         <div class="bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl p-6 shadow-xl space-y-3 relative overflow-hidden">
                             <span class="bg-[#C9603A]/20 text-[#C9603A] border border-[#C9603A]/30 px-3 py-1 rounded-full text-[10px] font-extrabold">${o.badge}</span>
-                            <h4 class="text-base font-extrabold text-[#EFE6D2] display">${o.title}</h4>
+                            <h4 class="text-base font-extrabold text-[#EFE6D2]">${o.title}</h4>
                             <p class="text-[#C9BFA9] text-xs leading-relaxed">${o.desc}</p>
-                            <button onclick="alert('تم تسجيل اهتمامك بالعرض! سيتم التواصل معك لتأكيد مشاركتك.')" class="w-full bg-[#C9603A] hover:bg-[#8F3F22] text-[#EFE6D2] py-2.5 rounded-xl text-xs font-extrabold shadow-md mt-2 semi">اشترك أو استفد من العرض</button>
+                            <button onclick="alert('تم تسجيل اهتمامك بالعرض! سيتم التواصل معك لتأكيد مشاركتك.')" class="w-full bg-[#C9603A] text-[#EFE6D2] py-2.5 rounded-xl text-xs font-extrabold shadow-md mt-2">اشترك أو استفد من العرض</button>
                         </div>`;
                 });
             }
@@ -692,9 +641,9 @@
                 winnersDatabase.forEach(w => {
                     winnersBody.innerHTML += `
                         <tr class="hover:bg-[#0E2735]/50">
-                            <td class="py-3 pr-4 font-bold text-[#EFE6D2] semi"><i class="fa-solid fa-medal text-[#E0A83D] ml-1"></i> ${w.name}</td>
+                            <td class="py-3 pr-4 font-bold text-[#EFE6D2]"><i class="fa-solid fa-medal text-[#E0A83D] ml-1"></i> ${w.name}</td>
                             <td class="py-3 text-[#E0A83D]">${w.prize}</td>
-                            <td class="py-3 num">${w.trips} رحلات</td>
+                            <td class="py-3">${w.trips} رحلات</td>
                             <td class="py-3 text-left pl-4"><span class="bg-[#2C8C86]/20 text-[#2C8C86] px-2.5 py-1 rounded-lg text-[10px] font-bold">${w.status}</span></td>
                         </tr>`;
                 });
@@ -759,7 +708,7 @@
         function sendFAQ(q) {
             appendMessage(q, 'user');
             setTimeout(() => {
-                appendMessage("مرحباً بك! فريق دعم دليل المسافر العراقي متواجد لخدمتك ومساعدتك دائماً.", 'bot');
+                appendMessage("مرحباً بك! فريق الدعم متواجد لخدمتك ومساعدتك دائماً.", 'bot');
             }, 500);
         }
 
@@ -792,12 +741,12 @@
                 const el = document.getElementById(`section-${id}`);
                 if(el) el.classList.add('hidden');
                 const nav = document.getElementById(`nav-${id}`);
-                if(nav) nav.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-[#C9BFA9] hover:text-[#EFE6D2] semi";
+                if(nav) nav.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-[#C9BFA9] hover:text-[#EFE6D2]";
             });
 
             document.getElementById(`section-${tabId}`).classList.remove('hidden');
             const activeNav = document.getElementById(`nav-${tabId}`);
-            if(activeNav) activeNav.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-[#C9603A] text-[#EFE6D2] shadow-md semi";
+            if(activeNav) activeNav.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-[#C9603A] text-[#EFE6D2] shadow-md";
         }
 
         function simulateLogin() { isLoggedIn = true; updateAuthState(); }
