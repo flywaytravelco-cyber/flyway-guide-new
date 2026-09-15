@@ -34,8 +34,8 @@
                 </div>
                 
                 <nav class="hidden md:flex items-center gap-2 bg-[#1e293b] p-1.5 rounded-2xl border border-slate-700/50">
-                    <button onclick="switchTab('visa')" id="nav-visa" class="px-4 py-2 rounded-xl text-xs font-bold transition-all gold-gradient text-slate-950 shadow-md">قسم التأشيرات (الفيزا)</button>
-                    <button onclick="switchTab('destinations')" id="nav-destinations" class="px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white">دليل الوجهات والفنادق</button>
+                    <button onclick="switchTab('visa')" id="nav-visa" class="px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white">قسم التأشيرات (الفيزا)</button>
+                    <button onclick="switchTab('destinations')" id="nav-destinations" class="px-4 py-2 rounded-xl text-xs font-bold transition-all gold-gradient text-slate-950 shadow-md">دليل الوجهات والفنادق</button>
                 </nav>
             </div>
 
@@ -93,7 +93,7 @@
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
 
         <!-- ================= SECTION 1: VISAS ================= -->
-        <section id="section-visa" class="space-y-6">
+        <section id="section-visa" class="hidden space-y-6">
              <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-800 p-8 sm:p-12 text-center shadow-2xl mb-8">
                 <div class="absolute inset-0 opacity-25 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80');"></div>
                 <div class="relative z-10 max-w-2xl mx-auto">
@@ -119,26 +119,35 @@
         </section>
 
         <!-- ================= SECTION 2: DESTINATIONS & HOTELS ================= -->
-        <section id="section-destinations" class="hidden space-y-6">
+        <section id="section-destinations" class="space-y-6">
              <div class="text-center max-w-2xl mx-auto mb-8">
                 <h2 class="text-3xl font-extrabold text-white mb-2">دليل الوجهات الخارجية والفنادق</h2>
                 <p class="text-slate-400 text-xs">أفضل الفنادق الموصى بها، الأماكن الترفيهية، والمستشفيات المعتمدة في وجهاتك المفضلة.</p>
             </div>
+            
+            <!-- فلتر الدول السياحية -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button onclick="filterDestCat('all')" id="btn-dest-all" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md">جميع الوجهات</button>
+                <button onclick="filterDestCat('تركيا')" id="btn-dest-turkey" class="bg-[#1e293b] text-slate-300 border border-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition-all hover:text-white">تركيا - إسطنبول</button>
+                <button onclick="filterDestCat('جورجيا')" id="btn-dest-georgia" class="bg-[#1e293b] text-slate-300 border border-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition-all hover:text-white">جورجيا - تبليسي</button>
+                <button onclick="filterDestCat('الإمارات')" id="btn-dest-uae" class="bg-[#1e293b] text-slate-300 border border-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition-all hover:text-white">الإمارات - دبي</button>
+            </div>
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="destinations-grid">
                 
                 <!-- تركيا -->
-                <div class="bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
+                <div class="destination-card bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between" data-country="تركيا">
                     <div>
                         <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=800&q=80');">
                             <div class="absolute inset-0 bg-gradient-to-t from-[#1e293b] via-transparent to-transparent"></div>
-                            <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur text-amber-400 border border-amber-500/30 px-3 py-1 rounded-xl text-xs font-bold">تركيا - إسطنبول</span>
+                            <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur text-amber-400 border border-amber-500/30 px-3 py-1 rounded-xl text-xs font-bold">تركيا - إسطنبول</span>
                         </div>
                         <div class="p-6 space-y-4">
                             <h3 class="text-lg font-extrabold text-white">دليل الفنادق والخدمات في إسطنبول</h3>
                             <p class="text-slate-300 text-xs leading-relaxed">أبرز الفنادق القريبة من ساحة تقسيم وسلطان أحمد، مع خيارات الإقامة الاقتصادية والفاخرة للمسافر العراقي.</p>
                             <ul class="space-y-2 text-xs text-slate-300">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق بيرا باجاسي (5 نجوم)</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق غرين تري (4 نجوم - تقسيم)</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق بيرا باجاسي <span class="text-amber-400 font-bold">(5 نجوم)</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق غرين تري <span class="text-amber-400 font-bold">(4 نجوم - تقسيم)</span></li>
                                 <li class="flex items-center gap-2"><i class="fa-solid fa-hospital text-emerald-400"></i>مستشفيات معتمدة: أجيبادم وميموريال</li>
                             </ul>
                         </div>
@@ -149,18 +158,18 @@
                 </div>
 
                 <!-- جورجيا -->
-                <div class="bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
+                <div class="destination-card bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between" data-country="جورجيا">
                     <div>
                         <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80');">
                             <div class="absolute inset-0 bg-gradient-to-t from-[#1e293b] via-transparent to-transparent"></div>
-                            <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur text-amber-400 border border-amber-500/30 px-3 py-1 rounded-xl text-xs font-bold">جورجيا - تبليسي</span>
+                            <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur text-amber-400 border border-amber-500/30 px-3 py-1 rounded-xl text-xs font-bold">جورجيا - تبليسي</span>
                         </div>
                         <div class="p-6 space-y-4">
                             <h3 class="text-lg font-extrabold text-white">دليل الفنادق والخدمات في تبليسي</h3>
                             <p class="text-slate-300 text-xs leading-relaxed">أفضل الفنادق في شارع روستافلي والمدينة القديمة، ومواقع الترفيه العائلي والطبيعة الساحرة.</p>
                             <ul class="space-y-2 text-xs text-slate-300">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق بالتيمور تبليسي (5 نجوم)</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق إيبيس ستايلز تبليسي</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق بالتيمور تبليسي <span class="text-amber-400 font-bold">(5 نجوم)</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق إيبيس ستايلز تبليسي <span class="text-amber-400 font-bold">(4 نجوم)</span></li>
                                 <li class="flex items-center gap-2"><i class="fa-solid fa-umbrella-beach text-emerald-400"></i>الأماكن الترفيهية: بحيرة السلاحف وتليفريك تبليسي</li>
                             </ul>
                         </div>
@@ -171,18 +180,18 @@
                 </div>
 
                 <!-- الإمارات -->
-                <div class="bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
+                <div class="destination-card bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between" data-country="الإمارات">
                     <div>
                         <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80');">
                             <div class="absolute inset-0 bg-gradient-to-t from-[#1e293b] via-transparent to-transparent"></div>
-                            <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur text-amber-400 border border-amber-500/30 px-3 py-1 rounded-xl text-xs font-bold">الإمارات - دبي</span>
+                            <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur text-amber-400 border border-amber-500/30 px-3 py-1 rounded-xl text-xs font-bold">الإمارات - دبي</span>
                         </div>
                         <div class="p-6 space-y-4">
                             <h3 class="text-lg font-extrabold text-white">دليل الفنادق والخدمات في دبي</h3>
                             <p class="text-slate-300 text-xs leading-relaxed">أرقى الفنادق القريبة من دبي مول وبرج خليفة، مع باقات سياحية مميزة تناسب العائلات العراقية.</p>
                             <ul class="space-y-2 text-xs text-slate-300">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق أرماني دبي (برج خليفة)</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق روف دبي مارينا</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق أرماني دبي (برج خليفة) <span class="text-amber-400 font-bold">(5 نجوم)</span></li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق روف دبي مارينا <span class="text-amber-400 font-bold">(3 نجوم)</span></li>
                                 <li class="flex items-center gap-2"><i class="fa-solid fa-ticket text-emerald-400"></i>فعاليات: دبي فستيفال سيتي وسفاري الصحراء</li>
                             </ul>
                         </div>
@@ -341,6 +350,25 @@
         function filterVisas() {
             const keyword = document.getElementById('visa-search').value;
             renderVisas(currentCategory, keyword);
+        }
+
+        function filterDestCat(country) {
+            ['all', 'turkey', 'georgia', 'uae'].forEach(c => {
+                const btn = document.getElementById(`btn-dest-${c}`);
+                if(btn) btn.className = "bg-[#1e293b] text-slate-300 border border-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition-all hover:text-white";
+            });
+            
+            let activeId = country === 'all' ? 'btn-dest-all' : (country === 'تركيا' ? 'btn-dest-turkey' : (country === 'جورجيا' ? 'btn-dest-georgia' : 'btn-dest-uae'));
+            document.getElementById(activeId).className = "bg-amber-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md";
+
+            const cards = document.querySelectorAll('.destination-card');
+            cards.forEach(card => {
+                if(country === 'all' || card.getAttribute('data-country') === country) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         }
 
         function updateAuthState() {
