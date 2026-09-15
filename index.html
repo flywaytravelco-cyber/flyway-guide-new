@@ -21,7 +21,6 @@
             --clay-dark:#8F3F22;
             --gold:#E0A83D;
             --river:#2C8C86;
-            --line: rgba(239,230,210,0.14);
         }
         body { font-family: 'IBM Plex Sans Arabic', sans-serif; background-color: var(--ink); color: var(--sand); direction: rtl; text-align: right; }
         .display { font-family: 'Cairo', sans-serif; font-weight: 800; }
@@ -68,7 +67,6 @@
                     <button onclick="toggleDropdown()" class="flex items-center gap-3 bg-[#123243] pl-3 pr-4 py-2 rounded-xl border border-[#EFE6D2]/10 hover:border-[#C9603A]/30 transition-all relative">
                         <span class="text-xs font-bold text-[#EFE6D2]">Super Support</span>
                         <div class="w-9 h-9 rounded-full bg-[#C9603A] text-[#EFE6D2] flex items-center justify-center font-bold text-sm shadow-md">SS</div>
-                        <!-- شعار تنبيه جديد يظهر هنا -->
                         <span id="nav-notification-badge" class="absolute -top-1 -right-1 bg-rose-500 text-white w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center hidden">0</span>
                         <i class="fa-solid fa-chevron-down text-[#C9BFA9] text-xs mr-1"></i>
                     </button>
@@ -310,7 +308,7 @@
             </div>
         </section>
 
-        <!-- 5. لوحة التحكم (مع نظام إشعارات الدعم الفعلي) -->
+        <!-- 5. لوحة التحكم (مع نافذة الرد الاحترافية) -->
         <section id="section-admin" class="hidden space-y-8">
              <div class="bg-[#C9603A]/10 border border-[#C9603A]/30 rounded-3xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div>
@@ -322,7 +320,7 @@
                 </div>
             </div>
 
-            <!-- خانة استفسارات الدعم الفوري الواردة (تحديث حي للإشعارات) -->
+            <!-- صندوق رسائل الدعم الفوري الواردة -->
             <div class="bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-4">
                 <div class="flex justify-between items-center">
                     <h3 class="text-lg font-extrabold text-[#E0A83D] flex items-center gap-2 display">
@@ -444,7 +442,41 @@
         </div>
     </div>
 
-    <!-- نافذة منبثقة للمعلومات -->
+    <!-- نافذة رد الأدمن الاحترافية المخصصة (Modal) -->
+    <div id="admin-reply-modal" class="modal fixed inset-0 z-50 bg-[#0E2735]/85 backdrop-blur-md items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-[#123243] border border-[#EFE6D2]/15 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-5 shadow-2xl relative text-right">
+            <button onclick="closeAdminReplyModal()" class="absolute left-6 top-6 text-[#C9BFA9] hover:text-[#EFE6D2] bg-[#0E2735] w-10 h-10 rounded-full flex items-center justify-center border border-[#EFE6D2]/10"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="flex items-center gap-3">
+                <div class="bg-[#C9603A] text-[#EFE6D2] p-3 rounded-2xl">
+                    <i class="fa-solid fa-reply text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-extrabold text-[#EFE6D2] display">الرد على استفسار العميل</h3>
+                    <p class="text-xs text-[#E0A83D]" id="modal-sender-label">المرسل: مسافر زائر</p>
+                </div>
+            </div>
+
+            <div class="bg-[#0E2735] p-4 rounded-2xl border border-[#EFE6D2]/10 space-y-1">
+                <p class="text-[10px] font-bold text-[#C9BFA9]">نص استفسار العميل الوارد:</p>
+                <p id="modal-question-text" class="text-xs text-[#EFE6D2] font-semibold"></p>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-xs font-bold text-[#C9BFA9]">اكتب ردك الاحترافي للعميل:</label>
+                <textarea id="admin-reply-textarea" rows="4" placeholder="اكتب الرد هنا ليرسل مباشرة إلى شات العميل..." class="w-full bg-[#0E2735] border border-[#EFE6D2]/20 text-[#EFE6D2] placeholder-[#C9BFA9]/50 rounded-2xl p-4 text-xs focus:ring-2 focus:ring-[#C9603A] focus:outline-none"></textarea>
+            </div>
+
+            <div class="flex gap-3 pt-2">
+                <button onclick="submitAdminReply()" class="flex-grow bg-[#C9603A] hover:bg-[#8F3F22] text-[#EFE6D2] py-3 rounded-xl text-xs font-extrabold shadow-lg transition-all">
+                    <i class="fa-solid fa-paper-plane ml-1"></i> إرسال الرد للعميل فوراً
+                </button>
+                <button onclick="closeAdminReplyModal()" class="bg-[#0E2735] hover:bg-[#183C50] text-[#C9BFA9] px-5 py-3 rounded-xl text-xs font-bold border border-[#EFE6D2]/10">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نوافذ أخرى (معلومات، تأمين، فندق) -->
     <div id="info-modal" class="modal fixed inset-0 z-50 bg-[#0E2735]/80 backdrop-blur-sm items-center justify-center p-4 overflow-y-auto">
         <div class="bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-4 shadow-2xl relative text-right">
             <button onclick="closeInfoModal()" class="absolute left-6 top-6 text-[#C9BFA9] hover:text-[#EFE6D2] bg-[#0E2735] w-10 h-10 rounded-full flex items-center justify-center border border-[#EFE6D2]/10"><i class="fa-solid fa-xmark"></i></button>
@@ -453,7 +485,6 @@
         </div>
     </div>
 
-    <!-- نافذة نجاح التأمين -->
     <div id="insurance-modal" class="modal fixed inset-0 z-50 bg-[#0E2735]/80 backdrop-blur-sm items-center justify-center p-4 overflow-y-auto">
         <div class="bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-6 shadow-2xl text-center">
             <div class="w-16 h-16 bg-[#2C8C86]/20 text-[#2C8C86] rounded-full flex items-center justify-center mx-auto text-3xl border border-[#2C8C86]/30">
@@ -467,7 +498,6 @@
         </div>
     </div>
 
-    <!-- نافذة تفاصيل الفندق -->
     <div id="hotel-modal" class="modal fixed inset-0 z-50 bg-[#0E2735]/80 backdrop-blur-sm items-center justify-center p-4 overflow-y-auto">
         <div class="bg-[#123243] border border-[#EFE6D2]/10 rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl relative max-h-[90vh] overflow-y-auto text-right">
             <button onclick="closeModal()" class="absolute left-6 top-6 text-[#C9BFA9] hover:text-[#EFE6D2] bg-[#0E2735] w-10 h-10 rounded-full flex items-center justify-center border border-[#EFE6D2]/10"><i class="fa-solid fa-xmark"></i></button>
@@ -491,7 +521,8 @@
     <!-- JavaScript Engine -->
     <script>
         let isLoggedIn = true;
-        let supportMessages = []; // مصفوفة لتخزين رسائل الدعم الحية
+        let supportMessages = [];
+        let activeReplyId = null;
 
         let siteContent = {
             about: "دليل المسافر العراقي (Flyway) هو البوابة الذكية الأولى لإدارة السفر، حجز الفنادق الفاخرة، إصدار التأشيرات، وتأمين السفر المعتمد.",
@@ -756,14 +787,12 @@
             }, 700);
         }
 
-        // دالة تسجيل رسالة الدعم وإرسال إشعار فوري للداشبورد
         function registerSupportMessage(text, senderName) {
             const timeNow = new Date().toLocaleTimeString('ar-IQ', {hour: '2-digit', minute:'2-digit'});
             supportMessages.unshift({ id: Date.now(), name: senderName, message: text, time: timeNow });
             updateAdminSupportUI();
         }
 
-        // تحديث واجهة الإشعارات داخل لوحة تحكم الأدمن
         function updateAdminSupportUI() {
             const tbody = document.getElementById('admin-support-messages');
             const badgeNav = document.getElementById('nav-notification-badge');
@@ -798,23 +827,46 @@
                         <td class="py-3 font-bold text-[#EFE6D2]">${item.name}</td>
                         <td class="py-3 text-[#EFE6D2]">${item.message}</td>
                         <td class="py-3 text-left pl-4">
-                            <button onclick="replyToSupport(${item.id})" class="bg-[#2C8C86] hover:bg-[#23736e] text-[#EFE6D2] px-3 py-1 rounded-lg text-[10px] font-bold">رد وتواصل</button>
+                            <button onclick="openAdminReplyModal(${item.id})" class="bg-[#2C8C86] hover:bg-[#23736e] text-[#EFE6D2] px-3.5 py-1.5 rounded-xl text-xs font-bold shadow-md transition-all">رد وتواصل</button>
                         </td>
                     </tr>
                 `;
             });
         }
 
-        function replyToSupport(id) {
+        // فتح نافذة الرد الاحترافية للأدمن
+        function openAdminReplyModal(id) {
             const msg = supportMessages.find(m => m.id === id);
-            if(msg) {
-                const replyText = prompt(`الرد على استفسار (${msg.name}):\n"${msg.message}"\n\nاكتب ردك هنا:`);
-                if(replyText) {
-                    alert('تم إرسال الرد بنجاح إلى المسافر!');
-                    supportMessages = supportMessages.filter(m => m.id !== id);
-                    updateAdminSupportUI();
-                }
+            if(!msg) return;
+            activeReplyId = id;
+            document.getElementById('modal-sender-label').innerText = `المرسل: ${msg.name}`;
+            document.getElementById('modal-question-text').innerText = msg.message;
+            document.getElementById('admin-reply-textarea').value = '';
+            document.getElementById('admin-reply-modal').classList.add('modal-open');
+        }
+
+        function closeAdminReplyModal() {
+            document.getElementById('admin-reply-modal').classList.remove('modal-open');
+            activeReplyId = null;
+        }
+
+        // إرسال الرد وعرضه في الشات العائم للزبون
+        function submitAdminReply() {
+            const replyText = document.getElementById('admin-reply-textarea').value.trim();
+            if(!replyText) {
+                alert('يرجى كتابة نص الرد أولاً.');
+                return;
             }
+
+            // إرسال الرد كرسالة من البوت داخل الشات العائم
+            appendMessage("رد فريق الدعم: " + replyText, 'bot');
+
+            // إزالة الرسالة من صندوق الوارد في الداشبورد وتحديث الإشعارات
+            supportMessages = supportMessages.filter(m => m.id !== activeReplyId);
+            updateAdminSupportUI();
+            closeAdminReplyModal();
+            
+            alert('تم إرسال الرد بنجاح إلى شات المسافر!');
         }
 
         function appendMessage(text, sender) {
