@@ -37,7 +37,7 @@
                 <!-- Navigation Tabs -->
                 <nav class="hidden md:flex items-center gap-2 bg-[#1e293b] p-1.5 rounded-2xl border border-slate-700/50">
                     <button onclick="switchTab('visa')" id="nav-visa" class="px-4 py-2 rounded-xl text-xs font-bold transition-all gold-gradient text-slate-950 shadow-md">قسم التأشيرات (الفيزا)</button>
-                    <button onclick="switchTab('destinations')" id="nav-destinations" class="px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white">دليل الوجهات الخارجيّة</button>
+                    <button onclick="switchTab('destinations')" id="nav-destinations" class="px-4 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white">دليل الوجهات والفنادق</button>
                 </nav>
             </div>
 
@@ -54,7 +54,7 @@
                     </button>
                 </div>
 
-                <!-- حالة تسجيل الدخول (يظهر اسم المسافر/الأدمن مع القائمة المنسدلة عند الضغط) -->
+                <!-- حالة تسجيل الدخول -->
                 <div id="logged-in-area" class="relative">
                     <button onclick="toggleDropdown()" class="flex items-center gap-3 bg-[#1e293b] pl-3 pr-4 py-2 rounded-xl border border-slate-700 hover:border-amber-500/30 transition-all">
                         <span class="text-xs font-bold text-white">Super Support</span>
@@ -109,7 +109,7 @@
                     <p class="text-slate-300 text-xs sm:text-sm mb-6">ابحث عن الدولة لمعرفة الشروط التفصيلية، مدة الإقامة، صلاحية الجواز، والمستندات المطلوبة بدقة.</p>
                     
                     <div class="relative">
-                        <input type="text" id="visa-search" placeholder="ابحث أو اختر الدولة (مثال: تركيا، ماليزيا، جورجيا...)" class="w-full bg-[#0f172a]/90 backdrop-blur border border-slate-700 text-white placeholder-slate-400 rounded-2xl px-5 py-4 pl-12 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none shadow-xl">
+                        <input type="text" id="visa-search" oninput="filterVisas()" placeholder="ابحث أو اختر الدولة (مثال: تركيا، ماليزيا، جورجيا...)" class="w-full bg-[#0f172a]/90 backdrop-blur border border-slate-700 text-white placeholder-slate-400 rounded-2xl px-5 py-4 pl-12 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none shadow-xl">
                         <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-base"></i>
                     </div>
                 </div>
@@ -125,13 +125,79 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="visa-grid"></div>
         </section>
 
-        <!-- ================= SECTION 2: DESTINATIONS ================= -->
+        <!-- ================= SECTION 2: DESTINATIONS & HOTELS ================= -->
         <section id="section-destinations" class="hidden space-y-6">
              <div class="text-center max-w-2xl mx-auto mb-8">
-                <h2 class="text-3xl font-extrabold text-white mb-2">دليل الوجهات الخارجية والخدمات</h2>
-                <p class="text-slate-400 text-xs">الفنادق، الأماكن الترفيهية، والمستشفيات في وجهاتك الخارجية المفضلة.</p>
+                <h2 class="text-3xl font-extrabold text-white mb-2">دليل الوجهات الخارجية والفنادق</h2>
+                <p class="text-slate-400 text-xs">أفضل الفنادق الموصى بها، الأماكن الترفيهية، والمستشفيات المعتمدة في وجهاتك المفضلة.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="destinations-grid"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="destinations-grid">
+                <!-- كارت وجهة تركيا -->
+                <div class="bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=800&q=80');">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#1e293b] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur text-amber-400 border border-amber-500/30 px-3 py-1 rounded-xl text-xs font-bold">تركيا - إسطنبول</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <h3 class="text-lg font-extrabold text-white">دليل الفنادق والخدمات في إسطنبول</h3>
+                            <p class="text-slate-300 text-xs leading-relaxed">أبرز الفنادق القريبة من ساحة تقسيم وسلطان أحمد، مع خيارات الإقامة الاقتصادية والفاخرة للمسافر العراقي.</p>
+                            <ul class="space-y-2 text-xs text-slate-300">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق بيرا باجاسي (5 نجوم)</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق غرين تري (4 نجوم - تقسيم)</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-hospital text-emerald-400"></i>مستشفيات معتمدة: أجيبادم وميموريال</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button class="w-full bg-[#0f172a] hover:bg-amber-500 hover:text-slate-950 text-amber-400 border border-amber-500/30 py-2.5 rounded-xl text-xs font-bold transition-all">عرض كافة التفاصيل والفنادق</button>
+                    </div>
+                </div>
+
+                <!-- كارت وجهة جورجيا -->
+                <div class="bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80');">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#1e293b] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur text-amber-400 border border-amber-500/30 px-3 py-1 rounded-xl text-xs font-bold">جورجيا - تبليسي</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <h3 class="text-lg font-extrabold text-white">دليل الفنادق والخدمات في تبليسي</h3>
+                            <p class="text-slate-300 text-xs leading-relaxed">أفضل الفنادق في شارع روستافلي والمدينة القديمة، ومواقع الترفيه العائلي والطبيعة الساحرة.</p>
+                            <ul class="space-y-2 text-xs text-slate-300">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق بالتيمور تبليسي (5 نجوم)</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق إيبيس ستايلز تبليسي</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-umbrella-beach text-emerald-400"></i>الأماكن الترفيهية: بحيرة السلاحف وتليفريك تبليسي</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button class="w-full bg-[#0f172a] hover:bg-amber-500 hover:text-slate-950 text-amber-400 border border-amber-500/30 py-2.5 rounded-xl text-xs font-bold transition-all">عرض كافة التفاصيل والفنادق</button>
+                    </div>
+                </div>
+
+                <!-- كارت وجهة الإمارات -->
+                <div class="bg-[#1e293b] border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80');">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#1e293b] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 right-4 bg-slate-900/80 backdrop-blur text-amber-400 border border-amber-500/30 px-3 py-1 rounded-xl text-xs font-bold">الإمارات - دبي</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <h3 class="text-lg font-extrabold text-white">دليل الفنادق والخدمات في دبي</h3>
+                            <p class="text-slate-300 text-xs leading-relaxed">أرقى الفنادق القريبة من دبي مول وبرج خليفة، مع باقات سياحية مميزة تناسب العائلات العراقية.</p>
+                            <ul class="space-y-2 text-xs text-slate-300">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق أرماني دبي (برج خليفة)</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-hotel text-amber-400"></i>فندق روف دبي مارينا</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-ticket text-emerald-400"></i>فعاليات: دبي فستيفال سيتي وسفاري الصحراء</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button class="w-full bg-[#0f172a] hover:bg-amber-500 hover:text-slate-950 text-amber-400 border border-amber-500/30 py-2.5 rounded-xl text-xs font-bold transition-all">عرض كافة التفاصيل والفنادق</button>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- ================= SECTION 3: ADMIN DASHBOARD ================= -->
@@ -149,15 +215,15 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div class="bg-[#1e293b] p-5 rounded-2xl border border-slate-800 shadow-xl">
                     <p class="text-slate-400 text-xs mb-1">إجمالي طلبات المسافرين</p>
-                    <h3 class="text-xl font-extrabold text-white">0 طلب</h3>
+                    <h3 class="text-xl font-extrabold text-white">12 طلب نشط</h3>
                 </div>
                 <div class="bg-[#1e293b] p-5 rounded-2xl border border-slate-800 shadow-xl">
                     <p class="text-slate-400 text-xs mb-1">حجم المبيعات التقريبي</p>
-                    <h3 class="text-xl font-extrabold text-amber-400">0 دينار</h3>
+                    <h3 class="text-xl font-extrabold text-amber-400">14,800,000 دينار</h3>
                 </div>
                 <div class="bg-[#1e293b] p-5 rounded-2xl border border-slate-800 shadow-xl">
                     <p class="text-slate-400 text-xs mb-1">صافي الأرباح</p>
-                    <h3 class="text-xl font-extrabold text-emerald-400">0 دينار</h3>
+                    <h3 class="text-xl font-extrabold text-emerald-400">2,350,000 دينار</h3>
                 </div>
             </div>
         </section>
@@ -172,6 +238,74 @@
     <!-- JavaScript -->
     <script>
         let isLoggedIn = true;
+
+        // بيانات التأشيرات للدولة
+        const visaData = [
+            { name: "تركيا", type: "مسبقة", color: "rose", desc: "تطلب إلكترونية أو مسبقة عبر السفارة للمواطن العراقي.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "جورجيا", type: "بدون فيزا", color: "emerald", desc: "الدخول متاح بختم المطار مع تذكرة عودة وحجز حجز الفندق.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "الإمارات", type: "مسبقة", color: "rose", desc: "تستخرج عبر شركات الطيران أو مكاتب السياحة والسفر المعتمدة.", period: "30 أو 60 يوم", passport: "6 أشهر صلاحية" },
+            { name: "مصر", type: "مسبقة", color: "rose", desc: "تتطلب موافقة أمنية مسبقة وفيزا تمنح للسفارة المصرية بغداد.", period: "30 يوم", passport: "6 أشهر صلاحية" },
+            { name: "لبنان", type: "عند الوصول", color: "amber", desc: "تمنح عند الوصول للمطار بشرط وجود مبلغ كافي وحجز فندقي مؤكد.", period: "1 شهر قابل للتمديد", passport: "6 أشهر صلاحية" },
+            { name: "ماليزيا", type: "بدون فيزا", color: "emerald", desc: "متاحة للمسافر العراقي بختم المطار مباشرة بدون تعقيدات.", period: "90 يوم", passport: "6 أشهر صلاحية" }
+        ];
+
+        let currentCategory = 'all';
+
+        function renderVisas(filter = 'all', searchKeyword = '') {
+            const grid = document.getElementById('visa-grid');
+            grid.innerHTML = '';
+
+            const filtered = visaData.filter(item => {
+                const matchCat = filter === 'all' || item.type === filter;
+                const matchSearch = item.name.includes(searchKeyword) || item.desc.includes(searchKeyword);
+                return matchCat && matchSearch;
+            });
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 text-xs">لا توجد نتائج تطابق بحثك حالياً...</div>`;
+                return;
+            }
+
+            filtered.forEach(item => {
+                let badgeColor = item.color === 'emerald' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : (item.color === 'amber' ? 'bg-amber-500/10 text-amber-400 border-amber-500/30' : 'bg-rose-500/10 text-rose-400 border-rose-500/30');
+                
+                grid.innerHTML += `
+                    <div class="bg-[#1e293b] border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-xl font-extrabold text-white">${item.name}</h3>
+                                <span class="border text-xs font-bold px-3 py-1 rounded-xl ${badgeColor}">${item.type}</span>
+                            </div>
+                            <p class="text-slate-300 text-xs leading-relaxed mb-4">${item.desc}</p>
+                            <div class="space-y-1.5 text-xs text-slate-400 border-t border-slate-800 pt-3">
+                                <p><i class="fa-solid fa-clock ml-1 text-amber-400"></i> مدة الإقامة: <span class="text-white font-bold">${item.period}</span></p>
+                                <p><i class="fa-solid fa-passport ml-1 text-amber-400"></i> صلاحية الجواز: <span class="text-white font-bold">${item.passport}</span></p>
+                            </div>
+                        </div>
+                        <button class="w-full bg-[#0f172a] hover:bg-amber-500 hover:text-slate-950 text-amber-400 border border-amber-500/30 py-2.5 rounded-xl text-xs font-bold transition-all">طلب استخراج التأشيرة</button>
+                    </div>
+                `;
+            });
+        }
+
+        function filterVisaCat(cat) {
+            currentCategory = cat;
+            ['all', 'none', 'arrival', 'pre'].forEach(c => {
+                const btn = document.getElementById(`btn-cat-${c}`);
+                if(btn) btn.className = "bg-[#1e293b] text-slate-400 border border-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition-all";
+            });
+            
+            let activeBtnId = cat === 'all' ? 'btn-cat-all' : (cat === 'بدون فيزا' ? 'btn-cat-none' : (cat === 'عند الوصول' ? 'btn-cat-arrival' : 'btn-cat-pre'));
+            document.getElementById(activeBtnId).className = "bg-amber-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md";
+            
+            const keyword = document.getElementById('visa-search').value;
+            renderVisas(cat, keyword);
+        }
+
+        function filterVisas() {
+            const keyword = document.getElementById('visa-search').value;
+            renderVisas(currentCategory, keyword);
+        }
 
         function updateAuthState() {
             const outArea = document.getElementById('logged-out-area');
@@ -228,6 +362,8 @@
             document.getElementById('user-dropdown').classList.remove('dropdown-open');
         }
 
+        // تشغيل أولي
+        renderVisas('all', '');
         updateAuthState();
     </script>
 </body>
